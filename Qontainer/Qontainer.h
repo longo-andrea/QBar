@@ -1,0 +1,370 @@
+#include <iostream>
+#include <algorithm>
+
+template <class T>
+class Qontainer {
+private:
+	T* buffer;
+	unsigned int size;
+	unsigned int capacity;
+
+	static unsigned int DEFAULT_CAPACITY;
+
+	void resize();
+
+public:
+
+	class iterator {
+		friend class Qontainer<T>;
+	private:
+		T* item;
+		iterator(T* = nullptr);
+	public:
+		T& operator*() const;
+		T* operator->() const;
+
+		iterator& operator++();
+		iterator operator++(int);
+		iterator operator+(int) const;
+		iterator& operator+=(int);
+		iterator& operator--();
+		iterator operator--(int);
+		iterator operator-(int) const;
+		iterator& operator-=(int);
+
+		bool operator==(const iterator&) const;
+		bool operator!=(const iterator&) const;
+
+	};
+
+	class const_iterator {
+		friend class Qontainer<T>;
+	private:
+		const T* item;
+		const_iterator(const T* = nullptr);
+	public:
+		T& operator*() const;
+		T* operator->() const;
+
+		const_iterator& operator++();
+		const_iterator operator++(int);
+		const_iterator operator+(int) const;
+		const_iterator& operator+=(int);
+		const_iterator& operator--();
+		const_iterator operator--(int);
+		const_iterator operator-(int) const;
+		const_iterator& operator-=(int);
+
+		bool operator==(const const_iterator&) const;
+		bool operator!=(const const_iterator&) const;
+
+	};
+	
+	Qontainer(unsigned int = DEFAULT_CAPACITY);
+	Qontainer(const T&, unsigned int = DEFAULT_CAPACITY);
+	Qontainer(const Qontainer<T>&);
+	Qontainer<T>& operator= (const Qontainer<T>&);
+	~Qontainer();
+
+	int getSize() const;
+	bool isEmpty() const;
+	int getCapacity() const;
+
+	T& operator[] (int);
+	T& at(int);
+	T& front();
+	const T& front() const;
+	T& back();
+	const T& back() const;
+
+	iterator begin();
+	const_iterator begin() const;
+	const_iterator cbegin() const;
+	iterator end();
+	const_iterator end() const;
+	const_iterator cend() const;
+
+	void push_back(const T&);
+	void pop_back();
+	iterator erase(iterator);
+	void clear();
+
+	bool operator==(const Qontainer<T>&) const;
+	bool operator!=(const Qontainer<T>&) const;
+};
+
+/* ----- STATIC ----- */
+template <class T>
+unsigned int Qontainer<T>::DEFAULT_CAPACITY = 2;
+
+/* ----- ITERATOR ----- */
+template<class T>
+Qontainer<T>::iterator::iterator(T* item) : element(item) {}
+
+template <class T>
+T& Qontainer<T>::iterator::operator*() const {
+	return *item;
+}
+
+template <class T>
+T* Qontainer<T>::iterator::operator->() const {
+	return item;
+}
+
+template <class T>
+typename Qontainer<T>::iterator& Qontainer<T>::iterator::operator++() {
+	item++;
+	return *this;
+}
+
+template <class T>
+typename Qontainer<T>::iterator Qontainer<T>::iterator::operator++(int) {
+	iterator old = iterator(*this);
+	item++;
+	return old;
+}
+
+template <class T>
+typename Qontainer<T>::iterator Qontainer<T>::iterator::operator+(int i) const {
+	return iterator(item + i);
+}
+
+template <class T>
+typename Qontainer<T>::iterator& Qontainer<T>::iterator::operator+=(int i) {
+	item += i;
+	return *this;
+}
+
+template <class T>
+typename Qontainer<T>::iterator& Qontainer<T>::iterator::operator--() {
+	item--;
+	return *this;
+}
+
+template <class T>
+typename Qontainer<T>::iterator Qontainer<T>::iterator::operator--(int) {
+	iterator old = iterator(*this);
+	item--;
+	return old;
+}
+
+template <class T>
+typename Qontainer<T>::iterator Qontainer<T>::iterator::operator-(int i) const {
+	return iterator(item - i);
+}
+
+template <class T>
+typename Qontainer<T>::iterator& Qontainer<T>::iterator::operator-=(int i) {
+	item -= i;
+	return *this;
+}
+
+template <class T>
+bool Qontainer<T>::iterator::operator==(const iterator& it) const {
+	return item == it.item;
+}
+
+template <class T>
+bool Qontainer<T>::iterator::operator!=(const iterator& it) const {
+	return item != it.item;
+}
+
+/* ----- CONST_ITERATOR ----- */
+template <class T>
+Qontainer<T>::const_iterator::const_iterator(const T* t) : item(t) {}
+
+template <class T>
+T& Qontainer<T>::const_iterator::operator*() const {}
+
+template <class T>
+T* Qontainer<T>::const_iterator::operator->() const {}
+
+template <class T>
+typename Qontainer<T>::const_iterator& Qontainer<T>::const_iterator::operator++() {}
+
+template <class T>
+typename Qontainer<T>::const_iterator Qontainer<T>::const_iterator::operator++(int) {}
+
+template <class T>
+typename Qontainer<T>::const_iterator Qontainer<T>::const_iterator::operator+(int) const {}
+
+template <class T>
+typename Qontainer<T>::const_iterator& Qontainer<T>::const_iterator::operator+=(int) {}
+
+template <class T>
+typename Qontainer<T>::const_iterator& Qontainer<T>::const_iterator::operator--() {}
+
+template <class T>
+typename Qontainer<T>::const_iterator Qontainer<T>::const_iterator::operator--(int) {}
+
+template <class T>
+typename Qontainer<T>::const_iterator Qontainer<T>::const_iterator::operator-(int) const {}
+
+template <class T>
+typename Qontainer<T>::const_iterator& Qontainer<T>::const_iterator::operator-=(int) {}
+
+
+/* ----- QONTAINER ----- */
+template <class T>
+Qontainer<T>::Qontainer(unsigned int cp) : buffer(new T[cp]), size(0), capacity(cp) {}
+
+template <class T>
+Qontainer<T>::Qontainer(const T& item, unsigned int cp) : buffer(new T[cp]), size(0), capacity(cp) {
+	for (int i = 0; i < capacity; i++)
+		push_back(item);
+}
+
+template <class T>
+Qontainer<T>::Qontainer(const Qontainer<T>& toCopy) : buffer(new T[DEFAULT_CAPACITY]), size(0), capacity(DEFAULT_CAPACITY) {
+	for (unsigned int i = 0; i < toCopy.size; i++)
+		push_back(toCopy.buffer[i]);
+}
+
+template <class T>
+Qontainer<T>& Qontainer<T>::operator= (const Qontainer<T>& toCopy) {
+	if (this != &toCopy) {
+		delete[] buffer;
+		size = 0;
+		capacity = toCopy.capacity;
+		buffer = new T[capacity];
+		for (unsigned int i = 0; i < toCopy.size; i++)
+			push_back(toCopy.buffer[i]);
+	}
+	return *this;
+}
+
+template <class T>
+Qontainer<T>::~Qontainer() { if (buffer) delete[] buffer; }
+
+template <class T>
+int Qontainer<T>::getSize() const {
+	return size;
+}
+
+template <class T>
+bool Qontainer<T>::isEmpty() const {
+	return size == 0;
+}
+
+template <class T>
+int Qontainer<T>::getCapacity() const {
+	return capacity;
+}
+
+template <class T>
+T& Qontainer<T>::operator[] (int index) { return buffer[index]; }
+
+template <class T>
+T& Qontainer<T>::at(int index) {
+	return buffer[index];
+}
+
+template <class T>
+T& Qontainer<T>::front() {
+	return buffer[0];
+}
+
+template <class T>
+const T& Qontainer<T>::front() const {
+	return buffer[0];
+}
+
+template <class T>
+T& Qontainer<T>::back() {
+	return buffer[size - 1];
+}
+
+template <class T>
+const T& Qontainer<T>::back() const {
+	return buffer[size - 1];
+}
+
+template <class T>
+typename Qontainer<T>::iterator Qontainer<T>::begin() {
+	return iterator(buffer);
+}
+
+template <class T>
+typename Qontainer<T>::const_iterator Qontainer<T>::begin() const {
+	return const_iterator(buffer);
+}
+
+template <class T>
+typename Qontainer<T>::const_iterator Qontainer<T>::cbegin() const {
+	return const_iterator(buffer);
+}
+
+template <class T>
+typename Qontainer<T>::iterator Qontainer<T>::end() {
+	return iterator(buffer + size);
+}
+
+template <class T>
+typename Qontainer<T>::const_iterator Qontainer<T>::end() const {
+	return const_iterator(buffer + size);
+}
+
+template <class T>
+typename Qontainer<T>::const_iterator Qontainer<T>::cend() const {
+	return const_iterator(buffer + size);
+}
+
+template <class T>
+void Qontainer<T>::push_back(const T& item) {
+	if (size >= capacity)
+		resize();
+	buffer[size] = item;
+	size++;
+}
+
+template <class T>
+void Qontainer<T>::pop_back() {
+	if (size) {
+		size--;
+		buffer[size].~T();
+	}
+}
+
+template <class T>
+typename Qontainer<T>::iterator Qontainer<T>::erase(iterator pos) {
+	if (isEmpty()) return iterator(nullptr);
+	std::copy(pos++, end(), pos);
+	size--;
+	return pos;
+}
+
+template <class T>
+void Qontainer<T>::clear() {
+	delete[] buffer;
+	buffer = new T[DEFAULT_CAPACITY];
+	capacity = DEFAULT_CAPACITY;
+	size = 0;
+}
+
+template <class T>
+bool Qontainer<T>::operator==(const Qontainer<T>& q) const {
+	if (q.size == size && q.capacity == capacity) {
+		auto it = cbegin();
+		auto qit = cbegin();
+		for (; it = end(); ++it, ++qit)
+			if (*it != *qit) return false;
+		return true;
+	}
+	else
+		return false;
+}
+
+template <class T>
+bool Qontainer<T>::operator!=(const Qontainer<T>& q) const {
+	return !(*this == q);
+}
+
+template <class T>
+void Qontainer<T>::resize() {
+	capacity *= 2;
+	T* resized = new T[capacity];
+	for (unsigned int i = 0; i < size; i++)
+		resized[i] = buffer[i];
+	delete[] buffer;
+	buffer = resized;
+}
