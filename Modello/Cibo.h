@@ -26,13 +26,14 @@ public:
 	double getProteine() const;
 	double getGrassi() const;
 	bool isVegan() const;
-	virtual double getPrezzoPreparazione() const = 0;
-	virtual std::string getBarCode() const = 0;
-	virtual double getPrezzo() const = 0;
 
 	void setCarboidrati(const double&);
 	void setProteine(const double&);
 	void setGrassi(const double&);
+
+	virtual double getPrezzoPreparazione() const = 0;
+	virtual std::string getBarCode() const = 0;
+	virtual double getPrezzo() const = 0;
 
 	virtual double calcolaCalorie() const;
 

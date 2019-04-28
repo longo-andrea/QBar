@@ -11,7 +11,8 @@ private:
 	static double tassa;
 
 	double prezzoPreparazione;
-	std::string barCode;	Pane pane;
+	std::string barCode;	
+	Pane pane;
 
 public:
 	Panino(std::string, double, double, double, double, std::string, Pane, bool=false, int = 2020, int = 14);
