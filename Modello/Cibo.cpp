@@ -46,13 +46,13 @@ double Cibo::calcolaCalorie() const {
 		grassi * valoreEnergeticoGrassi;
 }
 
-bool Cibo::operator==(const Prodotto& prod) const {
-	return dynamic_cast<const Cibo*>(&prod) && Prodotto::operator==(prod)
-		&& static_cast<const Cibo&>(prod).carboidrati == carboidrati
-		&& static_cast<const Cibo&>(prod).proteine == proteine
-		&& static_cast<const Cibo&>(prod).grassi == grassi;
+bool Cibo::operator==(const Cibo& prod) const {
+	return Prodotto::operator==(prod)
+		&& prod.carboidrati == carboidrati
+		&& prod.proteine == proteine
+		&& prod.grassi == grassi;
 }
 
-bool Cibo::operator!=(const Prodotto& prod) const {
+bool Cibo::operator!=(const Cibo& prod) const {
 	return !(*this == prod);
 }

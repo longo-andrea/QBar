@@ -16,7 +16,7 @@ int Prodotto::getEtaMinima() const {
 	return etaMinima;
 }
 
-void Prodotto::setNomeProdotto(const std::string& nomeProdotto) {
+void Prodotto::setNome(const std::string& nomeProdotto) {
 	if (nomeProdotto != "")
 		nome = nomeProdotto;
 }
@@ -32,9 +32,9 @@ void Prodotto::setEtaMinima(const int& etaMinimaProdotto) {
 }
 
 bool Prodotto::operator==(const Prodotto& prod) const {
-	return this->nome == prod.nome &&
-		this->scadenza == prod.scadenza &&
-		this->etaMinima == prod.etaMinima;
+	return nome == prod.nome &&
+		scadenza == prod.scadenza &&
+		etaMinima == prod.etaMinima;
 }
 
 bool Prodotto::operator!=(const Prodotto& prod) const {

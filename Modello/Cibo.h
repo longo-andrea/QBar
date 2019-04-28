@@ -36,8 +36,8 @@ public:
 
 	virtual double calcolaCalorie() const;
 
-	virtual bool operator==(const Prodotto&) const override;
-	virtual bool operator!=(const Prodotto&) const override;
+	virtual bool operator==(const Cibo&) const;
+	virtual bool operator!=(const Cibo&) const;
 
 };
 

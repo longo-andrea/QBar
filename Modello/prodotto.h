@@ -21,7 +21,7 @@ public:
 	virtual std::string getBarCode() const = 0;
 	virtual double getPrezzo() const = 0;
 
-	void setNomeProdotto(const std::string&);
+	void setNome(const std::string&);
 	void setScadenza(const int&);
 	void setEtaMinima(const int&);
 

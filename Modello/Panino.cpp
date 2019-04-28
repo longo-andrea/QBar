@@ -9,7 +9,7 @@ Panino::Panino(const Panino& panino) : Cibo(panino), prezzoPreparazione(panino.g
 
 Panino& Panino::operator=(const Panino& copiaPanino) {
 	if (this != &copiaPanino) {
-		setNomeProdotto(copiaPanino.getNome());
+		setNome(copiaPanino.getNome());
 		setScadenza(copiaPanino.getScadenza());
 		setEtaMinima(copiaPanino.getEtaMinima());
 		setCarboidrati(copiaPanino.getCarboidrati());
@@ -76,13 +76,13 @@ void Panino::setPane(Pane panePanino) {
 		pane = panePanino;
 }
 
-bool Panino::operator==(const Prodotto& prod) const {
-	return dynamic_cast<const Panino*>(&prod) && Cibo::operator==(prod)
-		&& static_cast<const Panino&>(prod).prezzoPreparazione == prezzoPreparazione
-		&& static_cast<const Panino&>(prod).barCode == barCode
-		&& static_cast<const Panino&>(prod).pane == pane;
+bool Panino::operator==(const Panino& prod) const {
+	return Cibo::operator==(prod)
+		&& prod.prezzoPreparazione == prezzoPreparazione
+		&& prod.barCode == barCode
+		&& prod.pane == pane;
 }
 
-bool Panino::operator!=(const Prodotto& prod) const {
+bool Panino::operator!=(const Panino& prod) const {
 	return !(*this == prod);
 }

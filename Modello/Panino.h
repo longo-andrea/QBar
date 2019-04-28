@@ -30,8 +30,8 @@ public:
 	void setBarCode(const std::string&);
 	void setPane(Pane);
 
-	virtual bool operator==(const Prodotto&) const override;
-	virtual bool operator!=(const Prodotto&) const override;
+	virtual bool operator==(const Panino&) const;
+	virtual bool operator!=(const Panino&) const;
 
 };
 
