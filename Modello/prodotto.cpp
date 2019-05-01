@@ -22,7 +22,7 @@ void Prodotto::setNome(const std::string& nomeProdotto) {
 }
 
 void Prodotto::setScadenza(const int& scadenzaProdotto) {
-	if(scadenzaProdotto >= 2018)
+	if(scadenzaProdotto >= 2020)
 		scadenza = scadenzaProdotto;
 }
 

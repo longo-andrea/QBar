@@ -15,10 +15,11 @@ private:
 	std::string barCode;
 	unsigned int annoProduzione;
 	Regione regione;
+	double litri;
 
 
 public:
-	Vino(std::string, double, double, double, bool, double, double, std::string, unsigned int, Regione, int = 2020, int = 18);
+	Vino(std::string, double, double, double, double, double, double, std::string, unsigned int, Regione, bool =true, int = 2020, int = 18);
 	Vino(const Vino&);
 	virtual Vino* clone() const override;
 	virtual ~Vino() = default;
@@ -30,6 +31,7 @@ public:
 	unsigned int getAnnoProduzione() const;
 	Regione getRegione() const;
 	std::string regioneToString() const;
+	double getLitri() const;
 
 	void setTassa(const double&);
 	void setPrezzoNetto(const double&);
@@ -37,6 +39,7 @@ public:
 	void setBarCode(const std::string&);
 	void setAnnoProduzione(const unsigned int&);
 	void setRegione(const Regione&);
+	void setLitri(const double&);
 
 	virtual double calcolaCalorie() const override;
 
