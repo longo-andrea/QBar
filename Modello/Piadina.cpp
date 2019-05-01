@@ -7,21 +7,6 @@ Piadina::Piadina(std::string nomeProdotto, double carboidratiCibo, double protei
 	
 Piadina::Piadina(const Piadina& piadina) : Cibo(piadina), prezzoPreparazione(piadina.getPrezzoPreparazione()), barCode(piadina.getBarCode()), impasto(piadina.getImpasto()) {}
 
-Piadina& Piadina::operator=(const Piadina& copiaPiadina) {
-	if (this != &copiaPiadina) {
-		setNome(copiaPiadina.getNome());
-		setScadenza(copiaPiadina.getScadenza());
-		setEtaMinima(copiaPiadina.getEtaMinima());
-		setCarboidrati(copiaPiadina.getCarboidrati());
-		setProteine(copiaPiadina.getProteine());
-		setGrassi(copiaPiadina.getGrassi());
-		prezzoPreparazione = copiaPiadina.prezzoPreparazione;
-		barCode = copiaPiadina.barCode;
-		impasto = copiaPiadina.impasto;
-	}
-	return *this;
-}
-
 double Piadina::getPrezzoPreparazione() const {
 	return prezzoPreparazione;
 }

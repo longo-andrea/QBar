@@ -7,21 +7,6 @@ Panino::Panino(std::string nomeProdotto, double carboidratiCibo, double proteine
 
 Panino::Panino(const Panino& panino) : Cibo(panino), prezzoPreparazione(panino.getPrezzoPreparazione()), barCode(panino.getBarCode()), pane(panino.getPane()) {}
 
-Panino& Panino::operator=(const Panino& copiaPanino) {
-	if (this != &copiaPanino) {
-		setNome(copiaPanino.getNome());
-		setScadenza(copiaPanino.getScadenza());
-		setEtaMinima(copiaPanino.getEtaMinima());
-		setCarboidrati(copiaPanino.getCarboidrati());
-		setProteine(copiaPanino.getProteine());
-		setGrassi(copiaPanino.getGrassi());
-		prezzoPreparazione = copiaPanino.prezzoPreparazione;
-		barCode = copiaPanino.barCode;
-		pane = copiaPanino.pane;
-	}
-	return *this;
-}
-
 double Panino::getPrezzoPreparazione() const {
 	return prezzoPreparazione;
 }

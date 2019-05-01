@@ -17,7 +17,6 @@ private:
 public:
 	Piadina(std::string, double, double, double, double, std::string, Impasto, int = 2020, int = 14);
 	Piadina(const Piadina&);
-	Piadina& operator=(const Piadina&);
 	virtual ~Piadina() =default;
 		
 	double getPrezzoPreparazione() const override;

@@ -7,23 +7,6 @@ Briosche::Briosche(std::string nomeProdotto, double carboidratiCibo, double prot
 
 Briosche::Briosche(const Briosche& briosche) : Cibo(briosche), prezzoPreparazione(briosche.getPrezzoPreparazione()), barCode(briosche.getBarCode()), impasto(briosche.getImpasto()), tipo(briosche.getTipo()), ripieno(briosche.getRipieno()) {}
 
-Briosche& Briosche::operator=(const Briosche& copiaBriosche) {
-	if (this != &copiaBriosche) {
-		setNome(copiaBriosche.getNome());
-		setScadenza(copiaBriosche.getScadenza());
-		setEtaMinima(copiaBriosche.getEtaMinima());
-		setCarboidrati(copiaBriosche.getCarboidrati());
-		setProteine(copiaBriosche.getProteine());
-		setGrassi(copiaBriosche.getGrassi());
-		prezzoPreparazione = copiaBriosche.prezzoPreparazione;
-		barCode = copiaBriosche.barCode;
-		impasto = copiaBriosche.impasto;
-		tipo = copiaBriosche.tipo;
-		ripieno = copiaBriosche.ripieno;
-	}
-	return *this;
-}
-
 double Briosche::getPrezzoPreparazione() const {
 	return prezzoPreparazione;
 }
