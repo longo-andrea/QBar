@@ -17,6 +17,7 @@ private:
 public:
 	Panino(std::string, double, double, double, double, std::string, Pane, bool=false, int = 2020, int = 14);
 	Panino(const Panino&);
+	virtual Panino* clone() const override;
 	virtual ~Panino() = default;
 
 	double getPrezzoPreparazione() const override;

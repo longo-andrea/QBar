@@ -7,6 +7,10 @@ Piadina::Piadina(std::string nomeProdotto, double carboidratiCibo, double protei
 	
 Piadina::Piadina(const Piadina& piadina) : Cibo(piadina), prezzoPreparazione(piadina.getPrezzoPreparazione()), barCode(piadina.getBarCode()), impasto(piadina.getImpasto()) {}
 
+Piadina* Piadina::clone() const {
+	return new Piadina(*this);
+}
+
 double Piadina::getPrezzoPreparazione() const {
 	return prezzoPreparazione;
 }

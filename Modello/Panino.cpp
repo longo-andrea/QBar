@@ -7,6 +7,10 @@ Panino::Panino(std::string nomeProdotto, double carboidratiCibo, double proteine
 
 Panino::Panino(const Panino& panino) : Cibo(panino), prezzoPreparazione(panino.getPrezzoPreparazione()), barCode(panino.getBarCode()), pane(panino.getPane()) {}
 
+Panino* Panino::clone() const {
+	return new Panino(*this);
+}
+
 double Panino::getPrezzoPreparazione() const {
 	return prezzoPreparazione;
 }

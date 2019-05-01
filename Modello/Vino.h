@@ -20,6 +20,7 @@ private:
 public:
 	Vino(std::string, double, double, double, bool, double, double, std::string, unsigned int, Regione, int = 2020, int = 18);
 	Vino(const Vino&);
+	virtual Vino* clone() const override;
 	virtual ~Vino() = default;
 
 	double getPrezzoNetto() const;

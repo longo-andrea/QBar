@@ -8,6 +8,10 @@ Vino::Vino(std::string nomeProdotto, double carboidratiBevanda, double proteineB
 
 Vino::Vino(const Vino& vino) : Bevanda(vino), prezzoNetto(vino.prezzoNetto), gradazioneAlcolica(vino.gradazioneAlcolica), barCode(vino.barCode), annoProduzione(vino.annoProduzione), regione(vino.regione) {}
 
+Vino* Vino::clone() const {
+	return new Vino(*this);
+}
+
 double Vino::getPrezzoNetto() const {
 	return prezzoNetto;
 }

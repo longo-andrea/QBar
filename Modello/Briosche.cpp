@@ -7,6 +7,10 @@ Briosche::Briosche(std::string nomeProdotto, double carboidratiCibo, double prot
 
 Briosche::Briosche(const Briosche& briosche) : Cibo(briosche), prezzoPreparazione(briosche.getPrezzoPreparazione()), barCode(briosche.getBarCode()), impasto(briosche.getImpasto()), tipo(briosche.getTipo()), ripieno(briosche.getRipieno()) {}
 
+Briosche* Briosche::clone() const {
+	return new Briosche(*this);
+}
+
 double Briosche::getPrezzoPreparazione() const {
 	return prezzoPreparazione;
 }

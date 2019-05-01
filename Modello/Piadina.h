@@ -17,6 +17,7 @@ private:
 public:
 	Piadina(std::string, double, double, double, double, std::string, Impasto, int = 2020, int = 14);
 	Piadina(const Piadina&);
+	virtual Piadina* clone() const override;
 	virtual ~Piadina() =default;
 		
 	double getPrezzoPreparazione() const override;
