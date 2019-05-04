@@ -1,7 +1,6 @@
 #include "vino.h"
 
 double Vino::tassa = 2;
-double Vino::valoreEnergeticoAlcol = 7;
 
 Vino::Vino(std::string nomeProdotto, double carboidratiBevanda, double proteineBevanda, double grassiBevanda, double gradazioneAlcolicaVino, double prezzoNettoVino, double litriVino, std::string barCodeVino, unsigned int annoProduzioneVino, Regione regioneVino, bool alcohoilcBevanda, int scadenzaProdotto, int etaMinimaProdotto)
 	: Bevanda(nomeProdotto, carboidratiBevanda, proteineBevanda, grassiBevanda, alcohoilcBevanda, scadenzaProdotto, etaMinimaProdotto), prezzoNetto(prezzoNettoVino), gradazioneAlcolica(gradazioneAlcolicaVino), barCode(barCodeVino), annoProduzione(annoProduzioneVino), regione(regioneVino), litri(litriVino) {}

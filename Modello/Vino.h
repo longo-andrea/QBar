@@ -8,7 +8,6 @@ public:
 	enum Regione { Veneto, Emilia, Toscana, Friuli };
 private:
 	static double tassa;
-	static double valoreEnergeticoAlcol;
 
 	double prezzoNetto;
 	double gradazioneAlcolica;

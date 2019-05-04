@@ -9,6 +9,7 @@ private:
 	static double valoreEnergeticoCarboidrati;
 	static double valoreEnergeticoProteine;
 	static double valoreEnergeticoGrassi;
+	static double valoreEnergeticoAlcol;
 
 	double carboidrati;
 	double proteine;
@@ -29,9 +30,6 @@ public:
 	void setProteine(const double&);
 	void setGrassi(const double&);
 	void setAlcoholic(const bool&);
-
-	virtual std::string getBarCode() const = 0;
-	virtual double getPrezzo() const = 0;
 
 	virtual double calcolaCalorie() const;
 

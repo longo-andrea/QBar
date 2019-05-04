@@ -5,7 +5,7 @@ double Piadina::tassa = 0.30;
 Piadina::Piadina(std::string nomeProdotto, double carboidratiCibo, double proteineCibo, double grassiCibo, double prezzoPreparazionePiadina, std::string barCodePiadina, Impasto impastoPiadina, int scadenzaProdotto, int etaMinimaProdotto) 
 	: Cibo(nomeProdotto, carboidratiCibo, proteineCibo, grassiCibo, scadenzaProdotto, etaMinimaProdotto), prezzoPreparazione(prezzoPreparazionePiadina >= 0 ? prezzoPreparazionePiadina : 0), barCode(barCodePiadina), impasto(impastoPiadina) {}
 	
-Piadina::Piadina(const Piadina& piadina) : Cibo(piadina), prezzoPreparazione(piadina.getPrezzoPreparazione()), barCode(piadina.getBarCode()), impasto(piadina.getImpasto()) {}
+Piadina::Piadina(const Piadina& piadina) : Cibo(piadina), prezzoPreparazione(piadina.prezzoPreparazione), barCode(piadina.barCode), impasto(piadina.impasto) {}
 
 Piadina* Piadina::clone() const {
 	return new Piadina(*this);

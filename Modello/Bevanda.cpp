@@ -3,11 +3,12 @@
 double Bevanda::valoreEnergeticoCarboidrati = 4;
 double Bevanda::valoreEnergeticoProteine = 4;
 double Bevanda::valoreEnergeticoGrassi = 9;
+double Bevanda::valoreEnergeticoAlcol = 7;
 
 Bevanda::Bevanda(std::string nomeProdotto, double carboidratiBevanda, double proteineBevanda, double grassiBevanda, bool alcoholicBevanda, int scadenzaProdotto, int etaMinimaProdotto)
 	: Prodotto(nomeProdotto, scadenzaProdotto, etaMinimaProdotto), carboidrati(carboidratiBevanda >= 0 ? carboidratiBevanda : 0), proteine(proteineBevanda >= 0 ? proteineBevanda : 0), grassi(grassiBevanda >= 0 ? grassiBevanda : 0), alcoholic(alcoholicBevanda) {}
 
-Bevanda::Bevanda(const Bevanda& bevanda) : Prodotto(bevanda), carboidrati(bevanda.getCarboidrati()), proteine(bevanda.getProteine()), grassi(bevanda.getGrassi()), alcoholic(bevanda.isAlcoholic()) {}
+Bevanda::Bevanda(const Bevanda& bevanda) : Prodotto(bevanda), carboidrati(bevanda.carboidrati), proteine(bevanda.proteine), grassi(bevanda.grassi), alcoholic(bevanda.alcoholic) {}
 
 double Bevanda::getCarboidrati() const {
 	return carboidrati;

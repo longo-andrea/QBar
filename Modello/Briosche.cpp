@@ -5,7 +5,7 @@ double Briosche::tassa = 0.10;
 Briosche::Briosche(std::string nomeProdotto, double carboidratiCibo, double proteineCibo, double grassiCibo, double prezzoPreparazioneBriosche, std::string barCodeBriosche, Impasto impastoBriosche, Tipo tipoBriosche, Ripieno ripienoBriosche, int scadenzaProdotto, int etaMinimaProdotto) 
 	: Cibo(nomeProdotto, carboidratiCibo, proteineCibo, grassiCibo, scadenzaProdotto, etaMinimaProdotto), prezzoPreparazione(prezzoPreparazioneBriosche >= 0 ? prezzoPreparazioneBriosche : 0), barCode(barCodeBriosche), impasto(impastoBriosche), tipo(tipoBriosche), ripieno(ripienoBriosche) {}
 
-Briosche::Briosche(const Briosche& briosche) : Cibo(briosche), prezzoPreparazione(briosche.getPrezzoPreparazione()), barCode(briosche.getBarCode()), impasto(briosche.getImpasto()), tipo(briosche.getTipo()), ripieno(briosche.getRipieno()) {}
+Briosche::Briosche(const Briosche& briosche) : Cibo(briosche), prezzoPreparazione(briosche.prezzoPreparazione), barCode(briosche.barCode), impasto(briosche.impasto), tipo(briosche.tipo), ripieno(briosche.ripieno) {}
 
 Briosche* Briosche::clone() const {
 	return new Briosche(*this);

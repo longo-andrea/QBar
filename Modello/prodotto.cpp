@@ -2,7 +2,7 @@
 
 Prodotto::Prodotto(std::string nomeProdotto, int scadenzaProdotto, int etaMinimaProdotto) : nome(nomeProdotto), scadenza(scadenzaProdotto >= 2018 ? scadenzaProdotto : 2018 ), etaMinima(etaMinimaProdotto >= 14 ? etaMinimaProdotto : 14) {}
 
-Prodotto::Prodotto(const Prodotto& prod) : nome(prod.getNome()), scadenza(prod.getScadenza()), etaMinima(prod.getEtaMinima()) {}
+Prodotto::Prodotto(const Prodotto& prod) : nome(prod.nome), scadenza(prod.scadenza), etaMinima(prod.etaMinima) {}
 
 std::string Prodotto::getNome() const {
 	return nome;

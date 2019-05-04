@@ -5,7 +5,7 @@ double Panino::tassa = 0.40;
 Panino::Panino(std::string nomeProdotto, double carboidratiCibo, double proteineCibo, double grassiCibo, double prezzoPreparazionePanino, std::string barCodePanino, Panino::Pane panePanino, bool PaninoVegano, int scadenzaProdotto, int etaMinimaProdotto)
 	: Cibo(nomeProdotto, carboidratiCibo, proteineCibo, grassiCibo, PaninoVegano, scadenzaProdotto, etaMinimaProdotto), prezzoPreparazione(prezzoPreparazionePanino >= 0 ? prezzoPreparazionePanino : 0), barCode(barCodePanino), pane(panePanino) {}
 
-Panino::Panino(const Panino& panino) : Cibo(panino), prezzoPreparazione(panino.getPrezzoPreparazione()), barCode(panino.getBarCode()), pane(panino.getPane()) {}
+Panino::Panino(const Panino& panino) : Cibo(panino), prezzoPreparazione(panino.prezzoPreparazione), barCode(panino.barCode), pane(panino.pane) {}
 
 Panino* Panino::clone() const {
 	return new Panino(*this);

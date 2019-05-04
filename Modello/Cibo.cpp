@@ -7,7 +7,7 @@ double Cibo::valoreEnergeticoGrassi = 9;
 Cibo::Cibo(std::string nomeProdotto, double carboidratiCibo, double proteineCibo, double grassiCibo, bool ProdottoVegano, int scadenzaProdotto, int etaMinimaProdotto)
 	: Prodotto(nomeProdotto, scadenzaProdotto, etaMinimaProdotto), carboidrati(carboidratiCibo >= 0 ? carboidratiCibo : 0), proteine(proteineCibo >= 0 ? proteineCibo : 0), grassi(grassiCibo >= 0 ? grassiCibo : 0), vegan(ProdottoVegano) {}
 
-Cibo::Cibo(const Cibo& cibo) : Prodotto(cibo), carboidrati(cibo.getCarboidrati()), proteine(cibo.getProteine()), grassi(cibo.getGrassi()), vegan(cibo.isVegan()) {}
+Cibo::Cibo(const Cibo& cibo) : Prodotto(cibo), carboidrati(cibo.carboidrati), proteine(cibo.proteine), grassi(cibo.grassi), vegan(cibo.vegan) {}
 
 double Cibo::getCarboidrati() const {
 	return carboidrati;
