@@ -92,7 +92,7 @@ void Vino::setLitri(const double& litriVino) {
 }
 
 double Vino::calcolaCalorie() const {
-	return Bevanda::calcolaCalorie() + gradazioneAlcolica * valoreEnergeticoAlcol;
+	return Bevanda::calcolaCalorie() + gradazioneAlcolica ;
 }
 
 bool Vino::operator==(const Vino& prod) const {

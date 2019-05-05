@@ -26,7 +26,6 @@ public:
 	Pane getPane() const;
 	std::string paneToString() const;
 
-	void setTassa(const double&);
 	void setPrezzoPreparazione(const double&);
 	void setBarCode(const std::string&);
 	void setPane(Pane);

@@ -46,11 +46,6 @@ std::string Panino::paneToString() const {
 	}
 }
 
-void Panino::setTassa(const double& tassaPanino) {
-	if (tassaPanino >= 0)
-		tassa = tassaPanino;
-}
-
 void Panino::setPrezzoPreparazione(const double& prezzoPreparazionePanino) {
 	if (prezzoPreparazionePanino >= 0)
 		prezzoPreparazione = prezzoPreparazionePanino;

@@ -1,6 +1,6 @@
 #include "Prodotto.h"
 
-Prodotto::Prodotto(std::string nomeProdotto, int scadenzaProdotto, int etaMinimaProdotto) : nome(nomeProdotto), scadenza(scadenzaProdotto >= 2018 ? scadenzaProdotto : 2018 ), etaMinima(etaMinimaProdotto >= 14 ? etaMinimaProdotto : 14) {}
+Prodotto::Prodotto(std::string nomeProdotto, int scadenzaProdotto, int etaMinimaProdotto) : nome(nomeProdotto), scadenza(scadenzaProdotto >= 2019 ? scadenzaProdotto : 2019), etaMinima(etaMinimaProdotto >= 14 ? etaMinimaProdotto : 14) {}
 
 Prodotto::Prodotto(const Prodotto& prod) : nome(prod.nome), scadenza(prod.scadenza), etaMinima(prod.etaMinima) {}
 
@@ -22,12 +22,12 @@ void Prodotto::setNome(const std::string& nomeProdotto) {
 }
 
 void Prodotto::setScadenza(const int& scadenzaProdotto) {
-	if(scadenzaProdotto >= 2020)
+	if(scadenzaProdotto >= 2019)
 		scadenza = scadenzaProdotto;
 }
 
 void Prodotto::setEtaMinima(const int& etaMinimaProdotto) {
-	if (etaMinimaProdotto >= 14)
+	if (etaMinimaProdotto >= 0)
 		etaMinima = etaMinimaProdotto;
 }
 

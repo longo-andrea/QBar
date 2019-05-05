@@ -40,6 +40,10 @@ void Cibo::setGrassi(const double& grassiCibo) {
 		grassi = grassiCibo;
 }
 
+void Cibo::setIsVegan(const bool& isVeganCibo) {
+	vegan = isVeganCibo;
+}
+
 double Cibo::calcolaCalorie() const {
 	return carboidrati * valoreEnergeticoCarboidrati +
 		proteine * valoreEnergeticoProteine +

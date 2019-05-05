@@ -2,8 +2,8 @@
 
 double Briosche::tassa = 0.10;
 
-Briosche::Briosche(std::string nomeProdotto, double carboidratiCibo, double proteineCibo, double grassiCibo, double prezzoPreparazioneBriosche, std::string barCodeBriosche, Impasto impastoBriosche, Tipo tipoBriosche, Ripieno ripienoBriosche, int scadenzaProdotto, int etaMinimaProdotto) 
-	: Cibo(nomeProdotto, carboidratiCibo, proteineCibo, grassiCibo, scadenzaProdotto, etaMinimaProdotto), prezzoPreparazione(prezzoPreparazioneBriosche >= 0 ? prezzoPreparazioneBriosche : 0), barCode(barCodeBriosche), impasto(impastoBriosche), tipo(tipoBriosche), ripieno(ripienoBriosche) {}
+Briosche::Briosche(std::string nomeProdotto, double carboidratiCibo, double proteineCibo, double grassiCibo, double prezzoPreparazioneBriosche, bool isVeganCibo, std::string barCodeBriosche, Impasto impastoBriosche, Tipo tipoBriosche, Ripieno ripienoBriosche, int scadenzaProdotto, int etaMinimaProdotto) 
+	: Cibo(nomeProdotto, carboidratiCibo, proteineCibo, grassiCibo, isVeganCibo, scadenzaProdotto, etaMinimaProdotto), prezzoPreparazione(prezzoPreparazioneBriosche >= 0 ? prezzoPreparazioneBriosche : 0), barCode(barCodeBriosche), impasto(impastoBriosche), tipo(tipoBriosche), ripieno(ripienoBriosche) {}
 
 Briosche::Briosche(const Briosche& briosche) : Cibo(briosche), prezzoPreparazione(briosche.prezzoPreparazione), barCode(briosche.barCode), impasto(briosche.impasto), tipo(briosche.tipo), ripieno(briosche.ripieno) {}
 
@@ -84,11 +84,6 @@ std::string Briosche::ripienoToString() const {
 		default:
 			break;
 	}
-}
-
-void Briosche::setTassa(const double& tassaBriosche) {
-	if (tassaBriosche >= 0)
-		tassa = tassaBriosche;
 }
 
 void Briosche::setPrezzoPreparazione(const double& prezzoPreparazioneBriosche) {

@@ -2,8 +2,8 @@
 
 double Piadina::tassa = 0.30;
 
-Piadina::Piadina(std::string nomeProdotto, double carboidratiCibo, double proteineCibo, double grassiCibo, double prezzoPreparazionePiadina, std::string barCodePiadina, Impasto impastoPiadina, int scadenzaProdotto, int etaMinimaProdotto) 
-	: Cibo(nomeProdotto, carboidratiCibo, proteineCibo, grassiCibo, scadenzaProdotto, etaMinimaProdotto), prezzoPreparazione(prezzoPreparazionePiadina >= 0 ? prezzoPreparazionePiadina : 0), barCode(barCodePiadina), impasto(impastoPiadina) {}
+Piadina::Piadina(std::string nomeProdotto, double carboidratiCibo, double proteineCibo, double grassiCibo, double prezzoPreparazionePiadina, bool isVeganCibo, std::string barCodePiadina, Impasto impastoPiadina, int scadenzaProdotto, int etaMinimaProdotto) 
+	: Cibo(nomeProdotto, carboidratiCibo, proteineCibo, grassiCibo, isVeganCibo, scadenzaProdotto, etaMinimaProdotto), prezzoPreparazione(prezzoPreparazionePiadina >= 0 ? prezzoPreparazionePiadina : 0), barCode(barCodePiadina), impasto(impastoPiadina) {}
 	
 Piadina::Piadina(const Piadina& piadina) : Cibo(piadina), prezzoPreparazione(piadina.prezzoPreparazione), barCode(piadina.barCode), impasto(piadina.impasto) {}
 
@@ -43,11 +43,6 @@ std::string Piadina::impastoToString() const {
 		default:
 			break;
 	}
-}
-
-void Piadina::setTassa(const double& tassaPiadina) {
-	if (tassaPiadina >= 0)
-		tassa = tassaPiadina;
 }
 
 void Piadina::setPrezzoPreparazione(const double& prezzoPreparazionePiadina) {

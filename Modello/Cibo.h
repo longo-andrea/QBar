@@ -30,6 +30,7 @@ public:
 	void setCarboidrati(const double&);
 	void setProteine(const double&);
 	void setGrassi(const double&);
+	void setIsVegan(const bool&);
 
 	virtual double getPrezzoPreparazione() const = 0;
 	virtual std::string getBarCode() const = 0;

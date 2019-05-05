@@ -18,7 +18,7 @@ private:
 	Ripieno ripieno;
 
 public:
-	Briosche(std::string, double, double, double, double, std::string, Impasto, Tipo, Ripieno, int = 2020, int = 14);
+	Briosche(std::string, double, double, double, double, bool,std::string, Impasto, Tipo, Ripieno, int = 2020, int = 14);
 	Briosche(const Briosche&);
 	virtual Briosche* clone() const override;
 	virtual ~Briosche() =default;
@@ -33,7 +33,6 @@ public:
 	std::string tipoToString() const;
 	std::string ripienoToString() const;
 
-	void setTassa(const double&);
 	void setPrezzoPreparazione(const double&);
 	void setBarCode(const std::string&);
 	void setImpasto(const Impasto&);

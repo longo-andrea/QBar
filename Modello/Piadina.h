@@ -15,7 +15,7 @@ private:
 	Impasto impasto;
 
 public:
-	Piadina(std::string, double, double, double, double, std::string, Impasto, int = 2020, int = 14);
+	Piadina(std::string, double, double, double, double, bool, std::string, Impasto, int = 2020, int = 14);
 	Piadina(const Piadina&);
 	virtual Piadina* clone() const override;
 	virtual ~Piadina() =default;
@@ -26,7 +26,6 @@ public:
 	Impasto getImpasto() const;
 	std::string impastoToString() const;
 
-	void setTassa(const double&);
 	void setPrezzoPreparazione(const double&);
 	void setBarCode(const std::string&);
 	void setImpasto(Impasto);
