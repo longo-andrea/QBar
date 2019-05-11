@@ -2,8 +2,8 @@
 
 double Vino::tassa = 2;
 
-Vino::Vino(std::string nomeProdotto, double carboidratiBevanda, double proteineBevanda, double grassiBevanda, double gradazioneAlcolicaVino, double prezzoNettoVino, double litriVino, std::string barCodeVino, unsigned int annoProduzioneVino, Regione regioneVino, bool alcohoilcBevanda, int scadenzaProdotto, int etaMinimaProdotto)
-	: Bevanda(nomeProdotto, carboidratiBevanda, proteineBevanda, grassiBevanda, alcohoilcBevanda, scadenzaProdotto, etaMinimaProdotto), prezzoNetto(prezzoNettoVino), gradazioneAlcolica(gradazioneAlcolicaVino), barCode(barCodeVino), annoProduzione(annoProduzioneVino), regione(regioneVino), litri(litriVino) {}
+Vino::Vino(std::string nomeProdotto, double carboidratiBevanda, double proteineBevanda, double grassiBevanda, double gradazioneAlcolicaVino, double prezzoNettoVino, double litriVino, std::string barCodeVino, int annoProduzioneVino, Regione regioneVino, bool alcohoilcBevanda, int scadenzaProdotto, int etaMinimaProdotto)
+	: Bevanda(nomeProdotto, carboidratiBevanda, proteineBevanda, grassiBevanda, alcohoilcBevanda, scadenzaProdotto, etaMinimaProdotto), prezzoNetto(prezzoNettoVino >= 0 ? prezzoNettoVino : 0), gradazioneAlcolica(gradazioneAlcolicaVino >= 0 ? gradazioneAlcolicaVino : 0), barCode(barCodeVino), annoProduzione(annoProduzioneVino >= 0 ? annoProduzioneVino : 1400), regione(regioneVino), litri(litriVino >= 0 ? litriVino : 0) {}
 
 Vino::Vino(const Vino& vino) : Bevanda(vino), prezzoNetto(vino.prezzoNetto), gradazioneAlcolica(vino.gradazioneAlcolica), barCode(vino.barCode), annoProduzione(vino.annoProduzione), regione(vino.regione), litri(vino.litri) {}
 
@@ -58,6 +58,10 @@ double Vino::getLitri() const {
 	return litri;
 }
 
+double Vino::calcolaCalorie() const {
+	return Bevanda::calcolaCalorie() + gradazioneAlcolica * valoreEnergeticoAlcol;
+}
+
 void Vino::setTassa(const double& tassaVino) {
 	if(tassaVino >= 0)
 		tassa = tassaVino;
@@ -78,8 +82,9 @@ void Vino::setBarCode(const std::string& barCodeVino) {
 		barCode = barCodeVino;
 }
 
-void Vino::setAnnoProduzione(const unsigned int& annoProduzioneVino) {
-	annoProduzione = annoProduzioneVino;
+void Vino::setAnnoProduzione(const int& annoProduzioneVino) {
+	if (annoProduzioneVino >= 1400)
+		annoProduzione = annoProduzioneVino;
 }
 
 void Vino::setRegione(const Regione& regioneVino) {
@@ -89,10 +94,6 @@ void Vino::setRegione(const Regione& regioneVino) {
 void Vino::setLitri(const double& litriVino) {
 	if (litriVino >= 0)
 		litri = litriVino;
-}
-
-double Vino::calcolaCalorie() const {
-	return Bevanda::calcolaCalorie() + gradazioneAlcolica ;
 }
 
 bool Vino::operator==(const Vino& prod) const {

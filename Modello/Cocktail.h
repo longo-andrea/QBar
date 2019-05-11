@@ -30,6 +30,7 @@ public:
 	double getGradazioneAlcolica() const;
 	virtual std::string getBarCode() const override;
 	virtual double getPrezzo() const override;
+	virtual double calcolaCalorie() const override;
 
 	void setPrezzoNetto(const double&);
 	void setQuantita(const Quantita&);

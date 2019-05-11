@@ -5,11 +5,12 @@
 #include <iostream>
 
 class Bevanda : public Prodotto {
+protected:
+	static double valoreEnergeticoAlcol;
 private:
 	static double valoreEnergeticoCarboidrati;
 	static double valoreEnergeticoProteine;
 	static double valoreEnergeticoGrassi;
-	static double valoreEnergeticoAlcol;
 
 	double carboidrati;
 	double proteine;

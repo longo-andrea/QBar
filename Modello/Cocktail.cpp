@@ -3,7 +3,7 @@
 double Cocktail::tassa = 0.70;
 
 Cocktail::Cocktail(std::string nomeProdotto, double carboidratiBevada, double proteineBevanda, double grassiBevanda, double prezzoNettoCocktail, std::string barCodeCocktail, Quantita quantitaCocktail, Classificazione famigliaCocktail, double gradazioneAlcolicaCocktail, bool alcoholicBevanda, int scadenzaProdotto, int etaMinimaProdotto) 
-	: Bevanda(nomeProdotto, carboidratiBevada, proteineBevanda, grassiBevanda, alcoholicBevanda, scadenzaProdotto, etaMinimaProdotto), prezzoNetto(prezzoNettoCocktail), barCode(barCodeCocktail), quantita(quantitaCocktail), famiglia(famigliaCocktail), gradazioneAlcolica(gradazioneAlcolicaCocktail) {}
+	: Bevanda(nomeProdotto, carboidratiBevada, proteineBevanda, grassiBevanda, alcoholicBevanda, scadenzaProdotto, etaMinimaProdotto), prezzoNetto(prezzoNettoCocktail >= 0 ? prezzoNettoCocktail : 0), barCode(barCodeCocktail), quantita(quantitaCocktail), famiglia(famigliaCocktail), gradazioneAlcolica(gradazioneAlcolicaCocktail >= 0 ? gradazioneAlcolicaCocktail : 0) {}
 
 Cocktail::Cocktail(const Cocktail& cocktail) : Bevanda(cocktail), prezzoNetto(cocktail.prezzoNetto), barCode(cocktail.barCode), quantita(cocktail.quantita), famiglia(cocktail.famiglia), gradazioneAlcolica(cocktail.gradazioneAlcolica) {}
 
@@ -73,6 +73,10 @@ double Cocktail::getPrezzo() const {
 	return prezzoNetto + tassa;
 }
 
+double Cocktail::calcolaCalorie() const {
+	return Bevanda::calcolaCalorie() + gradazioneAlcolica * valoreEnergeticoAlcol;
+}
+
 void Cocktail::setPrezzoNetto(const double& prezzoNettoCocktail) {
 	if (prezzoNettoCocktail >= 0)
 		prezzoNetto = prezzoNettoCocktail;
@@ -87,7 +91,8 @@ void Cocktail::setFamiglia(const Classificazione& famigliaCocktail) {
 }
 
 void Cocktail::setGradazioneAlcolica(const double& gradazioneAlcolicaCocktail) {
-	gradazioneAlcolica = gradazioneAlcolicaCocktail;
+	if (gradazioneAlcolicaCocktail >= 0)
+		gradazioneAlcolica = gradazioneAlcolicaCocktail;
 }
 
 void Cocktail::setBarCode(const std::string& barCodeCocktail) {

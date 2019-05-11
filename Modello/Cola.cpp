@@ -3,7 +3,7 @@
 double Cola::tassa = 0.50;
 
 Cola::Cola(std::string nomeProdotto, double carboidratiBevanda, double proteineBevanda, double grassiBevanda, double prezzoNettoCola, std::string barCodeCola, Tipo tipoCola, Contenitore contenitoreCola, double litriCola, bool isAlcoholicBevanda, int scadenzaProdotto, int etaMinimaProdotto)
-	: Bevanda(nomeProdotto, carboidratiBevanda, proteineBevanda, grassiBevanda, isAlcoholicBevanda, scadenzaProdotto, etaMinimaProdotto), prezzoNetto(prezzoNettoCola >= 0 ? prezzoNettoCola : 0), barCode(barCodeCola), tipo(tipoCola), contenitore(contenitoreCola), litri(litriCola) {}
+	: Bevanda(nomeProdotto, carboidratiBevanda, proteineBevanda, grassiBevanda, isAlcoholicBevanda, scadenzaProdotto, etaMinimaProdotto), prezzoNetto(prezzoNettoCola >= 0 ? prezzoNettoCola : 0), barCode(barCodeCola), tipo(tipoCola), contenitore(contenitoreCola), litri(litriCola >=0 ? litriCola : 0) {}
 
 Cola::Cola(const Cola& cola) : Bevanda(cola), prezzoNetto(cola.prezzoNetto), barCode(cola.barCode), tipo(cola.tipo), contenitore(cola.contenitore), litri(cola.litri) {}
 
