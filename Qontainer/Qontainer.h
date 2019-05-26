@@ -20,11 +20,11 @@ public:
 		T* item;
 		iterator(T* = nullptr);
 	public:
-		typedef std::forward_iterator_tag iterator_category;
-		typedef iterator self_type;
-		typedef T value_type;
-		typedef T& reference;
-		typedef T* pointer;
+        	typedef std::forward_iterator_tag iterator_category;
+        	typedef iterator self_type;
+        	typedef T value_type;
+        	typedef T& reference;
+        	typedef T* pointer;
 		typedef int difference_type;
 
 		T& operator*() const;
@@ -52,6 +52,13 @@ public:
 		const T* item;
 		const_iterator(const T* = nullptr);
 	public:
+	        typedef std::forward_iterator_tag iterator_category;
+        	typedef iterator self_type;
+        	typedef T value_type;
+        	typedef T& reference;
+        	typedef T* pointer;
+		typedef int difference_type;
+		
 		const T& operator*() const;
 		const T* operator->() const;
 
@@ -101,6 +108,9 @@ public:
 	iterator erase(iterator);
 	iterator erase(iterator, iterator);
 	void clear();
+
+	iterator search(const T&);
+	const_iterator search(const T&) const;
 
 	bool operator==(const Qontainer<T>&) const;
 	bool operator!=(const Qontainer<T>&) const;
@@ -425,6 +435,20 @@ void Qontainer<T>::clear() {
 	buffer = new T[DEFAULT_CAPACITY];
 	capacity = DEFAULT_CAPACITY;
 	size = 0;
+}
+
+template <class T>
+typename Qontainer<T>::iterator Qontainer<T>::search(const T& t) {
+	iterator it = begin();
+	for( ; it != end() && *it != t; it++);
+	return it;
+}
+
+template <class T>
+typename Qontainer<T>::const_iterator Qontainer<T>::search(const T& t) const {
+	const_iterator cit = begin();
+	for( ; cit != end() && *cit != t; cit++);
+	return cit;
 }
 
 template <class T>
