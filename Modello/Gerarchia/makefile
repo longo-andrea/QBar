@@ -1,49 +1,49 @@
 # FIRST LEVEL CLASS
-Cocktail: Cocktail.o
-	g++ -g main.cpp Prodotto.o Bevanda.o Cocktail.o 
+cocktail: cocktail.o
+	g++ -g main.cpp prodotto.o bevanda.o cocktail.o 
 	
-Cocktail.o: Cocktail.cpp Bevanda.o Prodotto.o
-	g++ -c Cocktail.cpp
+cocktail.o: cocktail.cpp bevanda.o prodotto.o
+	g++ -c cocktail.cpp
 
-Cola: Cola.o
-	g++ -g main.cpp Prodotto.o Bevanda.o Cola.o 
+cola: cola.o
+	g++ -g main.cpp prodotto.o bevanda.o cola.o 
 	
-Cola.o: Cola.cpp Bevanda.o Prodotto.o
-	g++ -c Cola.cpp
+cola.o: cola.cpp bevanda.o prodotto.o
+	g++ -c cola.cpp
 
-Vino: Vino.o
-	g++ -g main.cpp Prodotto.o Bevanda.o Vino.o 
+vino: vino.o
+	g++ -g main.cpp prodotto.o bevanda.o vino.o 
 	
-Vino.o: Vino.cpp Bevanda.o Prodotto.o
+vino.o: vino.cpp bevanda.o prodotto.o
 	g++ -c Vino.cpp
 
 
-Panino: Panino.o
-	g++ -g main.cpp Prodotto.o Cibo.o Panino.o
+panino: panino.o
+	g++ -g main.cpp prodotto.o Cibo.o panino.o
 
-Panino.o: Panino.cpp Cibo.o Prodotto.o
-	g++ -c Panino.cpp
+panino.o: panino.cpp Cibo.o prodotto.o
+	g++ -c panino.cpp
 
-Piadina: Piadina.o
-	g++ -g main.cpp Prodotto.o Cibo.o Piadina.o
+piadina: piadina.o
+	g++ -g main.cpp prodotto.o Cibo.o piadina.o
 
-Piadina.o: Piadina.cpp Cibo.o Prodotto.o
-	g++ -c Piadina.cpp
+piadina.o: piadina.cpp Cibo.o prodotto.o
+	g++ -c piadina.cpp
 
-Briosche: Briosche.o
-	g++ -g main.cpp Prodotto.o Cibo.o Briosche.o
+briosche: briosche.o
+	g++ -g main.cpp prodotto.o Cibo.o briosche.o
 
-Briosche.o: Briosche.cpp Cibo.o Prodotto.o
-	g++ -c Briosche.cpp
+briosche.o: briosche.cpp Cibo.o prodotto.o
+	g++ -c briosche.cpp
 
 # SECOND LEVEL CLASS
-Bevanda.o: Bevanda.cpp Prodotto.o
-	g++ -c Bevanda.cpp
+bevanda.o: bevanda.cpp prodotto.o
+	g++ -c bevanda.cpp
 	
-Cibo.o: Cibo.cpp Prodotto.o
-	g++ -c Cibo.cpp
+cibo.o: cibo.cpp prodotto.o
+	g++ -c cibo.cpp
 
 # BASE CLASS
-Prodotto.o: Prodotto.cpp
-	g++ -c Prodotto.cpp
+prodotto.o: prodotto.cpp
+	g++ -c prodotto.cpp
 

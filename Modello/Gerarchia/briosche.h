@@ -1,7 +1,7 @@
 #ifndef BRIOSCHE_H
 #define BRIOSCHE_H
 
-#include "Cibo.h"
+#include "cibo.h"
 
 class Briosche : public Cibo {
 public:

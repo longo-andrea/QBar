@@ -1,4 +1,4 @@
-#include "Prodotto.h"
+#include "prodotto.h"
 
 Prodotto::Prodotto(std::string nomeProdotto, int scadenzaProdotto, int etaMinimaProdotto) : nome(nomeProdotto), scadenza(scadenzaProdotto >= 2019 ? scadenzaProdotto : 2019), etaMinima(etaMinimaProdotto >= 14 ? etaMinimaProdotto : 14) {}
 

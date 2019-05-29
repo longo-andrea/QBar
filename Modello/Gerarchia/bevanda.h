@@ -1,7 +1,7 @@
 #ifndef BEVANDA_H
 #define BEVANDA_H
 
-#include "Prodotto.h"
+#include "prodotto.h"
 #include <iostream>
 
 class Bevanda : public Prodotto {

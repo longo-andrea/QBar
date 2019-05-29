@@ -55,3 +55,4 @@ T* SmartPtr<T>::operator-> () const {
 }
 
 #endif // SMARTPTR_H
+

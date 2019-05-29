@@ -1,7 +1,7 @@
 #ifndef CIBO_H
 #define CIBO_H
 
-#include "Prodotto.h"
+#include "prodotto.h"
 #include <string>
 #include <iostream>
 

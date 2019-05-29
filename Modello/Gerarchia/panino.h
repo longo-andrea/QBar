@@ -1,7 +1,7 @@
 #ifndef PANINO_H
 #define PANINO_H
 
-#include "Cibo.h"
+#include "cibo.h"
 #include <iostream>
 
 class Panino : public Cibo {

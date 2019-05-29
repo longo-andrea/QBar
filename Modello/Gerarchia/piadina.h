@@ -1,7 +1,7 @@
 #ifndef PIADINA_H
 #define PIADINA_H
 
-#include "Cibo.h"
+#include "cibo.h"
 #include <iostream>
 
 class Piadina : public Cibo {

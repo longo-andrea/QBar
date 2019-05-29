@@ -1,4 +1,4 @@
-#include "Cocktail.h"
+#include "cocktail.h"
 
 double Cocktail::tassa = 0.70;
 
