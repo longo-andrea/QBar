@@ -2,17 +2,13 @@
 
 double Cola::tassa = 0.50;
 
-Cola::Cola(std::string nomeProdotto, double carboidratiBevanda, double proteineBevanda, double grassiBevanda, double prezzoNettoCola, std::string barCodeCola, Tipo tipoCola, Contenitore contenitoreCola, double litriCola, bool isAlcoholicBevanda, int scadenzaProdotto, int etaMinimaProdotto)
-	: Bevanda(nomeProdotto, carboidratiBevanda, proteineBevanda, grassiBevanda, isAlcoholicBevanda, scadenzaProdotto, etaMinimaProdotto), prezzoNetto(prezzoNettoCola >= 0 ? prezzoNettoCola : 0), barCode(barCodeCola), tipo(tipoCola), contenitore(contenitoreCola), litri(litriCola >=0 ? litriCola : 0) {}
+Cola::Cola(std::string nomeProdotto, double carboidratiBevanda, double proteineBevanda, double grassiBevanda, double prezzoNettoCola, std::string barCodeCola, Aroma aromaCola, Contenitore contenitoreCola, double litriCola, bool isAlcoholicBevanda, int scadenzaProdotto, int etaMinimaProdotto)
+	: Bevanda(nomeProdotto, carboidratiBevanda, proteineBevanda, grassiBevanda, isAlcoholicBevanda, scadenzaProdotto, etaMinimaProdotto), prezzoNetto(prezzoNettoCola >= 0 ? prezzoNettoCola : 0), barCode(barCodeCola), aroma(aromaCola), contenitore(contenitoreCola), litri(litriCola >=0 ? litriCola : 0) {}
 
-Cola::Cola(const Cola& cola) : Bevanda(cola), prezzoNetto(cola.prezzoNetto), barCode(cola.barCode), tipo(cola.tipo), contenitore(cola.contenitore), litri(cola.litri) {}
+Cola::Cola(const Cola& cola) : Bevanda(cola), prezzoNetto(cola.prezzoNetto), barCode(cola.barCode), aroma(cola.aroma), contenitore(cola.contenitore), litri(cola.litri) {}
 
 Cola* Cola::clone() const {
 	return new Cola(*this);
-}
-
-double Cola::getPrezzoNetto() const {
-	return prezzoNetto;
 }
 
 double Cola::getPrezzo() const {
@@ -23,12 +19,20 @@ std::string Cola::getBarCode() const {
 	return barCode;
 }
 
-Cola::Tipo Cola::getTipo() const {
-	return tipo;
+std::string Cola::getTipo() const {
+	return "Cola";
 }
 
-std::string Cola::tipoToString() const {
-	switch (tipo) {
+double Cola::getPrezzoNetto() const {
+	return prezzoNetto;
+}
+
+Cola::Aroma Cola::getAroma() const {
+	return aroma;
+}
+
+std::string Cola::aromaToString() const {
+	switch (aroma) {
 		case Cola::Classica:
 			return "Classica";
 			break;
@@ -88,8 +92,8 @@ void Cola::setBarCode(const std::string& barCodeCola) {
 		barCode = barCodeCola;
 }
 
-void Cola::setTipo(const Tipo& tipoCola) {
-	tipo = tipoCola;
+void Cola::setAroma(const Aroma& aromaCola) {
+	aroma = aromaCola;
 }
 
 void Cola::setContenitore(const Contenitore& contenitoreCola) {
@@ -105,7 +109,7 @@ bool Cola::operator==(const Cola& prod) const {
 	return Bevanda::operator==(prod)
 		&& prod.prezzoNetto == prezzoNetto
 		&& prod.barCode == barCode
-		&& prod.tipo == tipo
+		&& prod.aroma == aroma
 		&& prod.contenitore == contenitore
 		&& prod.litri == litri;
 }

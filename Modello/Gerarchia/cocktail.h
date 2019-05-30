@@ -22,15 +22,17 @@ public:
 	virtual Cocktail* clone() const override;
 	virtual ~Cocktail() = default;
 
+	std::string getBarCode() const override;
+	double getPrezzo() const override;
+	double calcolaCalorie() const override;
+	std::string getTipo() const override;
+	
 	double getPrezzoNetto() const;
 	Quantita getQuantita() const;
 	std::string quantitaToString() const;
 	Classificazione getFamiglia() const;
 	std::string famigliaToString() const;
 	double getGradazioneAlcolica() const;
-	virtual std::string getBarCode() const override;
-	virtual double getPrezzo() const override;
-	virtual double calcolaCalorie() const override;
 
 	void setPrezzoNetto(const double&);
 	void setQuantita(const Quantita&);

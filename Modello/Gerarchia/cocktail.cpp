@@ -11,6 +11,22 @@ Cocktail* Cocktail::clone() const {
 	return new Cocktail(*this);
 }
 
+std::string Cocktail::getBarCode() const {
+	return barCode;
+}
+
+double Cocktail::getPrezzo() const {
+	return prezzoNetto + tassa;
+}
+
+double Cocktail::calcolaCalorie() const {
+	return Bevanda::calcolaCalorie() + gradazioneAlcolica * valoreEnergeticoAlcol;
+}
+
+std::string Cocktail::getTipo() const {
+	return "Cocktail";
+}
+
 double Cocktail::getPrezzoNetto() const {
 	return prezzoNetto;
 }
@@ -63,18 +79,6 @@ std::string Cocktail::famigliaToString() const {
 
 double Cocktail::getGradazioneAlcolica() const {
 	return gradazioneAlcolica;
-}
-
-std::string Cocktail::getBarCode() const {
-	return barCode;
-}
-
-double Cocktail::getPrezzo() const {
-	return prezzoNetto + tassa;
-}
-
-double Cocktail::calcolaCalorie() const {
-	return Bevanda::calcolaCalorie() + gradazioneAlcolica * valoreEnergeticoAlcol;
 }
 
 void Cocktail::setPrezzoNetto(const double& prezzoNettoCocktail) {

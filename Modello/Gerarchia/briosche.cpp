@@ -2,10 +2,10 @@
 
 double Briosche::tassa = 0.10;
 
-Briosche::Briosche(std::string nomeProdotto, double carboidratiCibo, double proteineCibo, double grassiCibo, double prezzoPreparazioneBriosche, bool isVeganCibo, std::string barCodeBriosche, Impasto impastoBriosche, Tipo tipoBriosche, Ripieno ripienoBriosche, int scadenzaProdotto, int etaMinimaProdotto) 
-	: Cibo(nomeProdotto, carboidratiCibo, proteineCibo, grassiCibo, isVeganCibo, scadenzaProdotto, etaMinimaProdotto), prezzoPreparazione(prezzoPreparazioneBriosche >= 0 ? prezzoPreparazioneBriosche : 0), barCode(barCodeBriosche), impasto(impastoBriosche), tipo(tipoBriosche), ripieno(ripienoBriosche) {}
+Briosche::Briosche(std::string nomeProdotto, double carboidratiCibo, double proteineCibo, double grassiCibo, double prezzoPreparazioneBriosche, bool isVeganCibo, std::string barCodeBriosche, Impasto impastoBriosche, Forma formaBriosche, Ripieno ripienoBriosche, int scadenzaProdotto, int etaMinimaProdotto) 
+	: Cibo(nomeProdotto, carboidratiCibo, proteineCibo, grassiCibo, isVeganCibo, scadenzaProdotto, etaMinimaProdotto), prezzoPreparazione(prezzoPreparazioneBriosche >= 0 ? prezzoPreparazioneBriosche : 0), barCode(barCodeBriosche), impasto(impastoBriosche), forma(formaBriosche), ripieno(ripienoBriosche) {}
 
-Briosche::Briosche(const Briosche& briosche) : Cibo(briosche), prezzoPreparazione(briosche.prezzoPreparazione), barCode(briosche.barCode), impasto(briosche.impasto), tipo(briosche.tipo), ripieno(briosche.ripieno) {}
+Briosche::Briosche(const Briosche& briosche) : Cibo(briosche), prezzoPreparazione(briosche.prezzoPreparazione), barCode(briosche.barCode), impasto(briosche.impasto), forma(briosche.forma), ripieno(briosche.ripieno) {}
 
 Briosche* Briosche::clone() const {
 	return new Briosche(*this);
@@ -23,12 +23,16 @@ double Briosche::getPrezzo() const {
 	return prezzoPreparazione + tassa;
 }
 
+std::string Briosche::getTipo() const {
+	return "Briosche";
+}
+
 Briosche::Impasto Briosche::getImpasto() const {
 	return impasto;
 }
 
-Briosche::Tipo Briosche::getTipo() const {
-	return tipo;
+Briosche::Forma Briosche::getForma() const {
+	return forma;
 }
 
 Briosche::Ripieno Briosche::getRipieno() const {
@@ -51,8 +55,8 @@ std::string Briosche::impastoToString() const {
 	}
 }
 
-std::string Briosche::tipoToString() const {
-	switch (tipo) {
+std::string Briosche::formaToString() const {
+	switch (forma) {
 		case Briosche::Cornetto:
 			return "Cornetto";
 			break;
@@ -100,8 +104,8 @@ void Briosche::setImpasto(const Briosche::Impasto& impastoBriosche) {
 		impasto = impastoBriosche;
 }
 
-void Briosche::setTipo(const Tipo& tipoBriosche) {
-		tipo = tipoBriosche;
+void Briosche::setForma(const Forma& formaBriosche) {
+		forma = formaBriosche;
 }
 
 void Briosche::setRipieno(const Ripieno& ripienoBriosche) {
@@ -113,7 +117,7 @@ bool Briosche::operator==(const Briosche& prod) const {
 		&& prod.prezzoPreparazione == prezzoPreparazione
 		&& prod.barCode == barCode
 		&& prod.impasto == impasto
-		&& prod.tipo == tipo
+		&& prod.forma == forma
 		&& prod.ripieno== ripieno;
 }
 

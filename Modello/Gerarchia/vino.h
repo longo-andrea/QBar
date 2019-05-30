@@ -23,15 +23,17 @@ public:
 	virtual Vino* clone() const override;
 	virtual ~Vino() = default;
 
+	double getPrezzo() const override;
+	std::string getBarCode() const override;
+	double calcolaCalorie() const override;
+	std::string getTipo() const override;
+
 	double getPrezzoNetto() const;
-	virtual double getPrezzo() const override;
 	double getGradazioneAlcolica() const;
-	virtual std::string getBarCode() const override;
 	unsigned int getAnnoProduzione() const;
 	Regione getRegione() const;
 	std::string regioneToString() const;
 	double getLitri() const;
-	virtual double calcolaCalorie() const override;
 
 	void setTassa(const double&);
 	void setPrezzoNetto(const double&);

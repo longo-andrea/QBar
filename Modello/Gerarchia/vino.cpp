@@ -11,21 +11,30 @@ Vino* Vino::clone() const {
 	return new Vino(*this);
 }
 
-double Vino::getPrezzoNetto() const {
-	return prezzoNetto;
-}
-
 double Vino::getPrezzo() const {
 	return prezzoNetto + tassa;
+}
+
+std::string Vino::getBarCode() const {
+	return barCode;
+}
+
+double Vino::calcolaCalorie() const {
+	return Bevanda::calcolaCalorie() + gradazioneAlcolica * valoreEnergeticoAlcol;
+}
+
+std::string Vino::getTipo() const {
+	return "Vino";
+}
+
+double Vino::getPrezzoNetto() const {
+	return prezzoNetto;
 }
 
 double Vino::getGradazioneAlcolica() const {
 	return gradazioneAlcolica;
 }
 
-std::string Vino::getBarCode() const {
-	return barCode;
-}
 
 unsigned int Vino::getAnnoProduzione() const {
 	return annoProduzione;
@@ -56,10 +65,6 @@ std::string Vino::regioneToString() const {
 
 double Vino::getLitri() const {
 	return litri;
-}
-
-double Vino::calcolaCalorie() const {
-	return Bevanda::calcolaCalorie() + gradazioneAlcolica * valoreEnergeticoAlcol;
 }
 
 void Vino::setTassa(const double& tassaVino) {

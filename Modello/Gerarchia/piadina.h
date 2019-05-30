@@ -23,6 +23,8 @@ public:
 	double getPrezzoPreparazione() const override;
 	std::string getBarCode() const override;
 	double getPrezzo() const override;
+	std::string getTipo() const override;
+	
 	Impasto getImpasto() const;
 	std::string impastoToString() const;
 

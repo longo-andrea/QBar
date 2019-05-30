@@ -23,6 +23,10 @@ double Panino::getPrezzo() const {
 	return prezzoPreparazione + tassa;
 }
 
+std::string Panino::getTipo() const {
+	return "Panino";
+}
+
 Panino::Pane Panino::getPane() const {
 	return pane;
 }

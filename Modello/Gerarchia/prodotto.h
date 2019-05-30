@@ -3,6 +3,7 @@
 
 #include <string>
 #include <iostream>
+#include <QXmlStreamWriter>
 
 class Prodotto {
 private:
@@ -21,10 +22,13 @@ public:
 	int getEtaMinima() const;
 	virtual std::string getBarCode() const = 0;
 	virtual double getPrezzo() const = 0;
+	virtual std::string getTipo() const = 0;
 
 	void setNome(const std::string&);
 	void setScadenza(const int&);
 	void setEtaMinima(const int&);
+
+	virtual void serialize(QXmlStreamWriter&) const = 0;
 
 	virtual bool operator==(const Prodotto&) const;
 	virtual bool operator!=(const Prodotto&) const;

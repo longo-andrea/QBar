@@ -6,7 +6,7 @@
 class Briosche : public Cibo {
 public:
 	enum Impasto { Classico, Integrale, SenzaGlutine };
-	enum Tipo { Cornetto, Girella, Ciambella };
+	enum Forma { Cornetto, Girella, Ciambella };
 	enum Ripieno { Vuota, Cioccolato, Marmellata, Crema };
 private:
 	static double tassa;
@@ -14,11 +14,11 @@ private:
 	double prezzoPreparazione;
 	std::string barCode;
 	Impasto impasto;
-	Tipo tipo;
+	Forma forma;
 	Ripieno ripieno;
 
 public:
-	Briosche(std::string, double, double, double, double, bool,std::string, Impasto, Tipo, Ripieno, int = 2020, int = 14);
+	Briosche(std::string, double, double, double, double, bool,std::string, Impasto, Forma, Ripieno, int = 2020, int = 14);
 	Briosche(const Briosche&);
 	virtual Briosche* clone() const override;
 	virtual ~Briosche() =default;
@@ -26,17 +26,19 @@ public:
 	double getPrezzoPreparazione() const override;
 	std::string getBarCode() const override;
 	double getPrezzo() const override;
+	std::string getTipo() const override;
+
 	Impasto getImpasto() const;
-	Tipo getTipo() const;
+	Forma getForma() const;
 	Ripieno getRipieno() const;
 	std::string impastoToString() const;
-	std::string tipoToString() const;
+	std::string formaToString() const;
 	std::string ripienoToString() const;
 
 	void setPrezzoPreparazione(const double&);
 	void setBarCode(const std::string&);
 	void setImpasto(const Impasto&);
-	void setTipo(const Tipo&);
+	void setForma(const Forma&);
 	void setRipieno(const Ripieno&);
 
 	virtual bool operator==(const Briosche&) const;

@@ -22,6 +22,10 @@ double Piadina::getPrezzo() const {
 	return prezzoPreparazione + tassa;
 }
 
+std::string Piadina::getTipo() const {
+	return "Piadina";
+}
+
 Piadina::Impasto Piadina::getImpasto() const {
 	return impasto;
 }
