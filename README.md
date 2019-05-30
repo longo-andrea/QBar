@@ -17,10 +17,12 @@ Il Qontainer è stato implementato come un vector, e fornisce dei metodi per:
 
 ### Gerarchia
 La gerarchia implementata:
+
  | PRODOTTO | - | - | - |
  |---|---|---|---|
  | CIBO | BRISOCHE | PANINO | PIADINA
 | BEVANDE | ANALCOLICO | COKCTAIL | VINO 
+
 Si ha una classe base:
 - Prodotto: classe base astratta che descrive un generico prodotto
 Due classi astratte derivate da Prodotto:
