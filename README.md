@@ -2,19 +2,37 @@
 Progetto sviluppato per il Corso di Programmazione ad Oggetti.
 
 ## Composizione
-Vanno sviluppati: 
-- Qontainer: un contenitore con comportamento standard, senza l'utilizzo della stl
-- Modello: una gerarchia di tipi con almeno un passo di derivazione virtuale e 3 sotto-tipi
-- View: un'interfaccia grafica in Qt
+Vengono sviluppati: 
+- Qontainer: template di un contenitore, senza l'utilizzo della stl
+- Gerarchia: una gerarchia di tipi con almeno un passo di derivazione virtuale e 3 sotto-tipi
+- GUI: sviluppo di un'interfaccia grafica 
 
 ### Qontainer
-Il qontainer è stato implementato con array, e fornisce dei metodi per:
+Il Qontainer è stato implementato come un vector, e fornisce dei metodi per:
 - Inserimento
 - Rimozione
 - Ricerca
 - Accesso
 - Iterazione
 
-### Modello
-La gerarchia di tipi scelta vuole modellare il magazzino di un bar.
+### Gerarchia
+La gerarchia implementata:
+ | PRODOTTO | - | - | - |
+ |---|---|---|---|
+ | CIBO | BRISOCHE | PANINO | PIADINA
+| BEVANDE | ANALCOLICO | COKCTAIL | VINO 
+Si ha una classe base:
+- Prodotto: classe base astratta che descrive un generico prodotto
+Due classi astratte derivate da Prodotto:
+- Bevanda: che rappresenta una generica bevanda
+- Cibo: che rappresenta un cibo generico
+Abbiamo poi 3 classi concrete derivate da Cibo:
+- Briosche: rappresenta una briosche
+- Panino: rappresenta un panino
+- Piadina: rappresenta una piadina
+Anche Bevanda possiede 3 classi derivate concrete:
+- Analcolico: rappresenta una bevanda analcolica
+- Cocktail: rappresenta un cocktail
+- Vino: rappresenta un vino
+
 
