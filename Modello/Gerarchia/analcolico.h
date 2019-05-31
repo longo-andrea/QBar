@@ -1,33 +1,33 @@
-#ifndef COLA_H
-#define COLA_H
+#ifndef ANALCOLICO_H
+#define ANALCOLICO_H
 
 #include "bevanda.h"
 
-class Cola : public Bevanda {
+class Analcolico : public Bevanda {
 public:
-	enum Aroma { Classica, Zero, Light, Diet, Stevia };
+	enum Variante { Classica, Zero, Light, Diet };
 	enum Contenitore { Lattina, Bottiglia, Spina };
 private:
 	static double tassa;
 
 	double prezzoNetto;
 	std::string barCode;
-	Aroma aroma;
+	Variante variante;
 	Contenitore contenitore;
 	double litri;
 public:
-	Cola(std::string, double, double, double, double, std::string, Aroma, Contenitore, double, bool = false, int = 2020, int = 14);
-	Cola(const Cola&);
-	virtual Cola* clone() const override;
-	virtual ~Cola() = default;
+	Analcolico(std::string, double, double, double, double, std::string, Variante, Contenitore, double, bool = false, int = 2020, int = 14);
+	Analcolico(const Analcolico&);
+	virtual Analcolico* clone() const override;
+	virtual ~Analcolico() = default;
 
 	double getPrezzo() const override;
 	std::string getBarCode() const override;
 	std::string getTipo() const override;
 		
 	double getPrezzoNetto() const;
-	Aroma getAroma() const;
-	std::string aromaToString() const;
+	Variante getVariante() const;
+	std::string varianteToString() const;
 	Contenitore getContenitore() const;
 	std::string contenitoreToString() const;
 	double getLitri() const;
@@ -35,13 +35,13 @@ public:
 	void setTassa(const double&);
 	void setPrezzoNetto(const double&);
 	void setBarCode(const std::string&);
-	void setAroma(const Aroma&);
+	void setVariante(const Variante&);
 	void setContenitore(const Contenitore&);
 	void setLitri(const double&);
 
-	virtual bool operator==(const Cola&) const;
-	virtual bool operator!=(const Cola&) const;
+	virtual bool operator==(const Analcolico&) const;
+	virtual bool operator!=(const Analcolico&) const;
 
 };
 
-#endif // COLA_H
+#endif // ANALCOLICO_H
