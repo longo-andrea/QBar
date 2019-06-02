@@ -1,6 +1,8 @@
 # QBar
 Progetto sviluppato per il Corso di Programmazione ad Oggetti.
 
+![Logo](https://github.com/longo-andrea/QBar/blob/master/Graphic/logo.svg)
+
 ## Composizione
 Vengono sviluppati: 
 - Qontainer: template di un contenitore, senza l'utilizzo della stl
