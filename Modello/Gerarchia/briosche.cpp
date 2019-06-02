@@ -112,6 +112,29 @@ void Briosche::setRipieno(const Ripieno& ripienoBriosche) {
 	ripieno = ripienoBriosche;
 }
 
+void Briosche::serialize(Json::Value& root) const {
+	Json::Value briosche;
+	
+	briosche["Tipo"] = getTipo();
+	
+	briosche["Nome"] = getNome();
+	briosche["Scadenza"] = getScadenza();
+	briosche["Eta minima"] = getEtaMinima();
+	
+	briosche["Carboidrati"] = getCarboidrati();
+	briosche["Proteine"] = getProteine();
+	briosche["Grassi"] = getGrassi();
+	briosche["Vegano"] = isVegan();
+
+	briosche["Prezzo preparazione"] = getPrezzoPreparazione();
+	briosche["Bar Code"] = getBarCode();
+	briosche["Impasto"] = impastoToString();
+	briosche["Forma"] = formaToString();
+	briosche["Ripieno"] = ripienoToString();
+	
+	root["Cibo"]["items"].append(briosche);
+}
+
 bool Briosche::operator==(const Briosche& prod) const {
 	return Cibo::operator==(prod)
 		&& prod.prezzoPreparazione == prezzoPreparazione

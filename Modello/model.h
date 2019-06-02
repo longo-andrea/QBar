@@ -1,25 +1,24 @@
 #ifndef MODEL_H
 #define MODEL_H
 
-#include "Gerarchia/Prodotto.h"
-#include "Gerarchia/SmartPtr.h"
+#include "Gerarchia/briosche.h"
+#include "Gerarchia/piadina.h"
+#include "Gerarchia/analcolico.h"
+#include "Gerarchia/smartptr.h"
 #include "../Qontainer/Qontainer.h"
-#include <iostream>
+#include <ostream>
+#include <fstream>
+#include "json/json.h"
 
 class Model{
 private:
-	Qontainer<SmartPtr<Vino>> item;
-	std::string path;
-	
-public:	
+	Qontainer<Prodotto*> qb;
+	std::string file; 
+public:
 	Model();
-	~Model() = default;
 	
-	void save() const;
-	void load();
-	
-	void add(Prodotto*);
-	void remove(int);
+	void save();
+	void load() const;
 	
 };
 

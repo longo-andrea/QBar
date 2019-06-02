@@ -62,6 +62,27 @@ void Piadina::setImpasto(Piadina::Impasto impastoPiadina) {
 	impasto = impastoPiadina;
 }
 
+void Piadina::serialize(Json::Value& root) const {
+	Json::Value piadina;
+	
+	piadina["Tipo"] = getTipo();
+	
+	piadina["Nome"] = getNome();
+	piadina["Scadenza"] = getScadenza();
+	piadina["Eta minima"] = getEtaMinima();
+	
+	piadina["Carboidrati"] = getCarboidrati();
+	piadina["Proteine"] = getProteine();
+	piadina["Grassi"] = getGrassi();
+	piadina["Vegano"] = isVegan();
+
+	piadina["Prezzo preparazione"] = getPrezzoPreparazione();
+	piadina["Bar Code"] = getBarCode();
+	piadina["Impasto"] = impastoToString();
+	
+	root["Cibo"]["items"].append(piadina);	
+}
+
 bool Piadina::operator==(const Piadina& prod) const {
 	return Cibo::operator==(prod)
 		&& prod.prezzoPreparazione == prezzoPreparazione

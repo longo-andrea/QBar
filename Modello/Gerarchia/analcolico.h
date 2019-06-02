@@ -38,6 +38,8 @@ public:
 	void setVariante(const Variante&);
 	void setContenitore(const Contenitore&);
 	void setLitri(const double&);
+	
+	void serialize(Json::Value&) const override;
 
 	virtual bool operator==(const Analcolico&) const;
 	virtual bool operator!=(const Analcolico&) const;

@@ -45,9 +45,6 @@ std::string Analcolico::varianteToString() const {
 		case Analcolico::Diet:
 			return "Diet";
 			break;
-		case Analcolico::Stevia:
-			return "Stevia";
-			break;
 		default:
 			break;
 	}
@@ -103,6 +100,29 @@ void Analcolico::setContenitore(const Contenitore& contenitoreAnalcolico) {
 void Analcolico::setLitri(const double& litriAnalcolico) {
 	if (litriAnalcolico >= 0)
 		litri = litriAnalcolico;
+}
+
+void Analcolico::serialize(Json::Value& root) const {
+	Json::Value analcolico;
+	
+	analcolico["Tipo"] = getTipo();
+	
+	analcolico["Nome"] = getNome();
+	analcolico["Scadenza"] = getScadenza();
+	analcolico["Eta minima"] = getEtaMinima();
+	
+	analcolico["Carboidrati"] = getCarboidrati();
+	analcolico["Proteine"] = getProteine();
+	analcolico["Grassi"] = getGrassi();
+	analcolico["Alcolico"] = isAlcoholic();
+	
+	analcolico["Prezzo netto"] = getPrezzoNetto();
+	analcolico["Bar Code"] = getBarCode();
+	analcolico["Variante"] = varianteToString();
+	analcolico["Contenitore"] = contenitoreToString();
+	analcolico["Litri"] = getLitri();
+	
+	root["Bevanda"]["items"].append(analcolico);		
 }
 
 bool Analcolico::operator==(const Analcolico& prod) const {

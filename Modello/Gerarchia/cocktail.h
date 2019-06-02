@@ -6,7 +6,7 @@
 class Cocktail : public Bevanda {
 public:
 	enum Quantita { Short, Medium, Long };
-	enum Classificazione { Analcolico, Coffe, Cooler, Exotic, Wine };
+	enum Classificazione { Coffe, Cooler, Exotic, Wine };
 private:
 	static double tassa;
 
@@ -39,6 +39,8 @@ public:
 	void setFamiglia(const Classificazione&);
 	void setGradazioneAlcolica(const double&);
 	void setBarCode(const std::string&);
+	
+	void serialize(Json::Value&) const override;
 
 	virtual bool operator==(const Cocktail&) const;
 	virtual bool operator!=(const Cocktail&) const;

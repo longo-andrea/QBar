@@ -101,6 +101,30 @@ void Vino::setLitri(const double& litriVino) {
 		litri = litriVino;
 }
 
+void Vino::serialize(Json::Value& root) const {
+	Json::Value vino;
+	
+	vino["Tipo"] = getTipo();
+	
+	vino["Nome"] = getNome();
+	vino["Scadenza"] = getScadenza();
+	vino["Eta minima"] = getEtaMinima();
+	
+	vino["Carboidrati"] = getCarboidrati();
+	vino["Proteine"] = getProteine();
+	vino["Grassi"] = getGrassi();
+	vino["Alcolico"] = isAlcoholic();
+	
+	vino["Prezzo netto"] = getPrezzoNetto();
+	vino["Bar Code"] = getBarCode();
+	vino["Anno"] = getAnnoProduzione();
+	vino["Regione"] = regioneToString();
+	vino["Gradazione"] = getGradazioneAlcolica();
+	vino["Quantita"] = getQuantita();
+	
+	root["Bevanda"]["items"].append(vino);				
+}
+
 bool Vino::operator==(const Vino& prod) const {
 	return Bevanda::operator==(prod)
 		&& prod.prezzoNetto == prezzoNetto

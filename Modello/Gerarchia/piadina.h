@@ -31,6 +31,8 @@ public:
 	void setPrezzoPreparazione(const double&);
 	void setBarCode(const std::string&);
 	void setImpasto(Impasto);
+	
+	void serialize(Json::Value&) const override;
 
 	virtual bool operator==(const Piadina&) const;
 	virtual bool operator!=(const Piadina&) const;

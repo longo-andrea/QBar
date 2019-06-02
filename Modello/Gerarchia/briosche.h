@@ -27,7 +27,7 @@ public:
 	std::string getBarCode() const override;
 	double getPrezzo() const override;
 	std::string getTipo() const override;
-
+	
 	Impasto getImpasto() const;
 	Forma getForma() const;
 	Ripieno getRipieno() const;
@@ -40,6 +40,8 @@ public:
 	void setImpasto(const Impasto&);
 	void setForma(const Forma&);
 	void setRipieno(const Ripieno&);
+	
+	void serialize(Json::Value&) const override;
 
 	virtual bool operator==(const Briosche&) const;
 	virtual bool operator!=(const Briosche&) const;

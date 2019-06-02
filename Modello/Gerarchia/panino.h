@@ -31,6 +31,8 @@ public:
 	void setPrezzoPreparazione(const double&);
 	void setBarCode(const std::string&);
 	void setPane(Pane);
+	
+	void serialize(Json::Value&) const override;
 
 	virtual bool operator==(const Panino&) const;
 	virtual bool operator!=(const Panino&) const;

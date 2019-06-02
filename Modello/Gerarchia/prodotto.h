@@ -2,7 +2,9 @@
 #define PRODOTTO_H
 
 #include <string>
+
 #include <iostream>
+#include "../json/json.h"
 
 class Prodotto {
 private:
@@ -26,6 +28,8 @@ public:
 	void setNome(const std::string&);
 	void setScadenza(const int&);
 	void setEtaMinima(const int&);
+
+	virtual void serialize(Json::Value&) const = 0;
 
 	virtual bool operator==(const Prodotto&) const;
 	virtual bool operator!=(const Prodotto&) const;

@@ -57,9 +57,6 @@ Cocktail::Classificazione Cocktail::getFamiglia() const {
 
 std::string Cocktail::famigliaToString() const {
 	switch (famiglia) {
-		case Cocktail::Analcolico:
-			return "Analcolico";
-			break;
 		case Cocktail::Coffe:
 			return "Coffe";
 			break;
@@ -102,6 +99,29 @@ void Cocktail::setGradazioneAlcolica(const double& gradazioneAlcolicaCocktail) {
 void Cocktail::setBarCode(const std::string& barCodeCocktail) {
 	if (barCodeCocktail != "")
 		barCode = barCodeCocktail;
+}
+
+void Cocktail::serialize(Json::Value& root) const {
+	Json::Value cocktail;
+	
+	cocktail["Tipo"] = getTipo();
+	
+	cocktail["Nome"] = getNome();
+	cocktail["Scadenza"] = getScadenza();
+	cocktail["Eta minima"] = getEtaMinima();
+	
+	cocktail["Carboidrati"] = getCarboidrati();
+	cocktail["Proteine"] = getProteine();
+	cocktail["Grassi"] = getGrassi();
+	cocktail["Alcolico"] = isAlcoholic();
+	
+	cocktail["Prezzo netto"] = getPrezzoNetto();
+	cocktail["Bar Code"] = getBarCode();
+	cocktail["Quantita"] = quantitaToString();
+	cocktail["Famiglia"] = famigliaToString();
+	cocktail["Gradazione"] = getGradazioneAlcolica();
+	
+	root["Bevanda"]["items"].append(cocktail);			
 }
 
 bool Cocktail::operator==(const Cocktail& prod) const {

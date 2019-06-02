@@ -61,7 +61,28 @@ void Panino::setBarCode(const std::string& barCodePanino) {
 }
 
 void Panino::setPane(Pane panePanino) {
-		pane = panePanino;
+	pane = panePanino;
+}
+
+void Panino::serialize(Json::Value& root) const {
+	Json::Value panino;
+	
+	panino["Tipo"] = getTipo();
+	
+	panino["Nome"] = getNome();
+	panino["Scadenza"] = getScadenza();
+	panino["Eta minima"] = getEtaMinima();
+	
+	panino["Carboidrati"] = getCarboidrati();
+	panino["Proteine"] = getProteine();
+	panino["Grassi"] = getGrassi();
+	panino["Vegano"] = isVegan();
+
+	panino["Prezzo preparazione"] = getPrezzoPreparazione();
+	panino["Bar Code"] = getBarCode();
+	panino["Pane"] = paneToString();
+	
+	root["Cibo"]["items"].append(panino);
 }
 
 bool Panino::operator==(const Panino& prod) const {
