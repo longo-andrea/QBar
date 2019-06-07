@@ -8,7 +8,18 @@ public:
 	enum Impasto { Classico, Integrale, SenzaGlutine };
 	enum Forma { Cornetto, Girella, Ciambella };
 	enum Ripieno { Vuota, Cioccolato, Marmellata, Crema };
+	
 private:
+	class inizializzaBrioche{
+	private:
+		Brioche* ptr;
+	
+	public:	
+		inizializzaBrioche();
+		~inizializzaBrioche();
+	};
+
+	static inizializzaBrioche mappaBrioche;
 	static double tassa;
 	
 	double prezzoPreparazione;
@@ -16,12 +27,17 @@ private:
 	Impasto impasto;
 	Forma forma;
 	Ripieno ripieno;
+	
+	Impasto stringToImpasto(const std::string&) const;
+	Forma stringToForma(const std::string&) const;
+	Ripieno stringToRipieno(const std::string&) const;
 
 public:
-	Briosche(const std::string& ="No Name", double =0, double =0, double =0, double =0, bool =false, const std::string& ="No Bar Code", Impasto =Impasto::Classico, Forma =Forma::Cornetto, Ripieno =Ripieno::Vuota, int = 2020, int = 14);
+	Brioche(const std::string& ="No Name", double =0, double =0, double =0, double =0, bool =false, const std::string& ="No Bar Code", Impasto =Impasto::Classico, Forma =Forma::Cornetto, Ripieno =Ripieno::Vuota, int = 2020, int = 14);
 	Brioche(const Brioche&);
 	virtual Brioche* clone() const override;
 	virtual ~Brioche() =default;
+	Brioche* create(Json::Value&) const override;
 
 	double getPrezzoPreparazione() const override;
 	std::string getBarCode() const override;
