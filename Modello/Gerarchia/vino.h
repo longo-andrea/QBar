@@ -16,7 +16,7 @@ private:
 	Regione regione;
 	double litri;
 public:
-	Vino(std::string, double, double, double, double, double, double, std::string, int, Regione, bool =true, int = 2020, int = 18);
+	Vino(const std::string& ="No Name", double =0, double =0, double =0, double =0, double =0, double =0, const std::string& ="No Bar Code", int =0, Regione =Regione::Veneto, bool =true, int =2020, int =18);
 	Vino(const Vino&);
 	virtual Vino* clone() const override;
 	virtual ~Vino() = default;

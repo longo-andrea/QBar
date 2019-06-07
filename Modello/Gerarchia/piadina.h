@@ -15,7 +15,7 @@ private:
 	Impasto impasto;
 
 public:
-	Piadina(std::string, double, double, double, double, bool, std::string, Impasto, int = 2020, int = 14);
+	Piadina(const std::string& ="No Name", double =0, double =0, double =0, double =0, bool =false, cont std::string& ="No Bar Code", Impasto =Impasto::Classico, int = 2020, int = 14);
 	Piadina(const Piadina&);
 	virtual Piadina* clone() const override;
 	virtual ~Piadina() =default;

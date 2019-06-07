@@ -17,7 +17,7 @@ private:
 	double gradazioneAlcolica;
 
 public:
-	Cocktail(std::string, double, double, double, double, std::string, Quantita, Classificazione, double, bool, int = 2020, int = 18);
+	Cocktail(const std::string& ="No Name", double =0, double =0, double =0, double =0, const std::string& ="No Bar Code", Quantita =Quantita::Long, Classificazione =Classificazione::Coffe, double =0, bool =true, int = 2020, int = 18);
 	Cocktail(const Cocktail&);
 	virtual Cocktail* clone() const override;
 	virtual ~Cocktail() = default;

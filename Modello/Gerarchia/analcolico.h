@@ -16,7 +16,7 @@ private:
 	Contenitore contenitore;
 	double litri;
 public:
-	Analcolico(std::string, double, double, double, double, std::string, Variante, Contenitore, double, bool = false, int = 2020, int = 14);
+	Analcolico(const std::string& ="No Name", double =0, double =0, double =0, double =0, const std::string& ="No Bar Code", Variante =Variante::Classica, Contenitore =Contenitore::Bottiglia, double =0, bool = false, int = 2020, int = 14);
 	Analcolico(const Analcolico&);
 	virtual Analcolico* clone() const override;
 	virtual ~Analcolico() = default;

@@ -13,7 +13,7 @@ private:
 	unsigned int etaMinima;
 
 public:
-	Prodotto(std::string, int =2020, int =14);
+	Prodotto(const std::string& ="No Name", int =2020, int =14);
 	Prodotto(const Prodotto&);
 	virtual Prodotto* clone() const = 0;
 	virtual ~Prodotto() = default;

@@ -18,7 +18,7 @@ private:
 	bool alcoholic;
 
 public:
-	Bevanda(std::string, double, double, double, bool, int = 2020, int = 14);
+	Bevanda(const std::string& ="No Name", double ="0", double="0", double ="0", bool ="false", int = 2020, int = 14);
 	Bevanda(const Bevanda&);
 	virtual ~Bevanda() = default;
 

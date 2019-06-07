@@ -18,7 +18,7 @@ private:
 	Ripieno ripieno;
 
 public:
-	Brioche(std::string, double, double, double, double, bool,std::string, Impasto, Forma, Ripieno, int = 2020, int = 14);
+	Briosche(const std::string& ="No Name", double =0, double =0, double =0, double =0, bool =false, const std::string& ="No Bar Code", Impasto =Impasto::Classico, Forma =Forma::Cornetto, Ripieno =Ripieno::Vuota, int = 2020, int = 14);
 	Brioche(const Brioche&);
 	virtual Brioche* clone() const override;
 	virtual ~Brioche() =default;

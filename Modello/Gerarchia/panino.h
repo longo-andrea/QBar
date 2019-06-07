@@ -15,7 +15,7 @@ private:
 	Pane pane;
 
 public:
-	Panino(std::string, double, double, double, double, std::string, Pane, bool=false, int = 2020, int = 14);
+	Panino(const std::string& ="No Name", double =0, double =0, double =0, double =0, const std::string& ="No Bar Code", Pane =Pane::Tartaruga, bool =false, int = 2020, int = 14);
 	Panino(const Panino&);
 	virtual Panino* clone() const override;
 	virtual ~Panino() = default;

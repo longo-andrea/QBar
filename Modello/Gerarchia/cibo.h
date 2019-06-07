@@ -18,7 +18,7 @@ private:
 
 public:
 
-	Cibo(std::string, double, double, double, bool, int = 2020, int = 14);
+	Cibo(const std::string& ="No Name", double =0, double =0, double =0, bool =false, int = 2020, int = 14);
 	Cibo(const Cibo&);
 	virtual ~Cibo() =default;
 
