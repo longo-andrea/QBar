@@ -1,9 +1,9 @@
-#ifndef BRIOSCHE_H
-#define BRIOSCHE_H
+#ifndef BRIOCHE_H
+#define BRIOCHE_H
 
 #include "cibo.h"
 
-class Briosche : public Cibo {
+class Brioche : public Cibo {
 public:
 	enum Impasto { Classico, Integrale, SenzaGlutine };
 	enum Forma { Cornetto, Girella, Ciambella };
@@ -18,10 +18,10 @@ private:
 	Ripieno ripieno;
 
 public:
-	Briosche(std::string, double, double, double, double, bool,std::string, Impasto, Forma, Ripieno, int = 2020, int = 14);
-	Briosche(const Briosche&);
-	virtual Briosche* clone() const override;
-	virtual ~Briosche() =default;
+	Brioche(std::string, double, double, double, double, bool,std::string, Impasto, Forma, Ripieno, int = 2020, int = 14);
+	Brioche(const Brioche&);
+	virtual Brioche* clone() const override;
+	virtual ~Brioche() =default;
 
 	double getPrezzoPreparazione() const override;
 	std::string getBarCode() const override;
@@ -43,9 +43,9 @@ public:
 	
 	void serialize(Json::Value&) const override;
 
-	virtual bool operator==(const Briosche&) const;
-	virtual bool operator!=(const Briosche&) const;
+	virtual bool operator==(const Brioche&) const;
+	virtual bool operator!=(const Brioche&) const;
 
 };
 
-#endif // BRIOSCHE_H
+#endif // BRIOCHE_H
