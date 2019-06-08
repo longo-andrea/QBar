@@ -10,6 +10,7 @@ Brioche::inizializzaBrioche::~inizializzaBrioche() {
 }
 
 Brioche::inizializzaBrioche Brioche::mappaBrioche;
+
 double Brioche::tassa = 0.10;
 
 Brioche::Brioche(const std::string& nomeProdotto, double carboidratiCibo, double proteineCibo, double grassiCibo, double prezzoPreparazioneBrioche, bool isVeganCibo, const std::string& barCodeBrioche, Impasto impastoBrioche, Forma formaBrioche, Ripieno ripienoBrioche, int scadenzaProdotto, int etaMinimaProdotto) 

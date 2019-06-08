@@ -1,5 +1,16 @@
 #include "panino.h"
 
+Panino::inizializzaPanino::inizializzaPanino() {
+	ptr = new Panino();
+	mappaProdotto[ptr->getTipo()] = ptr;
+}
+
+Panino::inizializzaPanino::~inizializzaPanino() {
+	delete ptr;
+}
+
+Panino::inizializzaPanino Panino::mappaPanino;
+
 double Panino::tassa = 0.40;
 
 Panino::Panino(std::string nomeProdotto, double carboidratiCibo, double proteineCibo, double grassiCibo, double prezzoPreparazionePanino, std::string barCodePanino, Panino::Pane panePanino, bool PaninoVegano, int scadenzaProdotto, int etaMinimaProdotto)
@@ -95,3 +106,34 @@ bool Panino::operator==(const Panino& prod) const {
 bool Panino::operator!=(const Panino& prod) const {
 	return !(*this == prod);
 }
+
+/* ----- PRIVATE METHODS ----- */
+
+Panino* Panino::create(Json::Value& root) const {
+	std::string nomeProdotto = root["Nome"].asString();
+	int scadenzaProdotto = root["Scandeza"].asInt();
+	int etaMinimaProdotto = root["Eta minima"].asInt();
+	
+	double carboidratiCibo = root["Carboidrati"].asDouble();
+	double proteineCibo = root["Proteine"].asDouble();
+	double grassiCibo = root["Grassi"].asDouble();
+	bool isVeganCibo = root["Vegano"].asBool();
+
+	double prezzoPreparazionePanino = root["Prezzo preparazione"].asDouble();
+	std::string barCodePanino = root["Bar Code"].asString();
+	Impasto panePanino = stringToPane(root["Pane"].asString());
+	
+	return new Panino(nomeProdotto, carboidratiCibo, proteineCibo, grassiCibo, prezzoPreparazionePanino, barCodePanino, panePanino, isVeganCibo, scadenzaProdotto, etaMinimaProdotto); 
+}
+	
+Panino::Pane Panino::stringToPane(const std::string& paneString) const {
+	if(paneString == "Tartaruga")
+		return Pane::Tartaruga;
+	else if(paneString == "Arabo")
+		return Pane::Arabo;
+	else if(paneString == "Baguette")
+		return Pane::Baguette;
+	else if(paneString == "Integrale")
+		return Pane::Integrale;
+}
+	

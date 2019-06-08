@@ -8,12 +8,25 @@ class Panino : public Cibo {
 public:
 	enum Pane { Tartaruga, Arabo, Baguette, Integrale };
 private:
+	class inizializzaPanino{
+	private:
+		Panino* ptr;
+	
+	public:	
+		inizializzaPanino();
+		~inizializzaPanino();
+	};
+
+	static inizializzaPanino mappaPanino;
 	static double tassa;
 
 	double prezzoPreparazione;
 	std::string barCode;	
 	Pane pane;
-
+	
+	Panino* create(Json::Value&) const override;
+	Pane stringToPane(const std::string&) const;
+	
 public:
 	Panino(const std::string& ="No Name", double =0, double =0, double =0, double =0, const std::string& ="No Bar Code", Pane =Pane::Tartaruga, bool =false, int = 2020, int = 14);
 	Panino(const Panino&);
