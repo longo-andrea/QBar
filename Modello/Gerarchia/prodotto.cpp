@@ -34,7 +34,7 @@ void Prodotto::setEtaMinima(const int& etaMinimaProdotto) {
 }
 
 Prodotto* Prodotto::unserialize(Json::Value& root) {
-	std::string tp = root["Cibo"]["items"][0]["Tipo"].asString();
+	std::string tp = root["Tipo"].asString();
     return mappaProdotto[tp]->create(root);
 }
 

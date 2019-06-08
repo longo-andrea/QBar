@@ -21,27 +21,6 @@ Brioche* Brioche::clone() const {
 	return new Brioche(*this);
 }
 
-Brioche* Brioche::create(Json::Value& root) const {
-	Json::Value tmp = root["Cibo"]["items"][0];
-
-	std::string nomeProdotto = tmp["Nome"].asString();
-	int scadenzaProdotto = tmp["Scandeza"].asInt();
-	int etaMinimaProdotto = tmp["Eta minima"].asInt();
-	
-	double carboidratiCibo = tmp["Carboidrati"].asDouble();
-	double proteineCibo = tmp["Proteine"].asDouble();
-	double grassiCibo = tmp["Grassi"].asDouble();
-	bool isVeganCibo = tmp["Vegano"].asBool();
-
-	double prezzoPreparazioneBrioche = tmp["Prezzo preparazione"].asDouble();
-	std::string barCodeBrioche = tmp["Bar_Code"].asString();
-	Impasto impastoBriosche = stringToImpasto(tmp["Impasto"].asString());
-	Forma formaBriosche = stringToForma(tmp["Forma"].asString());
-	Ripieno ripienoBriosche = stringToRipieno(tmp["Ripieno"].asString());
-	
-	return new Brioche(nomeProdotto, carboidratiCibo, proteineCibo, grassiCibo, prezzoPreparazioneBrioche, isVeganCibo, barCodeBrioche);/*, impastoBriosche, formaBriosche, ripienoBriosche, scadenzaProdotto, etaMinimaProdotto); */
-}
-
 double Brioche::getPrezzoPreparazione() const {
 	return prezzoPreparazione;
 }
@@ -180,8 +159,27 @@ bool Brioche::operator!=(const Brioche& prod) const {
 }
 
 /* ----- PRIVATE METHODS ----- */
+
+Brioche* Brioche::create(Json::Value& root) const {
+	std::string nomeProdotto = root["Nome"].asString();
+	int scadenzaProdotto = root["Scandeza"].asInt();
+	int etaMinimaProdotto = root["Eta minima"].asInt();
 	
-Briosche::Impasto Briosche::stringToImpasto(const std::string& impastoString) const {
+	double carboidratiCibo = root["Carboidrati"].asDouble();
+	double proteineCibo = root["Proteine"].asDouble();
+	double grassiCibo = root["Grassi"].asDouble();
+	bool isVeganCibo = root["Vegano"].asBool();
+
+	double prezzoPreparazioneBrioche = root["Prezzo preparazione"].asDouble();
+	std::string barCodeBrioche = root["Bar Code"].asString();
+	Impasto impastoBriosche = stringToImpasto(root["Impasto"].asString());
+	Forma formaBriosche = stringToForma(root["Forma"].asString());
+	Ripieno ripienoBriosche = stringToRipieno(root["Ripieno"].asString());
+	
+	return new Brioche(nomeProdotto, carboidratiCibo, proteineCibo, grassiCibo, prezzoPreparazioneBrioche, isVeganCibo, barCodeBrioche);/*, impastoBriosche, formaBriosche, ripienoBriosche, scadenzaProdotto, etaMinimaProdotto); */
+}
+	
+Brioche::Impasto Brioche::stringToImpasto(const std::string& impastoString) const {
 	if(impastoString == "Classico")
 		return Impasto::Classico;
 	else if(impastoString == "Integrale")
@@ -190,7 +188,7 @@ Briosche::Impasto Briosche::stringToImpasto(const std::string& impastoString) co
 		return Impasto::SenzaGlutine;
 }
 	
-Briosche::Forma Briosche::stringToForma(const std::string& formaString) const {
+Brioche::Forma Brioche::stringToForma(const std::string& formaString) const {
 	if(formaString == "Cornetto")
 		return Forma::Cornetto;
 	else if(formaString == "Girella")
@@ -199,7 +197,7 @@ Briosche::Forma Briosche::stringToForma(const std::string& formaString) const {
 		return Forma::Ciambella;
 }
 
-Briosche::Ripieno Briosche::stringToRipieno(const std::string& ripienoString) const {
+Brioche::Ripieno Brioche::stringToRipieno(const std::string& ripienoString) const {
 	if(ripienoString == "Vuota")
 		return Ripieno::Vuota;
 	else if(ripienoString == "Cioccolata")

@@ -1,9 +1,7 @@
 #ifndef MODEL_H
 #define MODEL_H
 
-#include "Gerarchia/briosche.h"
-#include "Gerarchia/piadina.h"
-#include "Gerarchia/analcolico.h"
+#include "Gerarchia/brioche.h"
 #include "Gerarchia/smartptr.h"
 #include "../Qontainer/Qontainer.h"
 #include <ostream>

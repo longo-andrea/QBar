@@ -12,6 +12,8 @@ private:
 	unsigned int scadenza;
 	unsigned int etaMinima;
 	
+	virtual Prodotto* create(Json::Value&) const = 0;
+	
 protected:
 	static std::map<std::string,Prodotto*> mappaProdotto;
 
@@ -20,7 +22,6 @@ public:
 	Prodotto(const Prodotto&);
 	virtual Prodotto* clone() const = 0;
 	virtual ~Prodotto() = default;
-	virtual Prodotto* create(Json::Value&) const = 0;
 
 	std::string getNome() const;
 	int getScadenza() const;
@@ -38,6 +39,7 @@ public:
 
 	virtual bool operator==(const Prodotto&) const;
 	virtual bool operator!=(const Prodotto&) const;
+	
 };
 
 

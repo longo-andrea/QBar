@@ -1,5 +1,16 @@
 #include "analcolico.h"
 
+Analcolico::inizializzaAnalcolico::inizializzaAnalcolico() {
+	ptr = new Analcolico();
+	mappaProdotto[ptr->getTipo()] = ptr;
+}
+
+Analcolico::inizializzaAnalcolico::~inizializzaAnalcolico() {
+	delete ptr;
+}
+
+Analcolico::inizializzaAnalcolico Analcolico::mappaAnalcolico;
+
 double Analcolico::tassa = 0.50;
 
 Analcolico::Analcolico(std::string nomeProdotto, double carboidratiBevanda, double proteineBevanda, double grassiBevanda, double prezzoNettoAnalcolico, std::string barCodeAnalcolico, Variante varianteAnalcolico, Contenitore contenitoreAnalcolico, double litriAnalcolico, bool isAlcoholicBevanda, int scadenzaProdotto, int etaMinimaProdotto)
@@ -137,3 +148,45 @@ bool Analcolico::operator==(const Analcolico& prod) const {
 bool Analcolico::operator!=(const Analcolico& prod) const {
 	return !(*this == prod);
 }
+
+/* ----- PRIVATE METHODS ----- */
+
+Analcolico* Analcolico::create(Json::Value& root) const {
+	std::string nomeProdotto = root["Nome"].asString();
+	int scadenzaProdotto = root["Scandeza"].asInt();
+	int etaMinimaProdotto = root["Eta minima"].asInt();
+	
+	double carboidratiBevanda = root["Carboidrati"].asDouble();
+	double proteineBevanda = root["Proteine"].asDouble();
+	double grassiBevanda = root["Grassi"].asDouble();
+	bool isAlcoholicBevanda = root["Alcolico"].asBool();
+
+	double prezzoNettoAnalcolico = root["Prezzo netto"].asDouble();
+	std::string barCodeAnalcolico = root["Bar Code"].asString();
+	int litriAnalcolico = root["Litri"].asDouble();
+	Variante varianteAnalcolico = stringToVariante(root["Variante"].asString());
+	Contenitore contenitoreAnalcolico = stringToContenitore(root["Contenitore"].asString());
+	
+	return new Analcolico(nomeProdotto, carboidratiCibo, proteineCibo, grassiCibo, prezzoNettoAnalcolico, barCodeAnalcolico, varianteAnalcolico, contenitoreAnalcolico, litriAnalcolico, isAlcoholicBevanda, scadenzaProdottto, etaMinimaProdotto);
+}
+	
+Analcolico::Variante Analcolico::stringToVariante(const std::string& varianteString) const {
+	if(varianteString == "Classica")
+		return Variante::Classica;
+	else if(varianteString == "Zero")
+		return Variante::Zero;
+	else if(varianteString == "Light")
+		return Variante::Light;
+	else if(varianteString == "Diet")
+		return Variante::Diet;
+}
+	
+Analcolico::Contenitore Analcolico::stringToContenitore(const std::string& contenitoreString) const {
+	if(contenitoreString == "Lattina")
+		return Contenitore::Lattina;
+	else if(contenitoreString == "Bottiglia")
+		return Contenitore::Bottiglia;
+	else if(contenitoreString == "Spina")
+		return Contenitore::Spina;
+}
+

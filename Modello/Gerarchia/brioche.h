@@ -28,6 +28,7 @@ private:
 	Forma forma;
 	Ripieno ripieno;
 	
+	Brioche* create(Json::Value&) const override;
 	Impasto stringToImpasto(const std::string&) const;
 	Forma stringToForma(const std::string&) const;
 	Ripieno stringToRipieno(const std::string&) const;
@@ -37,7 +38,6 @@ public:
 	Brioche(const Brioche&);
 	virtual Brioche* clone() const override;
 	virtual ~Brioche() =default;
-	Brioche* create(Json::Value&) const override;
 
 	double getPrezzoPreparazione() const override;
 	std::string getBarCode() const override;
