@@ -8,6 +8,16 @@ public:
 	enum Quantita { Short, Medium, Long };
 	enum Classificazione { Coffe, Cooler, Exotic, Wine };
 private:
+	class inizializzaCocktail{
+	private:
+		Cocktail* ptr;
+	
+	public:	
+		inizializzaCocktail();
+		~inizializzaCocktail();
+	};
+
+	static inizializzaCocktail mappaCocktail;
 	static double tassa;
 
 	double prezzoNetto;
@@ -15,6 +25,10 @@ private:
 	Quantita quantita;
 	Classificazione famiglia;
 	double gradazioneAlcolica;
+	
+	Analcolico* create(Json::Value&) const override;
+	static Quantita stringToQuantita(const std::string&);
+	static Classificazione stringToClassificazione(const std::string&);
 
 public:
 	Cocktail(const std::string& ="No Name", double =0, double =0, double =0, double =0, const std::string& ="No Bar Code", Quantita =Quantita::Long, Classificazione =Classificazione::Coffe, double =0, bool =true, int = 2020, int = 18);

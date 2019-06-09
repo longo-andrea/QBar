@@ -1,5 +1,16 @@
 #include "vino.h"
 
+Vino::inizializzaVino::inizializzaVino() {
+	ptr = new Vino();
+	mappaProdotto[ptr->getTipo()] = ptr;
+}
+
+Vino::inizializzaVino::~inizializzaVino() {
+	delete ptr;
+}
+
+Vino::inizializzaVino Vino::mappaVino;
+
 double Vino::tassa = 2;
 
 Vino::Vino(std::string nomeProdotto, double carboidratiBevanda, double proteineBevanda, double grassiBevanda, double gradazioneAlcolicaVino, double prezzoNettoVino, double litriVino, std::string barCodeVino, int annoProduzioneVino, Regione regioneVino, bool alcohoilcBevanda, int scadenzaProdotto, int etaMinimaProdotto)
@@ -136,4 +147,39 @@ bool Vino::operator==(const Vino& prod) const {
 
 bool Vino::operator!=(const Vino& prod) const {
 	return !(*this == prod);
+}
+
+/* ----- PRIVATE METHODS ----- */
+
+Vino* Vino::create(Json::Value& root) const {
+	std::string nomeProdotto = root["Nome"].asString();
+	int scadenzaProdotto = root["Scandeza"].asInt();
+	int etaMinimaProdotto = root["Eta minima"].asInt();
+	
+	double carboidratiBevanda = root["Carboidrati"].asDouble();
+	double proteineBevanda = root["Proteine"].asDouble();
+	double grassiBevanda = root["Grassi"].asDouble();
+	bool isAlcoholicBevanda = root["Alcolico"].asBool();
+
+	double prezzoNettoVino = root["Prezzo netto"].asDouble();
+	std::string barCodeVino = root["Bar Code"].asString();
+	
+	double gradazioneAlcolicaVino = root["Gradazione"].asDouble();
+	unsigned int annoProduzioneVino = root["Anno"].asUInt();
+	Regione regioneVino = stringToRegione(root["Regione"].asString());
+	double litriVino = root["Quantita"].asDouble();
+	
+	
+	return new Vino(nomeProdotto, carboidratiCibo, proteineCibo, grassiCibo, gradazioneAlcolicaVino, prezzoNettoVino, litriVino, barCodeVino, annoProduzioneVino, regioneVino, isAlcoholicBevanda, scadenzaProdottto, etaMinimaProdotto);
+}
+	
+Vino::Regione Vino::stringToRegione(const std::string& regioneString) {
+	if(regioneString == "Veneto")
+		return Regione::Veneto;
+	else if(regioneString == "Emilia")
+		return Regione::Emilia;
+	else if(regioneString == "Toscanca")
+		return Regione::Toscanca;
+	else if(regioneString == "Friuli")
+		return Regione::Friuli;	
 }

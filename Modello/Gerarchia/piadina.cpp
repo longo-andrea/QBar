@@ -1,5 +1,16 @@
 #include "piadina.h"
 
+Piadina::inizializzaPiadina::inizializzaPiadina() {
+	ptr = new Piadina();
+	mappaProdotto[ptr->getTipo()] = ptr;
+}
+
+Piadina::inizializzaPiadina::~inizializzaPiadina() {
+	delete ptr;
+}
+
+Piadina::inizializzaPiadina Piadina::mappaPiadina;
+
 double Piadina::tassa = 0.30;
 
 Piadina::Piadina(std::string nomeProdotto, double carboidratiCibo, double proteineCibo, double grassiCibo, double prezzoPreparazionePiadina, bool isVeganCibo, std::string barCodePiadina, Impasto impastoPiadina, int scadenzaProdotto, int etaMinimaProdotto) 
@@ -92,4 +103,34 @@ bool Piadina::operator==(const Piadina& prod) const {
 
 bool Piadina::operator!=(const Piadina& prod) const {
 	return !(*this == prod);
+}
+
+/* ----- PRIVATE METHODS ----- */
+
+Piadina* Piadina::create(Json::Value& root) const {
+	std::string nomeProdotto = root["Nome"].asString();
+	int scadenzaProdotto = root["Scandeza"].asInt();
+	int etaMinimaProdotto = root["Eta minima"].asInt();
+	
+	double carboidratiCibo = root["Carboidrati"].asDouble();
+	double proteineCibo = root["Proteine"].asDouble();
+	double grassiCibo = root["Grassi"].asDouble();
+	bool isVeganCibo = root["Vegano"].asBool();
+
+	double prezzoPreparazionePiadina = root["Prezzo preparazione"].asDouble();
+	std::string barCodePiadina = root["Bar Code"].asString();
+	Impasto impastoPiadina = stringToImpasto(root["Impasto"].asString());
+	
+	return new Piadina(nomeProdotto, carboidratiCibo, proteineCibo, grassiCibo, prezzoPreparazionePiadina, isVeganCibo, barCodePiadina, impastoPiadina, scadenzaProdotto, etaMinimaProdotto); 
+}
+	
+Piadina::Impasto Piadina::stringToImpasto(const std::string& impastoString) {
+	if(impastoString == "Classico")
+		return Impasto::Classico;
+	else if(impastoString == "Cereali")
+		return Impasto::Cereali;
+	else if(impastoString == "Integrale")
+		return Impasto::Integrale;
+	else if(impastoString == "Kamut")
+		return Impasto::Kamut;
 }

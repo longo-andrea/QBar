@@ -7,6 +7,16 @@ class Vino : public Bevanda {
 public:
 	enum Regione { Veneto, Emilia, Toscana, Friuli };
 private:
+	class inizializzaVino{
+	private:
+		Vino* ptr;
+	
+	public:	
+		inizializzaVino();
+		~inizializzaVino();
+	};
+
+	static inizializzaVino mappaVino;
 	static double tassa;
 
 	double prezzoNetto;
@@ -15,6 +25,10 @@ private:
 	unsigned int annoProduzione;
 	Regione regione;
 	double litri;
+	
+	Vino* create(Json::Value&) const override;
+	static Regione stringToRegione(const std::string&);
+	
 public:
 	Vino(const std::string& ="No Name", double =0, double =0, double =0, double =0, double =0, double =0, const std::string& ="No Bar Code", int =0, Regione =Regione::Veneto, bool =true, int =2020, int =18);
 	Vino(const Vino&);

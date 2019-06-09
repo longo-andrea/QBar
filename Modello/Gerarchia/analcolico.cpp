@@ -170,7 +170,7 @@ Analcolico* Analcolico::create(Json::Value& root) const {
 	return new Analcolico(nomeProdotto, carboidratiCibo, proteineCibo, grassiCibo, prezzoNettoAnalcolico, barCodeAnalcolico, varianteAnalcolico, contenitoreAnalcolico, litriAnalcolico, isAlcoholicBevanda, scadenzaProdottto, etaMinimaProdotto);
 }
 	
-Analcolico::Variante Analcolico::stringToVariante(const std::string& varianteString) const {
+Analcolico::Variante Analcolico::stringToVariante(const std::string& varianteString) {
 	if(varianteString == "Classica")
 		return Variante::Classica;
 	else if(varianteString == "Zero")
@@ -181,7 +181,7 @@ Analcolico::Variante Analcolico::stringToVariante(const std::string& varianteStr
 		return Variante::Diet;
 }
 	
-Analcolico::Contenitore Analcolico::stringToContenitore(const std::string& contenitoreString) const {
+Analcolico::Contenitore Analcolico::stringToContenitore(const std::string& contenitoreString) {
 	if(contenitoreString == "Lattina")
 		return Contenitore::Lattina;
 	else if(contenitoreString == "Bottiglia")

@@ -126,7 +126,7 @@ Panino* Panino::create(Json::Value& root) const {
 	return new Panino(nomeProdotto, carboidratiCibo, proteineCibo, grassiCibo, prezzoPreparazionePanino, barCodePanino, panePanino, isVeganCibo, scadenzaProdotto, etaMinimaProdotto); 
 }
 	
-Panino::Pane Panino::stringToPane(const std::string& paneString) const {
+Panino::Pane Panino::stringToPane(const std::string& paneString) {
 	if(paneString == "Tartaruga")
 		return Pane::Tartaruga;
 	else if(paneString == "Arabo")

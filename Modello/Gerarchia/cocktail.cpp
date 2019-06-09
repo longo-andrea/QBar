@@ -1,5 +1,16 @@
 #include "cocktail.h"
 
+Cocktail::inizializzaCocktail::inizializzaCocktail() {
+	ptr = new Cocktail();
+	mappaProdotto[ptr->getTipo()] = ptr;
+}
+
+Cocktail::inizializzaCocktail::~inizializzaCocktail() {
+	delete ptr;
+}
+
+Cocktail::inizializzaCocktail Cocktail::mappaCocktail;
+
 double Cocktail::tassa = 0.70;
 
 Cocktail::Cocktail(std::string nomeProdotto, double carboidratiBevada, double proteineBevanda, double grassiBevanda, double prezzoNettoCocktail, std::string barCodeCocktail, Quantita quantitaCocktail, Classificazione famigliaCocktail, double gradazioneAlcolicaCocktail, bool alcoholicBevanda, int scadenzaProdotto, int etaMinimaProdotto) 
@@ -136,3 +147,45 @@ bool Cocktail::operator==(const Cocktail& prod) const {
 bool Cocktail::operator!=(const Cocktail& prod) const {
 	return !(*this == prod);
 }
+
+/* ----- PRIVATE METHODS ----- */
+
+Cocktail* Cocktail::create(Json::Value& root) const {
+	std::string nomeProdotto = root["Nome"].asString();
+	int scadenzaProdotto = root["Scandeza"].asInt();
+	int etaMinimaProdotto = root["Eta minima"].asInt();
+	
+	double carboidratiBevanda = root["Carboidrati"].asDouble();
+	double proteineBevanda = root["Proteine"].asDouble();
+	double grassiBevanda = root["Grassi"].asDouble();
+	bool isAlcoholicBevanda = root["Alcolico"].asBool();
+
+	double prezzoNettoCocktail = root["Prezzo netto"].asDouble();
+	std::string barCodeCocktail = root["Bar Code"].asString();
+	Quantita quantitaCocktail = stringToQuantita(root["Quantita"].asString());
+	Classificazione famigliaCocktail = stringToClassificazione(root["Famiglia"].asString());
+	double gradazioneAlcolicaCocktail = root["Gradazione"].asDouble();
+	
+	return new Cocktail(nomeProdotto, carboidratiCibo, proteineCibo, grassiCibo, prezzoNettoCocktail, barCodeCocktail, quantitaCocktail, famigliaCocktail, gradazioneAlcolicaCocktail, isAlcoholicBevanda, scadenzaProdottto, etaMinimaProdotto);
+}
+	
+Cocktail::Quantita Cocktail::stringToQuantita(const std::string& quantitaString) {
+	if(quantitaString == "Short")
+		return Quantita::Short;
+	else if(quantitaString == "Medium")
+		return Quantita::Medium;
+	else if(quantitaString == "Long")
+		return Quantita::Long;
+}
+	
+Cocktail::Classificazione Cocktail::stringToCocktail(const std::string& classificazioneString) {
+	if(classificazioneString == "Coffe")
+		return Classificazione::Coffe;
+	else if(classificazioneString == "Cooler")
+		return Classificazione::Cooler;
+	else if(classificazioneString == "Exotic")
+		return Classificazione::Exotic;
+	else if(classificazioneString == "Wine")
+		return Classificazione::Wine;
+}
+

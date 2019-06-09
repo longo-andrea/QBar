@@ -29,9 +29,9 @@ private:
 	Ripieno ripieno;
 	
 	Brioche* create(Json::Value&) const override;
-	Impasto stringToImpasto(const std::string&) const;
-	Forma stringToForma(const std::string&) const;
-	Ripieno stringToRipieno(const std::string&) const;
+	static Impasto stringToImpasto(const std::string&);
+	static Forma stringToForma(const std::string&);
+	static Ripieno stringToRipieno(const std::string&);
 
 public:
 	Brioche(const std::string& ="No Name", double =0, double =0, double =0, double =0, bool =false, const std::string& ="No Bar Code", Impasto =Impasto::Classico, Forma =Forma::Cornetto, Ripieno =Ripieno::Vuota, int = 2020, int = 14);

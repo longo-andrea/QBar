@@ -25,7 +25,7 @@ private:
 	Pane pane;
 	
 	Panino* create(Json::Value&) const override;
-	Pane stringToPane(const std::string&) const;
+	static Pane stringToPane(const std::string&);
 	
 public:
 	Panino(const std::string& ="No Name", double =0, double =0, double =0, double =0, const std::string& ="No Bar Code", Pane =Pane::Tartaruga, bool =false, int = 2020, int = 14);
