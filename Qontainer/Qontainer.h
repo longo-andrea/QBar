@@ -1,3 +1,6 @@
+#ifndef QONTAINER_H
+#define QONTAINER_H
+
 #include <iostream>
 #include <algorithm>
 
@@ -478,3 +481,5 @@ void Qontainer<T>::resize() {
 	delete[] buffer;
 	buffer = resized;
 }
+
+#endif // QONTAINER_H

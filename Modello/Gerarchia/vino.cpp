@@ -13,7 +13,7 @@ Vino::inizializzaVino Vino::mappaVino;
 
 double Vino::tassa = 2;
 
-Vino::Vino(std::string nomeProdotto, double carboidratiBevanda, double proteineBevanda, double grassiBevanda, double gradazioneAlcolicaVino, double prezzoNettoVino, double litriVino, std::string barCodeVino, int annoProduzioneVino, Regione regioneVino, bool alcohoilcBevanda, int scadenzaProdotto, int etaMinimaProdotto)
+Vino::Vino(const std::string& nomeProdotto, double carboidratiBevanda, double proteineBevanda, double grassiBevanda, double gradazioneAlcolicaVino, double prezzoNettoVino, double litriVino, const std::string& barCodeVino, int annoProduzioneVino, Regione regioneVino, bool alcohoilcBevanda, int scadenzaProdotto, int etaMinimaProdotto)
 	: Bevanda(nomeProdotto, carboidratiBevanda, proteineBevanda, grassiBevanda, alcohoilcBevanda, scadenzaProdotto, etaMinimaProdotto), prezzoNetto(prezzoNettoVino >= 0 ? prezzoNettoVino : 0), gradazioneAlcolica(gradazioneAlcolicaVino >= 0 ? gradazioneAlcolicaVino : 0), barCode(barCodeVino), annoProduzione(annoProduzioneVino >= 0 ? annoProduzioneVino : 1400), regione(regioneVino), litri(litriVino >= 0 ? litriVino : 0) {}
 
 Vino::Vino(const Vino& vino) : Bevanda(vino), prezzoNetto(vino.prezzoNetto), gradazioneAlcolica(vino.gradazioneAlcolica), barCode(vino.barCode), annoProduzione(vino.annoProduzione), regione(vino.regione), litri(vino.litri) {}
@@ -131,7 +131,7 @@ void Vino::serialize(Json::Value& root) const {
 	vino["Anno"] = getAnnoProduzione();
 	vino["Regione"] = regioneToString();
 	vino["Gradazione"] = getGradazioneAlcolica();
-	vino["Quantita"] = getQuantita();
+	vino["Quantita"] = getLitri();
 	
 	root["Bevanda"]["items"].append(vino);				
 }
@@ -170,7 +170,7 @@ Vino* Vino::create(Json::Value& root) const {
 	double litriVino = root["Quantita"].asDouble();
 	
 	
-	return new Vino(nomeProdotto, carboidratiCibo, proteineCibo, grassiCibo, gradazioneAlcolicaVino, prezzoNettoVino, litriVino, barCodeVino, annoProduzioneVino, regioneVino, isAlcoholicBevanda, scadenzaProdottto, etaMinimaProdotto);
+	return new Vino(nomeProdotto, carboidratiBevanda, proteineBevanda, grassiBevanda, gradazioneAlcolicaVino, prezzoNettoVino, litriVino, barCodeVino, annoProduzioneVino, regioneVino, isAlcoholicBevanda, scadenzaProdotto, etaMinimaProdotto);
 }
 	
 Vino::Regione Vino::stringToRegione(const std::string& regioneString) {
@@ -178,8 +178,8 @@ Vino::Regione Vino::stringToRegione(const std::string& regioneString) {
 		return Regione::Veneto;
 	else if(regioneString == "Emilia")
 		return Regione::Emilia;
-	else if(regioneString == "Toscanca")
-		return Regione::Toscanca;
-	else if(regioneString == "Friuli")
+	else if(regioneString == "Toscana")
+		return Regione::Toscana;
+	else if(regioneString == "Friulia-Venezia-Giulia")
 		return Regione::Friuli;	
 }
