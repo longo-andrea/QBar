@@ -13,7 +13,7 @@ Panino::inizializzaPanino Panino::mappaPanino;
 
 double Panino::tassa = 0.40;
 
-Panino::Panino(std::string nomeProdotto, double carboidratiCibo, double proteineCibo, double grassiCibo, double prezzoPreparazionePanino, std::string barCodePanino, Panino::Pane panePanino, bool PaninoVegano, int scadenzaProdotto, int etaMinimaProdotto)
+Panino::Panino(const std::string& nomeProdotto, double carboidratiCibo, double proteineCibo, double grassiCibo, double prezzoPreparazionePanino, const std::string& barCodePanino, Panino::Pane panePanino, bool PaninoVegano, int scadenzaProdotto, int etaMinimaProdotto)
 	: Cibo(nomeProdotto, carboidratiCibo, proteineCibo, grassiCibo, PaninoVegano, scadenzaProdotto, etaMinimaProdotto), prezzoPreparazione(prezzoPreparazionePanino >= 0 ? prezzoPreparazionePanino : 0), barCode(barCodePanino), pane(panePanino) {}
 
 Panino::Panino(const Panino& panino) : Cibo(panino), prezzoPreparazione(panino.prezzoPreparazione), barCode(panino.barCode), pane(panino.pane) {}
@@ -121,7 +121,7 @@ Panino* Panino::create(Json::Value& root) const {
 
 	double prezzoPreparazionePanino = root["Prezzo preparazione"].asDouble();
 	std::string barCodePanino = root["Bar Code"].asString();
-	Impasto panePanino = stringToPane(root["Pane"].asString());
+	Pane panePanino = stringToPane(root["Pane"].asString());
 	
 	return new Panino(nomeProdotto, carboidratiCibo, proteineCibo, grassiCibo, prezzoPreparazionePanino, barCodePanino, panePanino, isVeganCibo, scadenzaProdotto, etaMinimaProdotto); 
 }

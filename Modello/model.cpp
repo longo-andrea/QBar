@@ -11,7 +11,7 @@ void Model::load(const std::string& file) {
 }
 	
 void Model::add(Prodotto* prod) {
-	prodotti.push_back(prod);
+	prodotti.push_back(SmartPtr<Prodotto>(prod));
 }
     
 		

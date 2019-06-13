@@ -13,7 +13,7 @@ Cocktail::inizializzaCocktail Cocktail::mappaCocktail;
 
 double Cocktail::tassa = 0.70;
 
-Cocktail::Cocktail(std::string nomeProdotto, double carboidratiBevada, double proteineBevanda, double grassiBevanda, double prezzoNettoCocktail, std::string barCodeCocktail, Quantita quantitaCocktail, Classificazione famigliaCocktail, double gradazioneAlcolicaCocktail, bool alcoholicBevanda, int scadenzaProdotto, int etaMinimaProdotto) 
+Cocktail::Cocktail(const std::string& nomeProdotto, double carboidratiBevada, double proteineBevanda, double grassiBevanda, double prezzoNettoCocktail, const std::string& barCodeCocktail, Quantita quantitaCocktail, Classificazione famigliaCocktail, double gradazioneAlcolicaCocktail, bool alcoholicBevanda, int scadenzaProdotto, int etaMinimaProdotto) 
 	: Bevanda(nomeProdotto, carboidratiBevada, proteineBevanda, grassiBevanda, alcoholicBevanda, scadenzaProdotto, etaMinimaProdotto), prezzoNetto(prezzoNettoCocktail >= 0 ? prezzoNettoCocktail : 0), barCode(barCodeCocktail), quantita(quantitaCocktail), famiglia(famigliaCocktail), gradazioneAlcolica(gradazioneAlcolicaCocktail >= 0 ? gradazioneAlcolicaCocktail : 0) {}
 
 Cocktail::Cocktail(const Cocktail& cocktail) : Bevanda(cocktail), prezzoNetto(cocktail.prezzoNetto), barCode(cocktail.barCode), quantita(cocktail.quantita), famiglia(cocktail.famiglia), gradazioneAlcolica(cocktail.gradazioneAlcolica) {}
@@ -166,7 +166,7 @@ Cocktail* Cocktail::create(Json::Value& root) const {
 	Classificazione famigliaCocktail = stringToClassificazione(root["Famiglia"].asString());
 	double gradazioneAlcolicaCocktail = root["Gradazione"].asDouble();
 	
-	return new Cocktail(nomeProdotto, carboidratiCibo, proteineCibo, grassiCibo, prezzoNettoCocktail, barCodeCocktail, quantitaCocktail, famigliaCocktail, gradazioneAlcolicaCocktail, isAlcoholicBevanda, scadenzaProdottto, etaMinimaProdotto);
+	return new Cocktail(nomeProdotto, carboidratiBevanda, proteineBevanda, grassiBevanda, prezzoNettoCocktail, barCodeCocktail, quantitaCocktail, famigliaCocktail, gradazioneAlcolicaCocktail, isAlcoholicBevanda, scadenzaProdotto, etaMinimaProdotto);
 }
 	
 Cocktail::Quantita Cocktail::stringToQuantita(const std::string& quantitaString) {
@@ -178,7 +178,7 @@ Cocktail::Quantita Cocktail::stringToQuantita(const std::string& quantitaString)
 		return Quantita::Long;
 }
 	
-Cocktail::Classificazione Cocktail::stringToCocktail(const std::string& classificazioneString) {
+Cocktail::Classificazione Cocktail::stringToClassificazione(const std::string& classificazioneString) {
 	if(classificazioneString == "Coffe")
 		return Classificazione::Coffe;
 	else if(classificazioneString == "Cooler")

@@ -13,7 +13,7 @@ Analcolico::inizializzaAnalcolico Analcolico::mappaAnalcolico;
 
 double Analcolico::tassa = 0.50;
 
-Analcolico::Analcolico(std::string nomeProdotto, double carboidratiBevanda, double proteineBevanda, double grassiBevanda, double prezzoNettoAnalcolico, std::string barCodeAnalcolico, Variante varianteAnalcolico, Contenitore contenitoreAnalcolico, double litriAnalcolico, bool isAlcoholicBevanda, int scadenzaProdotto, int etaMinimaProdotto)
+Analcolico::Analcolico(const std::string& nomeProdotto, double carboidratiBevanda, double proteineBevanda, double grassiBevanda, double prezzoNettoAnalcolico, const std::string& barCodeAnalcolico, Variante varianteAnalcolico, Contenitore contenitoreAnalcolico, double litriAnalcolico, bool isAlcoholicBevanda, int scadenzaProdotto, int etaMinimaProdotto)
 	: Bevanda(nomeProdotto, carboidratiBevanda, proteineBevanda, grassiBevanda, isAlcoholicBevanda, scadenzaProdotto, etaMinimaProdotto), prezzoNetto(prezzoNettoAnalcolico >= 0 ? prezzoNettoAnalcolico : 0), barCode(barCodeAnalcolico), variante(varianteAnalcolico), contenitore(contenitoreAnalcolico), litri(litriAnalcolico >=0 ? litriAnalcolico : 0) {}
 
 Analcolico::Analcolico(const Analcolico& analcolico) : Bevanda(analcolico), prezzoNetto(analcolico.prezzoNetto), barCode(analcolico.barCode), variante(analcolico.variante), contenitore(analcolico.contenitore), litri(analcolico.litri) {}
@@ -167,7 +167,7 @@ Analcolico* Analcolico::create(Json::Value& root) const {
 	Variante varianteAnalcolico = stringToVariante(root["Variante"].asString());
 	Contenitore contenitoreAnalcolico = stringToContenitore(root["Contenitore"].asString());
 	
-	return new Analcolico(nomeProdotto, carboidratiCibo, proteineCibo, grassiCibo, prezzoNettoAnalcolico, barCodeAnalcolico, varianteAnalcolico, contenitoreAnalcolico, litriAnalcolico, isAlcoholicBevanda, scadenzaProdottto, etaMinimaProdotto);
+	return new Analcolico(nomeProdotto, carboidratiBevanda, proteineBevanda, grassiBevanda, prezzoNettoAnalcolico, barCodeAnalcolico, varianteAnalcolico, contenitoreAnalcolico, litriAnalcolico, isAlcoholicBevanda, scadenzaProdotto, etaMinimaProdotto);
 }
 	
 Analcolico::Variante Analcolico::stringToVariante(const std::string& varianteString) {

@@ -17,7 +17,7 @@ private:
 		~inizializzaAnalcolico();
 	};
 
-	static inizializzaBrioche mappaAnalcolico;
+	static inizializzaAnalcolico mappaAnalcolico;
 	static double tassa;
 
 	double prezzoNetto;

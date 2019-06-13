@@ -26,7 +26,7 @@ private:
 	Classificazione famiglia;
 	double gradazioneAlcolica;
 	
-	Analcolico* create(Json::Value&) const override;
+	Cocktail* create(Json::Value&) const override;
 	static Quantita stringToQuantita(const std::string&);
 	static Classificazione stringToClassificazione(const std::string&);
 
