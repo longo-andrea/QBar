@@ -132,7 +132,7 @@ void Cocktail::serialize(Json::Value& root) const {
 	cocktail["Famiglia"] = famigliaToString();
 	cocktail["Gradazione"] = getGradazioneAlcolica();
 	
-	root["Bevanda"]["items"].append(cocktail);			
+	root["items"].append(cocktail);			
 }
 
 bool Cocktail::operator==(const Cocktail& prod) const {

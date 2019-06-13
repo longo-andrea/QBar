@@ -91,7 +91,7 @@ void Piadina::serialize(Json::Value& root) const {
 	piadina["Bar Code"] = getBarCode();
 	piadina["Impasto"] = impastoToString();
 	
-	root["Cibo"]["items"].append(piadina);	
+	root["items"].append(piadina);	
 }
 
 bool Piadina::operator==(const Piadina& prod) const {

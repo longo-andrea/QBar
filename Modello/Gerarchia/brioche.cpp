@@ -143,7 +143,7 @@ void Brioche::serialize(Json::Value& root) const {
 	brioche["Forma"] = formaToString();
 	brioche["Ripieno"] = ripienoToString();
 	
-	root["Cibo"]["items"].append(brioche);
+	root["items"].append(brioche);
 }
 
 bool Brioche::operator==(const Brioche& prod) const {

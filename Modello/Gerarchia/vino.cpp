@@ -133,7 +133,7 @@ void Vino::serialize(Json::Value& root) const {
 	vino["Gradazione"] = getGradazioneAlcolica();
 	vino["Quantita"] = getLitri();
 	
-	root["Bevanda"]["items"].append(vino);				
+	root["items"].append(vino);				
 }
 
 bool Vino::operator==(const Vino& prod) const {

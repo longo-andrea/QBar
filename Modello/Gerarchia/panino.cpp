@@ -93,7 +93,7 @@ void Panino::serialize(Json::Value& root) const {
 	panino["Bar Code"] = getBarCode();
 	panino["Pane"] = paneToString();
 	
-	root["Cibo"]["items"].append(panino);
+	root["items"].append(panino);
 }
 
 bool Panino::operator==(const Panino& prod) const {

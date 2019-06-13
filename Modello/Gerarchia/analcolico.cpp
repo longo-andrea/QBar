@@ -133,7 +133,7 @@ void Analcolico::serialize(Json::Value& root) const {
 	analcolico["Contenitore"] = contenitoreToString();
 	analcolico["Litri"] = getLitri();
 	
-	root["Bevanda"]["items"].append(analcolico);		
+	root["items"].append(analcolico);		
 }
 
 bool Analcolico::operator==(const Analcolico& prod) const {
