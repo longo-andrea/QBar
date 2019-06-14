@@ -22,6 +22,7 @@ public:
 	void load(const std::string&);
 	
 	void add(Prodotto*); 
+    Prodotto* operator[](unsigned int) const;
     
 	
 };

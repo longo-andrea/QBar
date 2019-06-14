@@ -2,7 +2,7 @@
 
 Vino::inizializzaVino::inizializzaVino() {
 	ptr = new Vino();
-	mappaProdotto[ptr->getTipo()] = ptr;
+    mappaProdotto["Vino"] = ptr;
 }
 
 Vino::inizializzaVino::~inizializzaVino() {
@@ -11,23 +11,23 @@ Vino::inizializzaVino::~inizializzaVino() {
 
 Vino::inizializzaVino Vino::mappaVino;
 
-double Vino::tassa = 2;
+double Vino::tassa = 1.20;
 
-Vino::Vino(const std::string& nomeProdotto, double carboidratiBevanda, double proteineBevanda, double grassiBevanda, double gradazioneAlcolicaVino, double prezzoNettoVino, double litriVino, const std::string& barCodeVino, int annoProduzioneVino, Regione regioneVino, bool alcohoilcBevanda, int scadenzaProdotto, int etaMinimaProdotto)
-	: Bevanda(nomeProdotto, carboidratiBevanda, proteineBevanda, grassiBevanda, alcohoilcBevanda, scadenzaProdotto, etaMinimaProdotto), prezzoNetto(prezzoNettoVino >= 0 ? prezzoNettoVino : 0), gradazioneAlcolica(gradazioneAlcolicaVino >= 0 ? gradazioneAlcolicaVino : 0), barCode(barCodeVino), annoProduzione(annoProduzioneVino >= 0 ? annoProduzioneVino : 1400), regione(regioneVino), litri(litriVino >= 0 ? litriVino : 0) {}
-
-Vino::Vino(const Vino& vino) : Bevanda(vino), prezzoNetto(vino.prezzoNetto), gradazioneAlcolica(vino.gradazioneAlcolica), barCode(vino.barCode), annoProduzione(vino.annoProduzione), regione(vino.regione), litri(vino.litri) {}
+Vino::Vino(const std::string& nomeProdotto, double carboidratiBevanda, double proteineBevanda, double grassiBevanda, double prezzoNettoVino, const std::string& barCodeVino, Regione regioneVino, double gradazioneAlcolicaVino, double litriVino, int annoProduzioneVino, bool isAlcoholicBevanda, int scadenzaProdotto, int etaMinimaProdotto) 
+    : Bevanda(nomeProdotto, carboidratiBevanda, proteineBevanda, grassiBevanda, isAlcoholicBevanda, scadenzaProdotto, etaMinimaProdotto), prezzoNetto(prezzoNettoVino >= 0 ? prezzoNettoVino : 0), barCode(barCodeVino), regione(regioneVino), annoProduzione(annoProduzioneVino >= 0 ? annoProduzioneVino : 0), litri(litriVino >= 0 ? litriVino : 0), gradazioneAlcolica(gradazioneAlcolicaVino >= 0 ? gradazioneAlcolicaVino : 0) {}
+	
+Vino::Vino(const Vino& vino) : Bevanda(vino), prezzoNetto(vino.prezzoNetto), barCode(vino.barCode), regione(vino.regione), annoProduzione(vino.annoProduzione), litri(vino.litri), gradazioneAlcolica(vino.gradazioneAlcolica) {}
 
 Vino* Vino::clone() const {
 	return new Vino(*this);
 }
 
-double Vino::getPrezzo() const {
-	return prezzoNetto + tassa;
+std::string Vino::getBarCode() const {
+	return barCode;	
 }
 
-std::string Vino::getBarCode() const {
-	return barCode;
+double Vino::getPrezzo() const {
+	return prezzoNetto + tassa;
 }
 
 double Vino::calcolaCalorie() const {
@@ -42,74 +42,68 @@ double Vino::getPrezzoNetto() const {
 	return prezzoNetto;
 }
 
-double Vino::getGradazioneAlcolica() const {
-	return gradazioneAlcolica;
-}
-
-
-unsigned int Vino::getAnnoProduzione() const {
-	return annoProduzione;
-}
-
 Vino::Regione Vino::getRegione() const {
 	return regione;
 }
 
 std::string Vino::regioneToString() const {
 	switch (regione) {
+		case Vino::Emilia:
+			return "Emilia";
+			break;
 		case Vino::Veneto:
 			return "Veneto";
 			break;
-		case Vino::Emilia:
-			return "Emilia-Romagna";
+		case Vino::Friuli:
+			return "Friuli";
 			break;
 		case Vino::Toscana:
 			return "Toscana";
 			break;
-		case Vino::Friuli:
-			return "Friulia-Venezia-Giulia";
-			break;
 		default:
 			break;
 	}
+}
+	
+int Vino::getAnnoProduzione() const {
+	return annoProduzione;
 }
 
 double Vino::getLitri() const {
 	return litri;
 }
 
-void Vino::setTassa(const double& tassaVino) {
-	if(tassaVino >= 0)
-		tassa = tassaVino;
-}
-
-void Vino::setPrezzoNetto(const double& prezzoNettoVino) {
-	if (prezzoNettoVino >= 0)
-		prezzoNetto = prezzoNettoVino;
-}
-
-void Vino::setGradazioneAlcolica(const double& gradazioneVino) {
-	if (gradazioneVino >= 0)
-		gradazioneAlcolica = gradazioneVino;
+double Vino::getGradazioneAlcolica()  const {
+	return gradazioneAlcolica;
 }
 
 void Vino::setBarCode(const std::string& barCodeVino) {
-	if (barCodeVino != "")
+	if(barCodeVino != "")
 		barCode = barCodeVino;
 }
 
-void Vino::setAnnoProduzione(const int& annoProduzioneVino) {
-	if (annoProduzioneVino >= 1400)
-		annoProduzione = annoProduzioneVino;
+void Vino::setPrezzoNetto(const double& prezzoNettoVino) {
+	if(prezzoNettoVino >= 0)
+		prezzoNetto = prezzoNettoVino;
 }
 
 void Vino::setRegione(const Regione& regioneVino) {
 	regione = regioneVino;
 }
 
+void Vino::setAnnoProduzione(const int& annoProduzioneVino) {
+	if(annoProduzioneVino >= 0)
+		annoProduzione = annoProduzioneVino;
+}
+
 void Vino::setLitri(const double& litriVino) {
-	if (litriVino >= 0)
+	if(litriVino >= 0)
 		litri = litriVino;
+}
+
+void Vino::setGradazioneAlcolica(const double& gradazioneAlcolicaVino) {
+	if(gradazioneAlcolicaVino >= 0)
+		gradazioneAlcolica = gradazioneAlcolicaVino;
 }
 
 void Vino::serialize(Json::Value& root) const {
@@ -128,21 +122,22 @@ void Vino::serialize(Json::Value& root) const {
 	
 	vino["Prezzo netto"] = getPrezzoNetto();
 	vino["Bar Code"] = getBarCode();
-	vino["Anno"] = getAnnoProduzione();
 	vino["Regione"] = regioneToString();
+	vino["Anno"] = getAnnoProduzione();
+	vino["Litri"] = getLitri();
 	vino["Gradazione"] = getGradazioneAlcolica();
-	vino["Quantita"] = getLitri();
 	
-	root["items"].append(vino);				
+	root["items"].append(vino);		
 }
 
 bool Vino::operator==(const Vino& prod) const {
 	return Bevanda::operator==(prod)
 		&& prod.prezzoNetto == prezzoNetto
-		&& prod.gradazioneAlcolica == gradazioneAlcolica
 		&& prod.barCode == barCode
+		&& prod.regione == regione
 		&& prod.annoProduzione == annoProduzione
-		&& prod.regione == regione;
+		&& prod.litri == litri
+		&& prod.gradazioneAlcolica == gradazioneAlcolica;
 }
 
 bool Vino::operator!=(const Vino& prod) const {
@@ -160,17 +155,15 @@ Vino* Vino::create(Json::Value& root) const {
 	double proteineBevanda = root["Proteine"].asDouble();
 	double grassiBevanda = root["Grassi"].asDouble();
 	bool isAlcoholicBevanda = root["Alcolico"].asBool();
-
+	
 	double prezzoNettoVino = root["Prezzo netto"].asDouble();
 	std::string barCodeVino = root["Bar Code"].asString();
-	
-	double gradazioneAlcolicaVino = root["Gradazione"].asDouble();
-	unsigned int annoProduzioneVino = root["Anno"].asUInt();
 	Regione regioneVino = stringToRegione(root["Regione"].asString());
-	double litriVino = root["Quantita"].asDouble();
+	int annoProduzioneVino = root["Anno"].asInt();
+	double litriVino = root["Litri"].asDouble();
+	double gradazioneAlcolicaVino = root["Gradazione"].asDouble();
 	
-	
-	return new Vino(nomeProdotto, carboidratiBevanda, proteineBevanda, grassiBevanda, gradazioneAlcolicaVino, prezzoNettoVino, litriVino, barCodeVino, annoProduzioneVino, regioneVino, isAlcoholicBevanda, scadenzaProdotto, etaMinimaProdotto);
+	return new Vino(nomeProdotto, carboidratiBevanda, proteineBevanda, grassiBevanda, prezzoNettoVino, barCodeVino, regioneVino, gradazioneAlcolicaVino, litriVino, annoProduzioneVino, isAlcoholicBevanda, scadenzaProdotto, etaMinimaProdotto);
 }
 	
 Vino::Regione Vino::stringToRegione(const std::string& regioneString) {
@@ -178,8 +171,9 @@ Vino::Regione Vino::stringToRegione(const std::string& regioneString) {
 		return Regione::Veneto;
 	else if(regioneString == "Emilia")
 		return Regione::Emilia;
+	else if(regioneString == "Friuli")
+		return Regione::Friuli;
 	else if(regioneString == "Toscana")
 		return Regione::Toscana;
-	else if(regioneString == "Friulia-Venezia-Giulia")
-		return Regione::Friuli;	
 }
+	

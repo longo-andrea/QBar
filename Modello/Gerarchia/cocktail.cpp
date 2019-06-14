@@ -13,8 +13,8 @@ Cocktail::inizializzaCocktail Cocktail::mappaCocktail;
 
 double Cocktail::tassa = 0.70;
 
-Cocktail::Cocktail(const std::string& nomeProdotto, double carboidratiBevada, double proteineBevanda, double grassiBevanda, double prezzoNettoCocktail, const std::string& barCodeCocktail, Quantita quantitaCocktail, Classificazione famigliaCocktail, double gradazioneAlcolicaCocktail, bool alcoholicBevanda, int scadenzaProdotto, int etaMinimaProdotto) 
-	: Bevanda(nomeProdotto, carboidratiBevada, proteineBevanda, grassiBevanda, alcoholicBevanda, scadenzaProdotto, etaMinimaProdotto), prezzoNetto(prezzoNettoCocktail >= 0 ? prezzoNettoCocktail : 0), barCode(barCodeCocktail), quantita(quantitaCocktail), famiglia(famigliaCocktail), gradazioneAlcolica(gradazioneAlcolicaCocktail >= 0 ? gradazioneAlcolicaCocktail : 0) {}
+Cocktail::Cocktail(const std::string& nomeProdotto, double carboidratiBevanda, double proteineBevanda, double grassiBevanda, double prezzoNettoCocktail, const std::string& barCodeCocktail, Quantita quantitaCocktail, Classificazione famigliaCocktail, double gradazioneAlcolicaCocktail, bool alcoholicBevanda, int scadenzaProdotto, int etaMinimaProdotto) 
+	: Bevanda(nomeProdotto, carboidratiBevanda, proteineBevanda, grassiBevanda, alcoholicBevanda, scadenzaProdotto, etaMinimaProdotto), prezzoNetto(prezzoNettoCocktail >= 0 ? prezzoNettoCocktail : 0), barCode(barCodeCocktail), quantita(quantitaCocktail), famiglia(famigliaCocktail), gradazioneAlcolica(gradazioneAlcolicaCocktail >= 0 ? gradazioneAlcolicaCocktail : 0) {}
 
 Cocktail::Cocktail(const Cocktail& cocktail) : Bevanda(cocktail), prezzoNetto(cocktail.prezzoNetto), barCode(cocktail.barCode), quantita(cocktail.quantita), famiglia(cocktail.famiglia), gradazioneAlcolica(cocktail.gradazioneAlcolica) {}
 

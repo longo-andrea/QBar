@@ -1,0 +1,68 @@
+{
+	"items" : 
+	[
+		{
+			"Alcolico" : true,
+			"Anno" : 5,
+			"Bar Code" : "A56F",
+			"Carboidrati" : 25.0,
+			"Eta minima" : 18,
+			"Gradazione" : 55.0,
+			"Grassi" : 45.0,
+			"Nome" : "Egiziano",
+			"Prezzo netto" : 8.5,
+			"Proteine" : 36.0,
+			"Quantita" : 8.0,
+			"Regione" : "Friulia-Venezia-Giulia",
+			"Scadenza" : 2020,
+			"Tipo" : "Vino"
+		},
+		{
+			"Alcolico" : true,
+			"Anno" : 5,
+			"Bar Code" : "A56F",
+			"Carboidrati" : 25.0,
+			"Eta minima" : 18,
+			"Gradazione" : 55.0,
+			"Grassi" : 45.0,
+			"Nome" : "Secondo",
+			"Prezzo netto" : 8.5,
+			"Proteine" : 36.0,
+			"Quantita" : 8.0,
+			"Regione" : "Friulia-Venezia-Giulia",
+			"Scadenza" : 2020,
+			"Tipo" : "Vino"
+		},
+		{
+			"Alcolico" : true,
+			"Anno" : 5,
+			"Bar Code" : "A56F",
+			"Carboidrati" : 25.0,
+			"Eta minima" : 18,
+			"Gradazione" : 55.0,
+			"Grassi" : 45.0,
+			"Nome" : "Terzo",
+			"Prezzo netto" : 8.5,
+			"Proteine" : 36.0,
+			"Quantita" : 8.0,
+			"Regione" : "Friulia-Venezia-Giulia",
+			"Scadenza" : 2020,
+			"Tipo" : "Vino"
+		},
+		{
+			"Bar Code" : "AAAA",
+			"Carboidrati" : 25.0,
+			"Eta minima" : 14,
+			"Forma" : "Cornetto",
+			"Grassi" : 26.0,
+			"Impasto" : "Classico",
+			"Nome" : "Nutella",
+			"Prezzo preparazione" : 45.0,
+			"Proteine" : 25.0,
+			"Ripieno" : "Cioccolato",
+			"Scadenza" : 2020,
+			"Tipo" : "Brioche",
+			"Vegano" : true
+		}
+	]
+}
