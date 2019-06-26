@@ -1,0 +1,9 @@
+<RCC>
+    <qresource prefix="/">
+        <file>Graphic/icon.png</file>
+		<file>Graphic/logo.png</file>
+        <file>Graphic/analcolico.png</file>
+        <file>Graphic/cocktail.png</file>
+        <file>Graphic/vino.png</file>
+    </qresource>
+</RCC>
