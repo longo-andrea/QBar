@@ -28,17 +28,43 @@ DEFINES += QT_DEPRECATED_WARNINGS
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 
-SOURCES += Vista/main.cpp \
+SOURCES += Modello/Gerarchia/prodotto.cpp \
+    Modello/Gerarchia/cibo.cpp \
+    Modello/Gerarchia/bevanda.cpp \
+    Modello/Gerarchia/brioche.cpp \
+    Modello/Gerarchia/panino.cpp \
+    Modello/Gerarchia/piadina.cpp \
+    Modello/Gerarchia/analcolico.cpp \
+    Modello/Gerarchia/cocktail.cpp \
+    Modello/Gerarchia/vino.cpp \
+    Modello/json/jsoncpp.cpp \
+    Modello/jsonio.cpp \
+    Modello/model.cpp \
+    Vista/main.cpp \
     Vista/controller.cpp \
     Vista/indexlayout.cpp \
     Vista/insertlayout.cpp \
     Vista/searchlayout.cpp
 
-HEADERS += Vista/controller.h \
+HEADERS += Qontainer/Qontainer.h \
+    Modello/Gerarchia/prodotto.h \
+    Modello/Gerarchia/cibo.h \
+    Modello/Gerarchia/bevanda.h \
+    Modello/Gerarchia/brioche.h \
+    Modello/Gerarchia/panino.h \
+    Modello/Gerarchia/piadina.h \
+    Modello/Gerarchia/analcolico.h \
+    Modello/Gerarchia/cocktail.h \
+    Modello/Gerarchia/vino.h \
+    Modello/json/json.h \
+    Modello/jsonio.h \
+    Modello/model.h \
+    Vista/controller.h \
     Vista/indexlayout.h \
     Vista/insertlayout.h \
     Vista/searchlayout.h
 
+
 FORMS += Vista/controller.ui
 
-RESOURCES += resources.qrc \
+RESOURCES += resources.qrc

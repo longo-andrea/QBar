@@ -1,12 +1,14 @@
 #include "controller.h"
 
+#include "../Modello/model.h"
+
 #include <QApplication>
 #include <QFile>
 
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
-    Controller w;
+    Controller w(new Model());
     w.show();
 
     QFile File("style.css");

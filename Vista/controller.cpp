@@ -13,8 +13,14 @@
 #include <QPixmap>
 #include <QLabel>
 
-Controller::Controller(QWidget *parent) :
+#include <QString>
+#include <string>
+
+#include "../Modello/Gerarchia/analcolico.h"
+
+Controller::Controller(Model* model, QWidget *parent) :
     QWidget(parent),
+    modello(model),
     mainLayout(new QVBoxLayout(this)),
     menuBar(new QMenuBar()),
     searchL(new searchLayout(this)),
@@ -25,7 +31,7 @@ Controller::Controller(QWidget *parent) :
     move(QApplication::desktop()->screen()->rect().center() - rect().center());
     setWindowTitle("QBar");
     setWindowIcon(QIcon(":/Graphic/icon.png"));
-    setFixedSize(QSize(720, 480));
+    setFixedSize(QSize(780, 540));
 
     // MENU
     QMenu* fileMenu = new QMenu("File", menuBar);
@@ -59,6 +65,9 @@ Controller::Controller(QWidget *parent) :
     connect(ricercaMenu, SIGNAL(triggered()), this, SLOT(showSearchLayout()));
     connect(esciMenu, SIGNAL(triggered()), QApplication::instance(), SLOT(quit()));
 
+
+    connect(insertL->getAggiungiBottone(), SIGNAL(clicked()), this, SLOT(aggiungiProdotto()));
+
 }
 
 Controller::~Controller() {}
@@ -86,4 +95,15 @@ void Controller::showSearchLayout() const {
     indexL->hide();
     insertL->hide();
     searchL->show();
+}
+
+void Controller::aggiungiProdotto() {
+
+    std::string nome = insertL->getNome().toStdString();
+
+    Prodotto* test = new Analcolico(nome);
+    modello->add(test);
+
+    modello->save("data.json");
+
 }

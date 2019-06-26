@@ -5,5 +5,8 @@
         <file>Graphic/analcolico.png</file>
         <file>Graphic/cocktail.png</file>
         <file>Graphic/vino.png</file>
+        <file>Graphic/brioche.png</file>
+        <file>Graphic/panino.png</file>
+        <file>Graphic/piadina.png</file>        
     </qresource>
 </RCC>
