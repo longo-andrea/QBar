@@ -35,6 +35,10 @@ insertLayout::insertLayout(QWidget *parent) :
     gradazioneLabel(new QLabel("Gradazione")),
     quantitaLabel(new QLabel("Quantita")),
     famigliaLabel(new QLabel("Famiglia")),
+    impastoLabel(new QLabel("Impasto")),
+    formaLabel(new QLabel("Forma")),
+    ripienoLabel(new QLabel("Ripieno")),
+    paneLabel(new QLabel("Pane")),
     nomeValore(new QLineEdit(this)),
     scadenzaValore(new QLineEdit(this)),
     etaMinimaValore(new QLineEdit(this)),
@@ -55,6 +59,11 @@ insertLayout::insertLayout(QWidget *parent) :
     gradazioneValore(new QLineEdit(this)),
     quantitaValore(new QComboBox(this)),
     famigliaValore(new QComboBox(this)),
+    impastoValore(new QComboBox(this)),
+    formaValore(new QComboBox(this)),
+    ripienoValore(new QComboBox(this)),
+    paneValore(new QComboBox(this)),
+    impastoPiadinaValore(new QComboBox(this)),
     imageLabel(new QLabel(this)),
     aggiungiBottone(new QPushButton("Aggiungi", this)) {
 
@@ -112,6 +121,29 @@ insertLayout::insertLayout(QWidget *parent) :
 
     gradazioneValore->setValidator(new QIntValidator(1000, 2100, this));
 
+    impastoValore->addItem("Classico");
+    impastoValore->addItem("Integrale");
+    impastoValore->addItem("SenzaGlutine");
+
+    formaValore->addItem("Cornetto");
+    formaValore->addItem("Girella");
+    formaValore->addItem("Ciambella");
+
+    ripienoValore->addItem("Vuota");
+    ripienoValore->addItem("Cioccolato");
+    ripienoValore->addItem("Marmellata");
+    ripienoValore->addItem("Crema");
+
+    paneValore->addItem("Tartaruga");
+    paneValore->addItem("Arabo");
+    paneValore->addItem("Baguette");
+    paneValore->addItem("Integrale");
+
+    impastoPiadinaValore->addItem("Classico");
+    impastoPiadinaValore->addItem("Cereali");
+    impastoPiadinaValore->addItem("Integrale");
+    impastoPiadinaValore->addItem("Kamut");
+
     // Adding basic item to the form
     formLayout->addRow(nomeLabel, nomeValore);
     formLayout->addRow(scadenzaLabel, scadenzaValore);
@@ -132,7 +164,6 @@ insertLayout::insertLayout(QWidget *parent) :
     connect(tipoValore, SIGNAL(activated(int)), this, SLOT(impostaForm(int)));
 }
 
-//METHODS
 QString insertLayout::getNome() const {
     return nomeValore->text();
 }
@@ -145,11 +176,99 @@ QString insertLayout::getEtaMinima() const {
     return etaMinimaValore->text();
 }
 
+
+QString insertLayout:: getBarCode() const {
+    return barCodeValore->text();
+}
+
+QString insertLayout::getTipo() const {
+    return tipoValore->currentText();
+}
+
+QString insertLayout::getCarboidrati() const {
+    return carboidratiValore->text();
+}
+
+QString insertLayout::getProteine() const {
+    return proteineValore->text();
+}
+
+QString insertLayout::getGrassi() const {
+    return grassiValore->text();
+}
+
+bool insertLayout::getIsAlcoholic() const {
+    return isAlcoholicValore->isChecked();
+}
+
+QString insertLayout::getPrezzoNetto() const {
+    return prezzoNettoValore->text();
+}
+
+bool insertLayout::getIsVegan() const {
+    return isVeganValore->isChecked();
+}
+
+QString insertLayout::getPrezzoPreparazione() const {
+    return prezzoPreparazioneValore->text();
+}
+
+QString insertLayout::getVariante() const {
+    return varianteValore->currentText();
+}
+
+QString insertLayout::getContenitore() const {
+    return contenitoreValore->currentText();
+}
+
+QString insertLayout::getLitri() const {
+    return litriValore->text();
+}
+
+QString insertLayout::getRegione() const {
+    return regioneValore->currentText();
+}
+
+QString insertLayout::getAnno() const {
+    return annoValore->text();
+}
+
+QString insertLayout::getGradazione() const {
+    return gradazioneValore->text();
+}
+
+QString insertLayout::getQuantita() const {
+    return quantitaValore->currentText();
+}
+
+QString insertLayout::getFamiglia() const {
+    return famigliaValore->currentText();
+}
+
+QString insertLayout::getImpasto() const {
+    return impastoValore->currentText();
+}
+
+QString insertLayout::getForma() const {
+    return formaValore->currentText();
+}
+
+QString insertLayout::getRipieno() const {
+    return ripienoValore->currentText();
+}
+
+QString insertLayout::getPane() const {
+    return paneValore->currentText();
+}
+
+QString insertLayout::getImpastoPiadina() const {
+    return impastoPiadinaValore->currentText();
+}
+
 QPushButton* insertLayout::getAggiungiBottone() const {
     return aggiungiBottone;
 }
 
-// SLOTS
 void insertLayout::clearForm() const {
     for(int i = 8; i < formLayout->rowCount(); i++)
         formLayout->takeRow(i);
@@ -178,6 +297,15 @@ void insertLayout::clearForm() const {
     litriValore->setVisible(false);
     gradazioneLabel->setVisible(false);
     gradazioneValore->setVisible(false);
+    impastoLabel->setVisible(false);
+    impastoValore->setVisible(false);
+    formaLabel->setVisible(false);
+    formaValore->setVisible(false);
+    ripienoLabel->setVisible(false);
+    ripienoValore->setVisible(false);
+    paneLabel->setVisible(false);
+    paneValore->setVisible(false);
+    impastoPiadinaValore->setVisible(false);
 }
 
 void insertLayout::impostaForm(int tipo) {
@@ -201,11 +329,9 @@ void insertLayout::impostaForm(int tipo) {
             litriValore->setVisible(true);
 
             QPixmap image = QPixmap(":/Graphic/analcolico.png");
-
             imageLabel->setFixedSize(280, 280);
             image = image.scaled(imageLabel->size(),Qt::KeepAspectRatio);
             imageLabel->setPixmap(image);
-
             imageLayout->addWidget(imageLabel);
         }
         break;
@@ -233,11 +359,9 @@ void insertLayout::impostaForm(int tipo) {
             isAlcoholicValore->setChecked(true);
 
             QPixmap image = QPixmap(":/Graphic/cocktail.png");
-
             imageLabel->setFixedSize(280, 280);
             image = image.scaled(imageLabel->size(),Qt::KeepAspectRatio);
             imageLabel->setPixmap(image);
-
             imageLayout->addWidget(imageLabel);
         }
         break;
@@ -268,11 +392,9 @@ void insertLayout::impostaForm(int tipo) {
             isAlcoholicValore->setChecked(true);
 
             QPixmap image = QPixmap(":/Graphic/vino.png");
-
             imageLabel->setFixedSize(280, 280);
             image = image.scaled(imageLabel->size(),Qt::KeepAspectRatio);
             imageLabel->setPixmap(image);
-
             imageLayout->addWidget(imageLabel);
 
         }
@@ -282,46 +404,76 @@ void insertLayout::impostaForm(int tipo) {
 
             formLayout->addRow(isVeganLabel, isVeganValore);
             formLayout->addRow(prezzoPreparazioneLabel, prezzoPreparazioneValore);
+            formLayout->addRow(impastoLabel, impastoValore);
+            formLayout->addRow(formaLabel, formaValore);
+            formLayout->addRow(ripienoLabel, ripienoValore);
+            formLayout->addRow(aggiungiBottone);
 
             isVeganLabel->setVisible(true);
             isVeganValore->setVisible(true);
             prezzoPreparazioneLabel->setVisible(true);
             prezzoPreparazioneValore->setVisible(true);
+            impastoLabel->setVisible(true);
+            impastoValore->setVisible(true);
+            formaLabel->setVisible(true);
+            formaValore->setVisible(true);
+            ripienoLabel->setVisible(true);
+            ripienoValore->setVisible(true);
 
             isVeganValore->setChecked(false);
 
             QPixmap image = QPixmap(":/Graphic/brioche.png");
-
             imageLabel->setFixedSize(280, 280);
             image = image.scaled(imageLabel->size(),Qt::KeepAspectRatio);
             imageLabel->setPixmap(image);
-
             imageLayout->addWidget(imageLabel);
         }
         break;
         case 5: {
             clearForm();
 
-            QPixmap image = QPixmap(":/Graphic/panino.png");
+            formLayout->addRow(isVeganLabel, isVeganValore);
+            formLayout->addRow(prezzoPreparazioneLabel, prezzoPreparazioneValore);
+            formLayout->addRow(paneLabel, paneValore);
+            formLayout->addRow(aggiungiBottone);
 
+            isVeganLabel->setVisible(true);
+            isVeganValore->setVisible(true);
+            prezzoPreparazioneLabel->setVisible(true);
+            prezzoPreparazioneValore->setVisible(true);
+            paneLabel->setVisible(true);
+            paneValore->setVisible(true);
+
+            isVeganValore->setChecked(false);
+
+            QPixmap image = QPixmap(":/Graphic/panino.png");
             imageLabel->setFixedSize(280, 280);
             image = image.scaled(imageLabel->size(),Qt::KeepAspectRatio);
             imageLabel->setPixmap(image);
-
             imageLayout->addWidget(imageLabel);
         }
         break;
         case 6: {
             clearForm();
 
+            formLayout->addRow(isVeganLabel, isVeganValore);
+            formLayout->addRow(prezzoPreparazioneLabel, prezzoPreparazioneValore);
+            formLayout->addRow(impastoLabel, impastoPiadinaValore);
+            formLayout->addRow(aggiungiBottone);
 
+            isVeganLabel->setVisible(true);
+            isVeganValore->setVisible(true);
+            prezzoPreparazioneLabel->setVisible(true);
+            prezzoPreparazioneValore->setVisible(true);
+            impastoLabel->setVisible(true);
+            impastoPiadinaValore->setVisible(true);
+
+            isVeganValore->setChecked(false);
 
             QPixmap image = QPixmap(":/Graphic/piadina.png");
-
             imageLabel->setFixedSize(280, 280);
             image = image.scaled(imageLabel->size(),Qt::KeepAspectRatio);
             imageLabel->setPixmap(image);
-
             imageLayout->addWidget(imageLabel);
         }
         break;

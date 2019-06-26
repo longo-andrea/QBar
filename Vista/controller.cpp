@@ -100,8 +100,9 @@ void Controller::showSearchLayout() const {
 void Controller::aggiungiProdotto() {
 
     std::string nome = insertL->getNome().toStdString();
+    int carboidrati = insertL->getScadenza().toInt();
 
-    Prodotto* test = new Analcolico(nome);
+    Prodotto* test = new Analcolico(nome, carboidrati);
     modello->add(test);
 
     modello->save("data.json");
