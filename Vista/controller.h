@@ -11,6 +11,7 @@
 #include "searchlayout.h"
 #include "indexlayout.h"
 #include "insertlayout.h"
+#include "listinolayout.h"
 
 class Controller : public QWidget
 {
@@ -23,7 +24,7 @@ private:
     searchLayout* searchL;
     indexLayout* indexL;
     insertLayout* insertL;
-
+    listinoLayout* listinoL;
 
 public:
     explicit Controller(Model*, QWidget * =0);
@@ -33,6 +34,7 @@ public slots:
     void showIndexLayout() const;
     void showInserisciLayout() const;
     void showSearchLayout() const;
+    void showListinoLayout() const;
 
     void aggiungiProdotto();
 

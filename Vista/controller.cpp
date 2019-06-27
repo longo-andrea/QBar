@@ -25,7 +25,8 @@ Controller::Controller(Model* model, QWidget *parent) :
     menuBar(new QMenuBar()),
     searchL(new searchLayout(this)),
     indexL(new indexLayout(this)),
-    insertL(new insertLayout(this)) {
+    insertL(new insertLayout(this)),
+    listinoL(new listinoLayout(this)) {
 
     // MAIN WINDOW
     move(QApplication::desktop()->screen()->rect().center() - rect().center());
@@ -38,6 +39,7 @@ Controller::Controller(Model* model, QWidget *parent) :
     QAction* indexMenu = new QAction("Home", menuBar);
     QAction* inserisciMenu = new QAction("Inserisci", menuBar);
     QAction* ricercaMenu = new QAction("Ricerca", menuBar);
+    QAction* listinoMenu = new QAction("Listino", menuBar);
     QAction* esciMenu = new QAction("Esci", menuBar);
     QAction* salvaFile = new QAction("Salva", fileMenu);
     QAction* caricaFile = new QAction("Carica", fileMenu);
@@ -48,12 +50,14 @@ Controller::Controller(Model* model, QWidget *parent) :
     menuBar->addAction(indexMenu);
     menuBar->addAction(inserisciMenu);
     menuBar->addAction(ricercaMenu);
+    menuBar->addAction(listinoMenu);
     menuBar->addAction(esciMenu);
 
     mainLayout->setMenuBar(menuBar);
     mainLayout->addWidget(indexL);
     mainLayout->addWidget(insertL);
     mainLayout->addWidget(searchL);
+    mainLayout->addWidget(listinoL);
 
     showIndexLayout();
 
@@ -63,6 +67,7 @@ Controller::Controller(Model* model, QWidget *parent) :
     connect(indexMenu, SIGNAL(triggered()), this, SLOT(showIndexLayout()));
     connect(inserisciMenu, SIGNAL(triggered()), this, SLOT(showInserisciLayout()));
     connect(ricercaMenu, SIGNAL(triggered()), this, SLOT(showSearchLayout()));
+    connect(listinoMenu, SIGNAL(triggered()), this, SLOT(showListinoLayout()));
     connect(esciMenu, SIGNAL(triggered()), QApplication::instance(), SLOT(quit()));
 
 
@@ -77,6 +82,7 @@ void Controller::showIndexLayout() const {
 
     insertL->hide();
     searchL->hide();
+    listinoL->hide();
     indexL->show();
 }
 
@@ -94,7 +100,17 @@ void Controller::showSearchLayout() const {
 
     indexL->hide();
     insertL->hide();
+    listinoL->hide();
     searchL->show();
+}
+
+void Controller::showListinoLayout() const {
+    mainLayout->setAlignment(Qt::AlignTop);
+
+    indexL->hide();
+    insertL->hide();
+    searchL->hide();
+    listinoL->show();
 }
 
 void Controller::aggiungiProdotto() {
