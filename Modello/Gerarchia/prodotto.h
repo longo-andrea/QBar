@@ -29,6 +29,7 @@ public:
 	virtual std::string getBarCode() const = 0;
 	virtual double getPrezzo() const = 0;
 	virtual std::string getTipo() const = 0;
+    virtual calcolaCalorie() const = 0;
 
 	void setNome(const std::string&);
 	void setScadenza(const int&);

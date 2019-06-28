@@ -32,7 +32,7 @@ public:
 	void setGrassi(const double&);
 	void setAlcoholic(const bool&);
 
-	virtual double calcolaCalorie() const;
+    double calcolaCalorie() const override;
 
 	virtual bool operator==(const Bevanda&) const;
 	virtual bool operator!=(const Bevanda&) const;

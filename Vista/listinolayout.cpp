@@ -53,7 +53,7 @@ void listinoLayout::aggiornaTabella(Model* modello) {
         QTableWidgetItem* nome = new QTableWidgetItem(QString(QString::fromStdString((*modello)[i]->getNome())));
         QTableWidgetItem* prezzo = new QTableWidgetItem(QString(QString::number((*modello)[i]->getPrezzo())));
         QTableWidgetItem* scadenza = new QTableWidgetItem(QString(QString::number((*modello)[i]->getScadenza())));
-        QTableWidgetItem* calorie = new QTableWidgetItem("36");
+        QTableWidgetItem* calorie = new QTableWidgetItem(QString(QString::number((*modello)[i]->calcolaCalorie())));
         QTableWidgetItem* etaMinima = new QTableWidgetItem(QString(QString::number((*modello)[i]->getEtaMinima())));
         QTableWidgetItem* barCode = new QTableWidgetItem(QString(QString::fromStdString((*modello)[i]->getBarCode())));
 

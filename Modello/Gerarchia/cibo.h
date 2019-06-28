@@ -36,7 +36,7 @@ public:
 	virtual std::string getBarCode() const = 0;
 	virtual double getPrezzo() const = 0;
 
-	virtual double calcolaCalorie() const;
+    double calcolaCalorie() const override;
 
 	virtual bool operator==(const Cibo&) const;
 	virtual bool operator!=(const Cibo&) const;
