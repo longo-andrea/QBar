@@ -17,6 +17,7 @@
 #include <string>
 #include <QTableWidget>
 #include <QTableWidgetItem>
+#include <QMessageBox>
 
 #include "../Modello/Gerarchia/analcolico.h"
 #include "../Modello/Gerarchia/cocktail.h"
@@ -24,6 +25,8 @@
 #include "../Modello/Gerarchia/brioche.h"
 #include "../Modello/Gerarchia/panino.h"
 #include "../Modello/Gerarchia/piadina.h"
+
+#include "insertformexception.h"
 
 Controller::Controller(Model* model, QWidget *parent) :
     QWidget(parent),
@@ -123,25 +126,37 @@ void Controller::showListinoLayout() const {
 }
 
 void Controller::aggiungiProdotto() {
+    try {
+        std::string tipo = insertL->getTipo();
 
-    std::string tipo = insertL->getTipo();
+        if(insertL->getNome() == "" || insertL->getCarboidrati() == 0 || insertL->getProteine() == 0 || insertL->getGrassi() == 0 || insertL->getBarCode() == "" || insertL->getScadenza() == 0 || insertL->getEtaMinima() == 0)
+            throw insertFormException("Verifica di aver compilato tutti i campi, oppure che non ci siano valori nulli.");
 
-    if(tipo == "Analcolico"){
-        modello->add(new Analcolico(insertL->getNome(), insertL->getCarboidrati(), insertL->getProteine(), insertL->getGrassi(), insertL->getPrezzoNetto(), insertL->getBarCode(), Analcolico::stringToVariante(insertL->getVariante()), Analcolico::stringToContenitore(insertL->getContenitore()), insertL->getLitri(), insertL->getIsAlcoholic(), insertL->getScadenza(), insertL->getEtaMinima()));
-    } else if (tipo == "Cocktail") {
-        modello->add(new Cocktail(insertL->getNome(), insertL->getCarboidrati(), insertL->getProteine(), insertL->getGrassi(), insertL->getPrezzoNetto(), insertL->getBarCode(), Cocktail::stringToQuantita(insertL->getQuantita()), Cocktail::stringToClassificazione(insertL->getFamiglia()), insertL->getGradazione(), insertL->getIsAlcoholic(), insertL->getScadenza(), insertL->getEtaMinima()));
-    } else if (tipo == "Vino") {
-        modello->add(new Vino(insertL->getNome(), insertL->getCarboidrati(), insertL->getProteine(), insertL->getGrassi(), insertL->getPrezzoNetto(), insertL->getBarCode(), Vino::stringToRegione(insertL->getRegione()), insertL->getGradazione(), insertL->getLitri(), insertL->getAnno(), insertL->getIsAlcoholic(), insertL->getScadenza(), insertL->getEtaMinima()));
-    } else if (tipo == "Brioche") {
-        modello->add(new Brioche(insertL->getNome(), insertL->getCarboidrati(), insertL->getProteine(), insertL->getGrassi(), insertL->getPrezzoPreparazione(), insertL->getIsVegan(), insertL->getBarCode(), Brioche::stringToImpasto(insertL->getImpasto()), Brioche::stringToForma(insertL->getForma()), Brioche::stringToRipieno(insertL->getRipieno()), insertL->getScadenza(), insertL->getEtaMinima()));
-    } else if (tipo == "Panino") {
-        modello->add(new Panino(insertL->getNome(), insertL->getCarboidrati(), insertL->getProteine(), insertL->getGrassi(), insertL->getPrezzoPreparazione(), insertL->getIsVegan(), insertL->getBarCode(), Panino::stringToPane(insertL->getPane()), insertL->getScadenza(), insertL->getEtaMinima()));
-    } else if (tipo == "Piadina") {
-        modello->add(new Piadina(insertL->getNome(), insertL->getCarboidrati(), insertL->getProteine(), insertL->getGrassi(), insertL->getPrezzoPreparazione(), insertL->getIsVegan(), insertL->getBarCode(), Piadina::stringToImpasto(insertL->getImpastoPiadina()), insertL->getScadenza(), insertL->getEtaMinima()));
+        if(tipo == "Analcolico"){
+            if(insertL->getPrezzoNetto() == 0 || insertL->getLitri() ==0) throw insertFormException("Verifica di aver compilato tutti i campi, oppure che non ci siano valori nulli.");
+            modello->add(new Analcolico(insertL->getNome(), insertL->getCarboidrati(), insertL->getProteine(), insertL->getGrassi(), insertL->getPrezzoNetto(), insertL->getBarCode(), Analcolico::stringToVariante(insertL->getVariante()), Analcolico::stringToContenitore(insertL->getContenitore()), insertL->getLitri(), insertL->getIsAlcoholic(), insertL->getScadenza(), insertL->getEtaMinima()));
+        } else if (tipo == "Cocktail") {
+            if(insertL->getPrezzoNetto() == 0 || insertL->getGradazione() ==0) throw insertFormException("Verifica di aver compilato tutti i campi, oppure che non ci siano valori nulli.");
+            modello->add(new Cocktail(insertL->getNome(), insertL->getCarboidrati(), insertL->getProteine(), insertL->getGrassi(), insertL->getPrezzoNetto(), insertL->getBarCode(), Cocktail::stringToQuantita(insertL->getQuantita()), Cocktail::stringToClassificazione(insertL->getFamiglia()), insertL->getGradazione(), insertL->getIsAlcoholic(), insertL->getScadenza(), insertL->getEtaMinima()));
+        } else if (tipo == "Vino") {
+            if(insertL->getPrezzoNetto() == 0 || insertL->getGradazione() ==0 || insertL->getLitri() ==0 || insertL->getAnno() == 0) throw insertFormException("Verifica di aver compilato tutti i campi, oppure che non ci siano valori nulli.");
+            modello->add(new Vino(insertL->getNome(), insertL->getCarboidrati(), insertL->getProteine(), insertL->getGrassi(), insertL->getPrezzoNetto(), insertL->getBarCode(), Vino::stringToRegione(insertL->getRegione()), insertL->getGradazione(), insertL->getLitri(), insertL->getAnno(), insertL->getIsAlcoholic(), insertL->getScadenza(), insertL->getEtaMinima()));
+        } else if (tipo == "Brioche") {
+            if(insertL->getPrezzoPreparazione() == 0) throw insertFormException("Verifica di aver compilato tutti i campi, oppure che non ci siano valori nulli.");
+            modello->add(new Brioche(insertL->getNome(), insertL->getCarboidrati(), insertL->getProteine(), insertL->getGrassi(), insertL->getPrezzoPreparazione(), insertL->getIsVegan(), insertL->getBarCode(), Brioche::stringToImpasto(insertL->getImpasto()), Brioche::stringToForma(insertL->getForma()), Brioche::stringToRipieno(insertL->getRipieno()), insertL->getScadenza(), insertL->getEtaMinima()));
+        } else if (tipo == "Panino") {
+            if(insertL->getPrezzoPreparazione() == 0) throw insertFormException("Verifica di aver compilato tutti i campi, oppure che non ci siano valori nulli.");
+            modello->add(new Panino(insertL->getNome(), insertL->getCarboidrati(), insertL->getProteine(), insertL->getGrassi(), insertL->getPrezzoPreparazione(), insertL->getIsVegan(), insertL->getBarCode(), Panino::stringToPane(insertL->getPane()), insertL->getScadenza(), insertL->getEtaMinima()));
+        } else if (tipo == "Piadina") {
+            if(insertL->getPrezzoPreparazione() == 0) throw insertFormException("Verifica di aver compilato tutti i campi, oppure che non ci siano valori nulli.");
+            modello->add(new Piadina(insertL->getNome(), insertL->getCarboidrati(), insertL->getProteine(), insertL->getGrassi(), insertL->getPrezzoPreparazione(), insertL->getIsVegan(), insertL->getBarCode(), Piadina::stringToImpasto(insertL->getImpastoPiadina()), insertL->getScadenza(), insertL->getEtaMinima()));
+        }
+
+        emit datiAggiornati();
+
+    } catch(insertFormException ife) {
+        QMessageBox::warning(this, "Attenzione", ife.getWarning());
     }
-
-
-    emit datiAggiornati();
 }
 
 void Controller::aggiornaTabellaProdotto() {

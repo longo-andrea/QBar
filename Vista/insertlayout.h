@@ -19,6 +19,7 @@ private:
     QGroupBox* formGroupBox;
     QFormLayout* formLayout;
     QHBoxLayout* imageLayout;
+    QHBoxLayout* buttonLayout;
 
     QLabel* nomeLabel;
     QLabel* scadenzaLabel;
@@ -72,7 +73,9 @@ private:
     QComboBox* impastoPiadinaValore;
 
     QLabel* imageLabel;
+
     QPushButton* aggiungiBottone;
+    QPushButton* clearDataBottone;
 
 public:
     explicit insertLayout(QWidget * =nullptr);
@@ -107,6 +110,7 @@ public:
     QPushButton* getAggiungiBottone() const;
 
 public slots:
+    void clearDataForm() const;
     void clearForm() const;
     void impostaForm(int);
 

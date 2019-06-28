@@ -8,5 +8,6 @@
         <file>Graphic/brioche.png</file>
         <file>Graphic/panino.png</file>
         <file>Graphic/piadina.png</file>        
+        <file>Graphic/clear.png</file>        
     </qresource>
 </RCC>

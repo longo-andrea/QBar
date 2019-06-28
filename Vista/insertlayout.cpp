@@ -65,12 +65,13 @@ insertLayout::insertLayout(QWidget *parent) :
     paneValore(new QComboBox(this)),
     impastoPiadinaValore(new QComboBox(this)),
     imageLabel(new QLabel(this)),
-    aggiungiBottone(new QPushButton("Aggiungi", this)) {
+    aggiungiBottone(new QPushButton("Aggiungi", this)),
+    clearDataBottone(new QPushButton(QIcon(":/Graphic/clear.png"), "", this)) {
 
     QHBoxLayout* mainLayout = new QHBoxLayout(this);
     formGroupBox = new QGroupBox("Riempire il form per inserire un nuovo prodotto.");
     formLayout = new QFormLayout();
-    //QHBoxLayout* buttonLayout = new QHBoxLayout();
+    buttonLayout = new QHBoxLayout();
     imageLayout = new QHBoxLayout();
 
     // setting items
@@ -158,10 +159,15 @@ insertLayout::insertLayout(QWidget *parent) :
     formGroupBox->setLayout(formLayout);
     impostaForm(0);
 
+    // Button Layout
+    buttonLayout->addWidget(clearDataBottone);
+    buttonLayout->addWidget(aggiungiBottone);
+
     mainLayout->addWidget(formGroupBox);
     mainLayout->addLayout(imageLayout);
 
     connect(tipoValore, SIGNAL(activated(int)), this, SLOT(impostaForm(int)));
+    connect(clearDataBottone, SIGNAL(clicked()), this, SLOT(clearDataForm()));
 }
 
 std::string insertLayout::getNome() const {
@@ -269,6 +275,23 @@ QPushButton* insertLayout::getAggiungiBottone() const {
     return aggiungiBottone;
 }
 
+void insertLayout::clearDataForm() const {
+    nomeValore->clear();
+    scadenzaValore->clear();
+    etaMinimaValore->clear();
+    barCodeValore->clear();
+    carboidratiValore->clear();
+    proteineValore->clear();
+    grassiValore->clear();
+    isAlcoholicValore->setChecked(false);
+    prezzoNettoValore->clear();
+    isVeganValore->setChecked(false);
+    prezzoPreparazioneValore->clear();
+    litriValore->clear();
+    annoValore->clear();
+    gradazioneValore->clear();
+}
+
 void insertLayout::clearForm() const {
     for(int i = 8; i < formLayout->rowCount(); i++)
         formLayout->takeRow(i);
@@ -317,7 +340,7 @@ void insertLayout::impostaForm(int tipo) {
             formLayout->addRow(contenitoreLabel, contenitoreValore);
             formLayout->addRow(varianteLabel, varianteValore);
             formLayout->addRow(litriLabel, litriValore);
-            formLayout->addRow(aggiungiBottone);
+            formLayout->addRow(buttonLayout);
 
             prezzoNettoLabel->setVisible(true);
             prezzoNettoValore->setVisible(true);
@@ -343,7 +366,7 @@ void insertLayout::impostaForm(int tipo) {
             formLayout->addRow(quantitaLabel, quantitaValore);
             formLayout->addRow(famigliaLabel, famigliaValore);
             formLayout->addRow(gradazioneLabel, gradazioneValore);
-            formLayout->addRow(aggiungiBottone);
+            formLayout->addRow(buttonLayout);
 
             isAlcoholicLabel->setVisible(true);
             isAlcoholicValore->setVisible(true);
@@ -374,7 +397,7 @@ void insertLayout::impostaForm(int tipo) {
             formLayout->addRow(annoLabel, annoValore);
             formLayout->addRow(litriLabel, litriValore);
             formLayout->addRow(gradazioneLabel, gradazioneValore);
-            formLayout->addRow(aggiungiBottone);
+            formLayout->addRow(buttonLayout);
 
             isAlcoholicLabel->setVisible(true);
             isAlcoholicValore->setVisible(true);
@@ -407,7 +430,7 @@ void insertLayout::impostaForm(int tipo) {
             formLayout->addRow(impastoLabel, impastoValore);
             formLayout->addRow(formaLabel, formaValore);
             formLayout->addRow(ripienoLabel, ripienoValore);
-            formLayout->addRow(aggiungiBottone);
+            formLayout->addRow(buttonLayout);
 
             isVeganLabel->setVisible(true);
             isVeganValore->setVisible(true);
@@ -435,7 +458,7 @@ void insertLayout::impostaForm(int tipo) {
             formLayout->addRow(isVeganLabel, isVeganValore);
             formLayout->addRow(prezzoPreparazioneLabel, prezzoPreparazioneValore);
             formLayout->addRow(paneLabel, paneValore);
-            formLayout->addRow(aggiungiBottone);
+            formLayout->addRow(buttonLayout);
 
             isVeganLabel->setVisible(true);
             isVeganValore->setVisible(true);
@@ -459,7 +482,7 @@ void insertLayout::impostaForm(int tipo) {
             formLayout->addRow(isVeganLabel, isVeganValore);
             formLayout->addRow(prezzoPreparazioneLabel, prezzoPreparazioneValore);
             formLayout->addRow(impastoLabel, impastoPiadinaValore);
-            formLayout->addRow(aggiungiBottone);
+            formLayout->addRow(buttonLayout);
 
             isVeganLabel->setVisible(true);
             isVeganValore->setVisible(true);

@@ -45,7 +45,8 @@ SOURCES += Modello/Gerarchia/prodotto.cpp \
     Vista/indexlayout.cpp \
     Vista/insertlayout.cpp \
     Vista/searchlayout.cpp \
-    Vista/listinolayout.cpp
+    Vista/listinolayout.cpp \
+    Vista/insertformexception.cpp
 
 HEADERS += Qontainer/Qontainer.h \
     Modello/Gerarchia/prodotto.h \
@@ -64,7 +65,8 @@ HEADERS += Qontainer/Qontainer.h \
     Vista/indexlayout.h \
     Vista/insertlayout.h \
     Vista/searchlayout.h \
-    Vista/listinolayout.h
+    Vista/listinolayout.h \
+    Vista/insertformexception.h
 
 
 FORMS += Vista/controller.ui
