@@ -23,11 +23,11 @@ public:
 		T* item;
 		iterator(T* = nullptr);
 	public:
-        	typedef std::forward_iterator_tag iterator_category;
-        	typedef iterator self_type;
-        	typedef T value_type;
-        	typedef T& reference;
-        	typedef T* pointer;
+        typedef std::forward_iterator_tag iterator_category;
+        typedef iterator self_type;
+        typedef T value_type;
+        typedef T& reference;
+        typedef T* pointer;
 		typedef int difference_type;
 
 		T& operator*() const;

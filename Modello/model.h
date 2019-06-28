@@ -23,7 +23,8 @@ public:
 	
 	void add(Prodotto*); 
     Prodotto* operator[](unsigned int) const;
-    
+
+    int count() const;
 	
 };
 

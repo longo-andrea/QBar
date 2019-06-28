@@ -15,6 +15,8 @@
 
 #include <QString>
 #include <string>
+#include <QTableWidget>
+#include <QTableWidgetItem>
 
 #include "../Modello/Gerarchia/analcolico.h"
 
@@ -70,9 +72,10 @@ Controller::Controller(Model* model, QWidget *parent) :
     connect(listinoMenu, SIGNAL(triggered()), this, SLOT(showListinoLayout()));
     connect(esciMenu, SIGNAL(triggered()), QApplication::instance(), SLOT(quit()));
 
-
+    // MODEL CONNECT
     connect(insertL->getAggiungiBottone(), SIGNAL(clicked()), this, SLOT(aggiungiProdotto()));
-
+    connect(this, SIGNAL(datiAggiornati()), this, SLOT(aggiornaTabellaProdotto()));
+    connect(salvaFile, SIGNAL(triggered()), this, SLOT(salvaDati()));
 }
 
 Controller::~Controller() {}
@@ -91,6 +94,7 @@ void Controller::showInserisciLayout() const {
 
     indexL->hide();
     searchL->hide();
+    listinoL->hide();
     insertL->show();
 }
 
@@ -121,6 +125,13 @@ void Controller::aggiungiProdotto() {
     Prodotto* test = new Analcolico(nome, carboidrati);
     modello->add(test);
 
-    modello->save("data.json");
+    emit datiAggiornati();
+}
 
+void Controller::aggiornaTabellaProdotto() {
+    listinoL->aggiornaTabella(modello);
+}
+
+void Controller::salvaDati() const {
+    modello->save("Data.json");
 }

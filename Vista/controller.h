@@ -37,6 +37,11 @@ public slots:
     void showListinoLayout() const;
 
     void aggiungiProdotto();
+    void aggiornaTabellaProdotto();
+    void salvaDati() const;
+
+signals:
+    void datiAggiornati();
 
 };
 

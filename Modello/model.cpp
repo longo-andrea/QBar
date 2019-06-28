@@ -17,3 +17,7 @@ void Model::add(Prodotto* prod) {
 Prodotto* Model::operator[](unsigned int index) const {
     return prodotti[index].operator->();
 }
+
+int Model::count() const {
+    return prodotti.getSize();
+}
