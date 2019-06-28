@@ -27,8 +27,6 @@ private:
 	double litri;
 	
 	Analcolico* create(Json::Value&) const override;
-	static Variante stringToVariante(const std::string&);
-	static Contenitore stringToContenitore(const std::string&);
 
 public:
 	Analcolico(const std::string& ="No Name", double =0, double =0, double =0, double =0, const std::string& ="No Bar Code", Variante =Variante::Classica, Contenitore =Contenitore::Bottiglia, double =0, bool = false, int = 2020, int = 14);
@@ -58,6 +56,9 @@ public:
 
 	virtual bool operator==(const Analcolico&) const;
 	virtual bool operator!=(const Analcolico&) const;
+
+    static Variante stringToVariante(const std::string&);
+    static Contenitore stringToContenitore(const std::string&);
 
 };
 

@@ -27,8 +27,6 @@ private:
 	double gradazioneAlcolica;
 	
 	Cocktail* create(Json::Value&) const override;
-	static Quantita stringToQuantita(const std::string&);
-	static Classificazione stringToClassificazione(const std::string&);
 
 public:
 	Cocktail(const std::string& ="No Name", double =0, double =0, double =0, double =0, const std::string& ="No Bar Code", Quantita =Quantita::Long, Classificazione =Classificazione::Coffe, double =0, bool =true, int = 2020, int = 18);
@@ -58,6 +56,9 @@ public:
 
 	virtual bool operator==(const Cocktail&) const;
 	virtual bool operator!=(const Cocktail&) const;
+
+    static Quantita stringToQuantita(const std::string&);
+    static Classificazione stringToClassificazione(const std::string&);
 };
 
 #endif // COCKTAIL_H

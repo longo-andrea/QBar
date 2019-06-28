@@ -29,9 +29,6 @@ private:
 	Ripieno ripieno;
 	
 	Brioche* create(Json::Value&) const override;
-	static Impasto stringToImpasto(const std::string&);
-	static Forma stringToForma(const std::string&);
-	static Ripieno stringToRipieno(const std::string&);
 
 public:
 	Brioche(const std::string& ="No Name", double =0, double =0, double =0, double =0, bool =false, const std::string& ="No Bar Code", Impasto =Impasto::Classico, Forma =Forma::Cornetto, Ripieno =Ripieno::Vuota, int = 2020, int = 14);
@@ -62,6 +59,9 @@ public:
 	virtual bool operator==(const Brioche&) const;
 	virtual bool operator!=(const Brioche&) const;
 
+    static Impasto stringToImpasto(const std::string&);
+    static Forma stringToForma(const std::string&);
+    static Ripieno stringToRipieno(const std::string&);
 };
 
 #endif // BRIOCHE_H

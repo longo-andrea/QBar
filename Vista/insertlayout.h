@@ -77,31 +77,31 @@ private:
 public:
     explicit insertLayout(QWidget * =nullptr);
 
-    QString getNome() const;
-    QString getScadenza() const;
-    QString getEtaMinima() const;
-    QString getBarCode() const;
-    QString getTipo() const;
-    QString getCarboidrati() const;
-    QString getProteine() const;
-    QString getGrassi() const;
+    std::string getNome() const;
+    int getScadenza() const;
+    int getEtaMinima() const;
+    std::string getBarCode() const;
+    std::string getTipo() const;
+    double getCarboidrati() const;
+    double getProteine() const;
+    double getGrassi() const;
     bool getIsAlcoholic() const;
-    QString getPrezzoNetto() const;
+    double getPrezzoNetto() const;
     bool getIsVegan() const;
-    QString getPrezzoPreparazione() const;
-    QString getVariante() const;
-    QString getContenitore() const;
-    QString getLitri() const;
-    QString getRegione() const;
-    QString getAnno() const;
-    QString getGradazione() const;
-    QString getQuantita() const;
-    QString getFamiglia() const;
-    QString getImpasto() const;
-    QString getForma() const;
-    QString getRipieno() const;
-    QString getPane() const;
-    QString getImpastoPiadina() const;
+    double getPrezzoPreparazione() const;
+    std::string getVariante() const;
+    std::string getContenitore() const;
+    double getLitri() const;
+    std::string getRegione() const;
+    int getAnno() const;
+    double getGradazione() const;
+    std::string getQuantita() const;
+    std::string getFamiglia() const;
+    std::string getImpasto() const;
+    std::string getForma() const;
+    std::string getRipieno() const;
+    std::string getPane() const;
+    std::string getImpastoPiadina() const;
 
 
     QPushButton* getAggiungiBottone() const;

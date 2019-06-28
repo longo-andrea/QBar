@@ -164,105 +164,105 @@ insertLayout::insertLayout(QWidget *parent) :
     connect(tipoValore, SIGNAL(activated(int)), this, SLOT(impostaForm(int)));
 }
 
-QString insertLayout::getNome() const {
-    return nomeValore->text();
+std::string insertLayout::getNome() const {
+    return nomeValore->text().toStdString();
 }
 
-QString insertLayout::getScadenza() const {
-    return scadenzaValore->text();
+int insertLayout::getScadenza() const {
+    return scadenzaValore->text().toInt();
 }
 
-QString insertLayout::getEtaMinima() const {
-    return etaMinimaValore->text();
+int insertLayout::getEtaMinima() const {
+    return etaMinimaValore->text().toInt();
 }
 
 
-QString insertLayout:: getBarCode() const {
-    return barCodeValore->text();
+std::string insertLayout:: getBarCode() const {
+    return barCodeValore->text().toStdString();
 }
 
-QString insertLayout::getTipo() const {
-    return tipoValore->currentText();
+std::string insertLayout::getTipo() const {
+    return tipoValore->currentText().toStdString();
 }
 
-QString insertLayout::getCarboidrati() const {
-    return carboidratiValore->text();
+double insertLayout::getCarboidrati() const {
+    return carboidratiValore->text().toDouble();
 }
 
-QString insertLayout::getProteine() const {
-    return proteineValore->text();
+double insertLayout::getProteine() const {
+    return proteineValore->text().toDouble();
 }
 
-QString insertLayout::getGrassi() const {
-    return grassiValore->text();
+double insertLayout::getGrassi() const {
+    return grassiValore->text().toDouble();
 }
 
 bool insertLayout::getIsAlcoholic() const {
     return isAlcoholicValore->isChecked();
 }
 
-QString insertLayout::getPrezzoNetto() const {
-    return prezzoNettoValore->text();
+double insertLayout::getPrezzoNetto() const {
+    return prezzoNettoValore->text().toDouble();
 }
 
 bool insertLayout::getIsVegan() const {
     return isVeganValore->isChecked();
 }
 
-QString insertLayout::getPrezzoPreparazione() const {
-    return prezzoPreparazioneValore->text();
+double insertLayout::getPrezzoPreparazione() const {
+    return prezzoPreparazioneValore->text().toDouble();
 }
 
-QString insertLayout::getVariante() const {
-    return varianteValore->currentText();
+std::string insertLayout::getVariante() const {
+    return varianteValore->currentText().toStdString();
 }
 
-QString insertLayout::getContenitore() const {
-    return contenitoreValore->currentText();
+std::string insertLayout::getContenitore() const {
+    return contenitoreValore->currentText().toStdString();
 }
 
-QString insertLayout::getLitri() const {
-    return litriValore->text();
+double insertLayout::getLitri() const {
+    return litriValore->text().toDouble();
 }
 
-QString insertLayout::getRegione() const {
-    return regioneValore->currentText();
+std::string insertLayout::getRegione() const {
+    return regioneValore->currentText().toStdString();
 }
 
-QString insertLayout::getAnno() const {
-    return annoValore->text();
+int insertLayout::getAnno() const {
+    return annoValore->text().toInt();
 }
 
-QString insertLayout::getGradazione() const {
-    return gradazioneValore->text();
+double insertLayout::getGradazione() const {
+    return gradazioneValore->text().toDouble();
 }
 
-QString insertLayout::getQuantita() const {
-    return quantitaValore->currentText();
+std::string insertLayout::getQuantita() const {
+    return quantitaValore->currentText().toStdString();
 }
 
-QString insertLayout::getFamiglia() const {
-    return famigliaValore->currentText();
+std::string insertLayout::getFamiglia() const {
+    return famigliaValore->currentText().toStdString();
 }
 
-QString insertLayout::getImpasto() const {
-    return impastoValore->currentText();
+std::string insertLayout::getImpasto() const {
+    return impastoValore->currentText().toStdString();
 }
 
-QString insertLayout::getForma() const {
-    return formaValore->currentText();
+std::string insertLayout::getForma() const {
+    return formaValore->currentText().toStdString();
 }
 
-QString insertLayout::getRipieno() const {
-    return ripienoValore->currentText();
+std::string insertLayout::getRipieno() const {
+    return ripienoValore->currentText().toStdString();
 }
 
-QString insertLayout::getPane() const {
-    return paneValore->currentText();
+std::string insertLayout::getPane() const {
+    return paneValore->currentText().toStdString();
 }
 
-QString insertLayout::getImpastoPiadina() const {
-    return impastoPiadinaValore->currentText();
+std::string insertLayout::getImpastoPiadina() const {
+    return impastoPiadinaValore->currentText().toStdString();
 }
 
 QPushButton* insertLayout::getAggiungiBottone() const {

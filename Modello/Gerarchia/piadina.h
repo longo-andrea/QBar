@@ -25,7 +25,6 @@ private:
 	Impasto impasto;
 	
 	Piadina* create(Json::Value&) const override;
-	static Impasto stringToImpasto(const std::string&);
 
 public:
 	Piadina(const std::string& ="No Name", double =0, double =0, double =0, double =0, bool =false, const std::string& ="No Bar Code", Impasto =Impasto::Classico, int = 2020, int = 14);
@@ -50,6 +49,7 @@ public:
 	virtual bool operator==(const Piadina&) const;
 	virtual bool operator!=(const Piadina&) const;
 
+    static Impasto stringToImpasto(const std::string&);
 };
 
 #endif // !PIADINA_H

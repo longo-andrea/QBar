@@ -28,7 +28,6 @@ private:
 	double gradazioneAlcolica;
 	
 	Vino* create(Json::Value&) const override;
-	static Regione stringToRegione(const std::string&);
 
 public:
 	Vino(const std::string& ="No Name", double =0, double =0, double =0, double =0, const std::string& ="No Bar Code", Regione =Regione::Veneto, double  =0, double =0, int =1980, bool =true, int = 2020, int = 18);
@@ -59,6 +58,8 @@ public:
 
 	virtual bool operator==(const Vino&) const;
 	virtual bool operator!=(const Vino&) const;
+
+    static Regione stringToRegione(const std::string&);
 };
 
 #endif // COCKTAIL_H

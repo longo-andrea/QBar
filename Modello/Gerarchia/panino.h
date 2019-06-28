@@ -25,10 +25,9 @@ private:
 	Pane pane;
 	
 	Panino* create(Json::Value&) const override;
-	static Pane stringToPane(const std::string&);
 	
 public:
-	Panino(const std::string& ="No Name", double =0, double =0, double =0, double =0, const std::string& ="No Bar Code", Pane =Pane::Tartaruga, bool =false, int = 2020, int = 14);
+    Panino(const std::string& ="No Name", double =0, double =0, double =0, double =0, bool =false, const std::string& ="No Bar Code", Pane =Pane::Tartaruga, int = 2020, int = 14);
 	Panino(const Panino&);
 	virtual Panino* clone() const override;
 	virtual ~Panino() = default;
@@ -50,6 +49,7 @@ public:
 	virtual bool operator==(const Panino&) const;
 	virtual bool operator!=(const Panino&) const;
 
+    static Pane stringToPane(const std::string&);
 };
 
 #endif // PANINO_H

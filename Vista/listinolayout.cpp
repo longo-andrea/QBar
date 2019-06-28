@@ -23,10 +23,6 @@ listinoLayout::listinoLayout(QWidget* parent) :
 
     prodottiLayout->setAlignment(Qt::AlignTop);
 
-    tabellaProdotti->setColumnCount(7);
-    tabellaProdotti->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
-    tabellaProdotti->setMaximumHeight(150);
-
     QStringList testoColonne("Tipo");
     testoColonne.append("Nome");
     testoColonne.append("Prezzo");
@@ -35,6 +31,10 @@ listinoLayout::listinoLayout(QWidget* parent) :
     testoColonne.append("Eta Minima");
     testoColonne.append("Bar Code");
 
+    tabellaProdotti->setColumnCount(7);
+    tabellaProdotti->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
+    tabellaProdotti->setMaximumHeight(150);
+    tabellaProdotti->setEditTriggers(QAbstractItemView::NoEditTriggers);
     tabellaProdotti->setHorizontalHeaderLabels(testoColonne);
 
     prodottiLayout->addWidget(tabellaProdotti);
