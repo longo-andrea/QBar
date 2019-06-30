@@ -12,12 +12,12 @@ Qontainer<SmartPtr<Prodotto>> JsonIO::read() const {
 		return prodotti;
 	 }
 	
-	Json::Reader rd; 
+    Json::Reader reader;
 	Json::Value root; 
 
-	rd.parse(ifs,root);
-	
-	for(int i = 0; i <= root.size(); i++)
+    reader.parse(ifs,root);
+
+    for(int i = 0; i < root["items"].size(); i++)
 		prodotti.push_back(Prodotto::unserialize(root["items"][i]));
 	
 	ifs.close();

@@ -30,6 +30,6 @@ indexLayout::indexLayout(QWidget *parent) :
     mainLayout->addLayout(buttonLayout, 1, 2, 2, 2);
 
     // QPUSHBUTTON CONNECT
-    connect(inserisciBottone, SIGNAL(clicked(bool)), parent, SLOT(showSearchLayout()));
+    connect(inserisciBottone, SIGNAL(clicked(bool)), parent, SLOT(rimuoviTest()));
     connect(ricercaBottone, SIGNAL(clicked(bool)), parent, SLOT(showSearchLayout()));
 }

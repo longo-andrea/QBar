@@ -9,11 +9,15 @@ void Model::load(const std::string& file) {
 	JsonIO jsonio(file);
 	prodotti = jsonio.read();
 }
-	
+
 void Model::add(Prodotto* prod) {
 	prodotti.push_back(SmartPtr<Prodotto>(prod));
 }
-    
+
+void Model::remove(Prodotto* prod) {
+    prodotti.remove(SmartPtr<Prodotto>(prod));
+}
+
 Prodotto* Model::operator[](unsigned int index) const {
     return prodotti[index].operator->();
 }

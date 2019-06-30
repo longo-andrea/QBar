@@ -58,6 +58,7 @@ HEADERS += Qontainer/Qontainer.h \
     Modello/Gerarchia/analcolico.h \
     Modello/Gerarchia/cocktail.h \
     Modello/Gerarchia/vino.h \
+    Modello/Gerarchia/smartptr.h \
     Modello/json/json.h \
     Modello/jsonio.h \
     Modello/model.h \

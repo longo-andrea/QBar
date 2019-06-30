@@ -84,6 +84,7 @@ Controller::Controller(Model* model, QWidget *parent) :
     connect(insertL->getAggiungiBottone(), SIGNAL(clicked()), this, SLOT(aggiungiProdotto()));
     connect(this, SIGNAL(datiAggiornati()), this, SLOT(aggiornaTabellaProdotto()));
     connect(salvaFile, SIGNAL(triggered()), this, SLOT(salvaDati()));
+    connect(caricaFile, SIGNAL(triggered()), this, SLOT(caricaDati()));
 }
 
 Controller::~Controller() {}
@@ -165,4 +166,14 @@ void Controller::aggiornaTabellaProdotto() {
 
 void Controller::salvaDati() const {
     modello->save("Data.json");
+}
+
+void Controller::caricaDati() {
+    modello->load("Data.json");
+    emit datiAggiornati();
+}
+
+void Controller::rimuoviTest()  {
+    modello->remove(modello->operator [](1));
+    aggiornaTabellaProdotto();
 }

@@ -16,6 +16,8 @@ private:
 	void resize();
 
 public:
+    class iterator;
+    class const_iterator;
 
 	class iterator {
 		friend class Qontainer<T>;
@@ -42,6 +44,8 @@ public:
 		iterator operator-(int) const;
 		iterator& operator-=(int);
 
+        bool operator==(const const_iterator&) const;
+        bool operator!=(const const_iterator&) const;
 		bool operator==(const iterator&) const;
 		bool operator!=(const iterator&) const;
 		bool operator<(const iterator&) const;
@@ -108,12 +112,11 @@ public:
 
 	void push_back(const T&);
 	void pop_back();
-	iterator erase(iterator);
-	iterator erase(iterator, iterator);
+    void remove(const T&);
+    iterator erase(iterator);
 	void clear();
 
 	iterator search(const T&);
-	const_iterator search(const T&) const;
 
 	bool operator==(const Qontainer<T>&) const;
 	bool operator!=(const Qontainer<T>&) const;
@@ -183,6 +186,16 @@ template <class T>
 typename Qontainer<T>::iterator& Qontainer<T>::iterator::operator-=(int i) {
 	item -= i;
 	return *this;
+}
+
+template <class T>
+bool Qontainer<T>::iterator::operator==(const const_iterator& it) const {
+    return item == it.item;
+}
+
+template <class T>
+bool Qontainer<T>::iterator::operator!=(const const_iterator& it) const {
+    return item != it.item;
 }
 
 template <class T>
@@ -421,15 +434,16 @@ void Qontainer<T>::pop_back() {
 }
 
 template<class T>
-typename Qontainer<T>::iterator Qontainer<T>::erase(iterator it) {
-	if (isEmpty()) return iterator(0);
-	if (it < begin())
-		return erase(begin());
-	if (it > end())
-		return erase(end()-1);
-	std::copy(it + 1, end(), it);
-	size--;
-	return it;
+void Qontainer<T>::remove(const T& t) {
+    erase(search(t));
+}
+
+template<class T>
+typename Qontainer<T>::iterator Qontainer<T>::erase(iterator it){
+    if(it == iterator(0) || !size)
+        return iterator(0);
+    std::copy(it, it+1, it);
+    return it;
 }
 
 template <class T>
@@ -442,16 +456,11 @@ void Qontainer<T>::clear() {
 
 template <class T>
 typename Qontainer<T>::iterator Qontainer<T>::search(const T& t) {
-	iterator it = begin();
-	for( ; it != end() && *it != t; it++);
-	return it;
-}
-
-template <class T>
-typename Qontainer<T>::const_iterator Qontainer<T>::search(const T& t) const {
-	const_iterator cit = begin();
-	for( ; cit != end() && *cit != t; cit++);
-	return cit;
+    iterator it = begin();
+    for (;it!=end() && *it!=t;++it);
+    if(it==end())
+        return iterator(0);
+    return it;
 }
 
 template <class T>

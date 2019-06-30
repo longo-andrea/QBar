@@ -39,6 +39,9 @@ public slots:
     void aggiungiProdotto();
     void aggiornaTabellaProdotto();
     void salvaDati() const;
+    void caricaDati();
+
+    void rimuoviTest() ;
 
 signals:
     void datiAggiornati();
