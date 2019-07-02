@@ -114,6 +114,7 @@ public:
 	void pop_back();
     void remove(const T&);
     iterator erase(iterator);
+    iterator erase(iterator, iterator);
 	void clear();
 
 	iterator search(const T&);
@@ -439,11 +440,20 @@ void Qontainer<T>::remove(const T& t) {
 }
 
 template<class T>
-typename Qontainer<T>::iterator Qontainer<T>::erase(iterator it){
-    if(it == iterator(0) || !size)
-        return iterator(0);
-    std::copy(it, it+1, it);
-    return it;
+typename Qontainer<T>::iterator Qontainer<T>::erase(iterator posizione){
+    if(posizione != iterator(0)){
+        return erase(posizione, posizione+1);
+    }
+}
+template<class T>
+typename Qontainer<T>::iterator Qontainer<T>::erase(iterator it1, iterator it2){
+    if(!size) return iterator(0);
+    if(it1<begin()) return erase(begin(),it2);
+    if(it2>end()) return erase(it1,end());
+    std::copy(it2,end(),it1); //copio gli elementi nelle posizioni [it2, end) su it1 in poi
+    int offset = static_cast<int>(it2.item-it1.item);
+    size-=offset;
+    return it1;
 }
 
 template <class T>

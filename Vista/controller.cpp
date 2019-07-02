@@ -17,6 +17,7 @@
 #include <string>
 #include <QTableWidget>
 #include <QTableWidgetItem>
+#include <QHeaderView>
 #include <QMessageBox>
 
 #include "../Modello/Gerarchia/analcolico.h"
@@ -28,9 +29,9 @@
 
 #include "insertformexception.h"
 
-Controller::Controller(Model* model, QWidget *parent) :
-    QWidget(parent),
-    modello(model),
+Controller::Controller(QWidget *parent) :
+    QWidget(),
+    modello(new Model()),
     mainLayout(new QVBoxLayout(this)),
     menuBar(new QMenuBar()),
     searchL(new searchLayout(this)),
@@ -82,6 +83,9 @@ Controller::Controller(Model* model, QWidget *parent) :
 
     // MODEL CONNECT
     connect(insertL->getAggiungiBottone(), SIGNAL(clicked()), this, SLOT(aggiungiProdotto()));
+    connect(searchL->getCercaBottone(), SIGNAL(clicked()), this, SLOT(cercaProdotto()));
+    connect(searchL->getRimuoviBottone(), SIGNAL(clicked()), this, SLOT(rimuoviProdotto()));
+    connect(listinoL->getRimuoviBottone(), SIGNAL(clicked()), this, SLOT(rimuoviProdotto()));
     connect(this, SIGNAL(datiAggiornati()), this, SLOT(aggiornaTabellaProdotto()));
     connect(salvaFile, SIGNAL(triggered()), this, SLOT(salvaDati()));
     connect(caricaFile, SIGNAL(triggered()), this, SLOT(caricaDati()));
@@ -153,6 +157,7 @@ void Controller::aggiungiProdotto() {
             modello->add(new Piadina(insertL->getNome(), insertL->getCarboidrati(), insertL->getProteine(), insertL->getGrassi(), insertL->getPrezzoPreparazione(), insertL->getIsVegan(), insertL->getBarCode(), Piadina::stringToImpasto(insertL->getImpastoPiadina()), insertL->getScadenza(), insertL->getEtaMinima()));
         }
 
+        insertL->clearDataForm();
         emit datiAggiornati();
 
     } catch(insertFormException ife) {
@@ -160,8 +165,22 @@ void Controller::aggiungiProdotto() {
     }
 }
 
+void Controller::rimuoviProdotto() {
+
+    if(sender() == listinoL->getRimuoviBottone())
+        modello->remove(listinoL->getIndiceProdottoSelezionato());
+    else if(sender() == searchL->getRimuoviBottone())
+        modello->remove(searchL->getIndiceProdottoSelezionato());
+    emit datiAggiornati();
+}
+
+void Controller::cercaProdotto() {
+    searchL->aggiornaTabella(modello);
+}
+
 void Controller::aggiornaTabellaProdotto() {
     listinoL->aggiornaTabella(modello);
+    searchL->pulisciTabella();
 }
 
 void Controller::salvaDati() const {
@@ -171,9 +190,4 @@ void Controller::salvaDati() const {
 void Controller::caricaDati() {
     modello->load("Data.json");
     emit datiAggiornati();
-}
-
-void Controller::rimuoviTest()  {
-    modello->remove(modello->operator [](1));
-    aggiornaTabellaProdotto();
 }

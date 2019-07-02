@@ -15,13 +15,14 @@
 
 listinoLayout::listinoLayout(QWidget* parent) :
     QWidget(parent),
-    tabellaProdotti(new QTableWidget(this)) {
+    rimuoviBottone(new QPushButton("Elimina")) {
 
-    QVBoxLayout* mainLayout = new QVBoxLayout(this);
-    QHBoxLayout* prodottiLayout = new QHBoxLayout();
+    QHBoxLayout* mainLayout = new QHBoxLayout(this);
+    QVBoxLayout* prodottiLayout = new QVBoxLayout();
     QVBoxLayout* prodottoLayout = new QVBoxLayout();
 
-    prodottiLayout->setAlignment(Qt::AlignTop);
+    // TABELLA PRODOTTI
+    tabellaProdotti = new QTableWidget(0, 7, this);
 
     QStringList testoColonne("Tipo");
     testoColonne.append("Nome");
@@ -31,19 +32,28 @@ listinoLayout::listinoLayout(QWidget* parent) :
     testoColonne.append("Eta Minima");
     testoColonne.append("Bar Code");
 
-    tabellaProdotti->setColumnCount(7);
     tabellaProdotti->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
     tabellaProdotti->setMaximumHeight(150);
     tabellaProdotti->setEditTriggers(QAbstractItemView::NoEditTriggers);
     tabellaProdotti->setHorizontalHeaderLabels(testoColonne);
+    tabellaProdotti->setSelectionBehavior(QAbstractItemView::SelectRows);
 
+    // LAYOUT
     prodottiLayout->addWidget(tabellaProdotti);
+    prodottiLayout->setAlignment(Qt::AlignTop);
+    prodottiLayout->addWidget(rimuoviBottone);
 
     mainLayout->addLayout(prodottiLayout);
     mainLayout->addLayout(prodottoLayout);
-
 }
 
+QPushButton* listinoLayout::getRimuoviBottone() const {
+    return rimuoviBottone;
+}
+
+int listinoLayout::getIndiceProdottoSelezionato() const {
+    return tabellaProdotti->currentRow();
+}
 
 void listinoLayout::aggiornaTabella(Model* modello) {
     tabellaProdotti->setRowCount(0);
@@ -67,3 +77,4 @@ void listinoLayout::aggiornaTabella(Model* modello) {
         tabellaProdotti->setItem(i, 6, barCode);
     }
 }
+

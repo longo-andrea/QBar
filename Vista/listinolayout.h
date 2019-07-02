@@ -3,6 +3,8 @@
 
 #include <QWidget>
 
+#include <QHBoxLayout>
+
 #include <QTableWidget>
 #include <QPushButton>
 #include <QString>
@@ -12,10 +14,15 @@
 class listinoLayout : public QWidget {
     Q_OBJECT
 private:
-   QTableWidget* tabellaProdotti;
+    QTableWidget* tabellaProdotti;
+
+    QPushButton* rimuoviBottone;
 
 public:
     explicit listinoLayout(QWidget* =nullptr);
+
+    QPushButton* getRimuoviBottone() const;
+    int getIndiceProdottoSelezionato() const;
 
     void aggiornaTabella(Model*);
 

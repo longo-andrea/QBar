@@ -59,12 +59,12 @@ T* SmartPtr<T>::operator-> () const {
 
 template <class T>
 bool SmartPtr<T>::operator==(const SmartPtr<T>& s) const {
-        *ptr == *(s.ptr);
+        ptr == s.ptr;
 }
 
 template <class T>
 bool SmartPtr<T>::operator!=(const SmartPtr<T>& s) const {
-    *(ptr) != *(s.ptr);
+    ptr != s.ptr;
 }
 
 #endif // SMARTPTR_H

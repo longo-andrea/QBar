@@ -8,7 +8,7 @@
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
-    Controller w(new Model());
+    Controller w;
     w.show();
 
     QFile File("style.css");

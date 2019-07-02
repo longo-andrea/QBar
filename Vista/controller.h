@@ -5,7 +5,7 @@
 #include <QWidget>
 #include <QLayout>
 
-#include "Modello/model.h"
+#include "../Modello/model.h"
 
 #include <QMenuBar>
 #include "searchlayout.h"
@@ -13,8 +13,7 @@
 #include "insertlayout.h"
 #include "listinolayout.h"
 
-class Controller : public QWidget
-{
+class Controller : public QWidget {
     Q_OBJECT
 private:
     Model* modello;
@@ -27,7 +26,7 @@ private:
     listinoLayout* listinoL;
 
 public:
-    explicit Controller(Model*, QWidget * =0);
+    explicit Controller(QWidget * =0);
     ~Controller() override;
 
 public slots:
@@ -35,13 +34,12 @@ public slots:
     void showInserisciLayout() const;
     void showSearchLayout() const;
     void showListinoLayout() const;
-
     void aggiungiProdotto();
+    void rimuoviProdotto();
+    void cercaProdotto();
     void aggiornaTabellaProdotto();
     void salvaDati() const;
     void caricaDati();
-
-    void rimuoviTest() ;
 
 signals:
     void datiAggiornati();

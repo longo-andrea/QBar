@@ -166,6 +166,7 @@ insertLayout::insertLayout(QWidget *parent) :
     mainLayout->addWidget(formGroupBox);
     mainLayout->addLayout(imageLayout);
 
+    // CONNECT
     connect(tipoValore, SIGNAL(activated(int)), this, SLOT(impostaForm(int)));
     connect(clearDataBottone, SIGNAL(clicked()), this, SLOT(clearDataForm()));
 }
