@@ -15,11 +15,11 @@
 
 insertLayout::insertLayout(QWidget *parent) :
     QWidget(parent),
+    tipoLabel(new QLabel("Tipo")),
     nomeLabel(new QLabel("Nome")),
     scadenzaLabel(new QLabel("Scadenza")),
     etaMinimaLabel(new QLabel("Eta Minima")),
     barCodeLabel(new QLabel("Bar Code")),
-    tipoLabel(new QLabel("Tipo")),
     carboidratiLabel(new QLabel("Carboidrati")),
     proteineLabel(new QLabel("Proteine")),
     grassiLabel(new QLabel("Grassi")),
@@ -39,11 +39,11 @@ insertLayout::insertLayout(QWidget *parent) :
     formaLabel(new QLabel("Forma")),
     ripienoLabel(new QLabel("Ripieno")),
     paneLabel(new QLabel("Pane")),
+    tipoValore(new QComboBox(this)),
     nomeValore(new QLineEdit(this)),
     scadenzaValore(new QLineEdit(this)),
     etaMinimaValore(new QLineEdit(this)),
     barCodeValore(new QLineEdit(this)),
-    tipoValore(new QComboBox(this)),
     carboidratiValore(new QLineEdit(this)),
     proteineValore(new QLineEdit(this)),
     grassiValore(new QLineEdit(this)),
@@ -81,7 +81,6 @@ insertLayout::insertLayout(QWidget *parent) :
     tipoValore->addItem("Analcolico");
     tipoValore->addItem("Cocktail");
     tipoValore->addItem("Vino");
-    tipoValore->insertSeparator(5);
     tipoValore->addItem("Brioche");
     tipoValore->addItem("Panino");
     tipoValore->addItem("Piadina");
@@ -146,10 +145,10 @@ insertLayout::insertLayout(QWidget *parent) :
     impastoPiadinaValore->addItem("Kamut");
 
     // Adding basic item to the form
+    formLayout->addRow(tipoLabel, tipoValore);
     formLayout->addRow(nomeLabel, nomeValore);
     formLayout->addRow(scadenzaLabel, scadenzaValore);
     formLayout->addRow(etaMinimaLabel, etaMinimaValore);
-    formLayout->addRow(tipoLabel, tipoValore);
     formLayout->addRow(carboidratiLabel, carboidratiValore);
     formLayout->addRow(proteineLabel, proteineValore);
     formLayout->addRow(grassiLabel, grassiValore);
@@ -272,6 +271,39 @@ std::string insertLayout::getImpastoPiadina() const {
     return impastoPiadinaValore->currentText().toStdString();
 }
 
+void insertLayout::setNome(QString text) {
+    nomeValore->setText(text);
+}
+
+void insertLayout::setScadenza(QString);
+void insertLayout::setEtaMinima(QString);
+void insertLayout::setBarCode(QString);
+void insertLayout::setTipo(QString);
+void insertLayout::setCarboidrati(QString);
+void insertLayout::setProteine(QString);
+void insertLayout::setGrassi(QString);
+void insertLayout::setIsAlcoholic(QString);
+void insertLayout::setPrezzoNetto(QString);
+void insertLayout::setIsVegan(QString);
+void insertLayout::setPrezzoPreparazione(QString);
+void insertLayout::setVariante(QString);
+void insertLayout::setContenitore(QString);
+void insertLayout::setLitri(QString);
+void insertLayout::setRegione(QString);
+void insertLayout::setAnno(QString);
+void insertLayout::setGradazione(QString);
+void insertLayout::setQuantita(QString);
+void insertLayout::setFamiglia(QString);
+void insertLayout::setImpasto(QString);
+void insertLayout::setForma(QString);
+void insertLayout::setRipieno(QString);
+void insertLayout::setPane(QString);
+void insertLayout::setImpastoPiadina(QString);
+
+void insertLayout::disableTipoValore() {
+    tipoValore->setEnabled(false);
+}
+
 QPushButton* insertLayout::getAggiungiBottone() const {
     return aggiungiBottone;
 }
@@ -294,8 +326,41 @@ void insertLayout::clearDataForm() const {
 }
 
 void insertLayout::clearForm() const {
-    for(int i = 8; i < formLayout->rowCount(); i++)
-        formLayout->takeRow(i);
+
+    formLayout->removeWidget(prezzoNettoLabel);
+    formLayout->removeWidget(prezzoNettoValore);
+    formLayout->removeWidget(isAlcoholicLabel);
+    formLayout->removeWidget(isAlcoholicValore);
+    formLayout->removeWidget(isVeganLabel);
+    formLayout->removeWidget(isVeganValore);
+    formLayout->removeWidget(prezzoPreparazioneLabel);
+    formLayout->removeWidget(prezzoPreparazioneValore);
+    formLayout->removeWidget(varianteLabel);
+    formLayout->removeWidget(varianteValore);
+    formLayout->removeWidget(contenitoreLabel);
+    formLayout->removeWidget(contenitoreValore);
+    formLayout->removeWidget(quantitaLabel);
+    formLayout->removeWidget(quantitaValore);
+    formLayout->removeWidget(famigliaLabel);
+    formLayout->removeWidget(famigliaValore);
+    formLayout->removeWidget(regioneLabel);
+    formLayout->removeWidget(regioneValore);
+    formLayout->removeWidget(annoLabel);
+    formLayout->removeWidget(annoValore);
+    formLayout->removeWidget(litriLabel);
+    formLayout->removeWidget(litriValore);
+    formLayout->removeWidget(gradazioneLabel);
+    formLayout->removeWidget(gradazioneValore);
+    formLayout->removeWidget(impastoLabel);
+    formLayout->removeWidget(impastoValore);
+    formLayout->removeWidget(formaLabel);
+    formLayout->removeWidget(formaValore);
+    formLayout->removeWidget(ripienoLabel);
+    formLayout->removeWidget(ripienoValore);
+    formLayout->removeWidget(paneLabel);
+    formLayout->removeWidget(paneValore);
+    formLayout->removeWidget(impastoPiadinaValore);
+    formLayout->removeItem(buttonLayout);
 
     prezzoNettoLabel->setVisible(false);
     prezzoNettoValore->setVisible(false);
@@ -330,6 +395,7 @@ void insertLayout::clearForm() const {
     paneLabel->setVisible(false);
     paneValore->setVisible(false);
     impastoPiadinaValore->setVisible(false);
+
 }
 
 void insertLayout::impostaForm(int tipo) {
@@ -423,7 +489,7 @@ void insertLayout::impostaForm(int tipo) {
 
         }
         break;
-        case 4: {
+        case 3: {
             clearForm();
 
             formLayout->addRow(isVeganLabel, isVeganValore);
@@ -453,7 +519,7 @@ void insertLayout::impostaForm(int tipo) {
             imageLayout->addWidget(imageLabel);
         }
         break;
-        case 5: {
+        case 4: {
             clearForm();
 
             formLayout->addRow(isVeganLabel, isVeganValore);
@@ -477,7 +543,7 @@ void insertLayout::impostaForm(int tipo) {
             imageLayout->addWidget(imageLabel);
         }
         break;
-        case 6: {
+        case 5: {
             clearForm();
 
             formLayout->addRow(isVeganLabel, isVeganValore);
@@ -503,4 +569,3 @@ void insertLayout::impostaForm(int tipo) {
         break;
     }
 }
-

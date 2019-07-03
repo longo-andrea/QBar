@@ -21,11 +21,11 @@ private:
     QHBoxLayout* imageLayout;
     QHBoxLayout* buttonLayout;
 
+    QLabel* tipoLabel;
     QLabel* nomeLabel;
     QLabel* scadenzaLabel;
     QLabel* etaMinimaLabel;
     QLabel* barCodeLabel;
-    QLabel* tipoLabel;
     QLabel* carboidratiLabel;
     QLabel* proteineLabel;
     QLabel* grassiLabel;
@@ -46,11 +46,11 @@ private:
     QLabel* ripienoLabel;
     QLabel* paneLabel;
 
+    QComboBox* tipoValore;
     QLineEdit* nomeValore;
     QLineEdit* scadenzaValore;
     QLineEdit* etaMinimaValore;
     QLineEdit* barCodeValore;
-    QComboBox* tipoValore;
     QLineEdit* carboidratiValore;
     QLineEdit* proteineValore;
     QLineEdit* grassiValore;
@@ -106,7 +106,33 @@ public:
     std::string getPane() const;
     std::string getImpastoPiadina() const;
 
+    void setNome(QString);
+    void setScadenza(QString);
+    void setEtaMinima(QString);
+    void setBarCode(QString);
+    void setTipo(QString);
+    void setCarboidrati(QString);
+    void setProteine(QString);
+    void setGrassi(QString);
+    void setIsAlcoholic(QString);
+    void setPrezzoNetto(QString);
+    void setIsVegan(QString);
+    void setPrezzoPreparazione(QString);
+    void setVariante(QString);
+    void setContenitore(QString);
+    void setLitri(QString);
+    void setRegione(QString);
+    void setAnno(QString);
+    void setGradazione(QString);
+    void setQuantita(QString);
+    void setFamiglia(QString);
+    void setImpasto(QString);
+    void setForma(QString);
+    void setRipieno(QString);
+    void setPane(QString);
+    void setImpastoPiadina(QString);
 
+    void disableTipoValore();
     QPushButton* getAggiungiBottone() const;
 
 public slots:

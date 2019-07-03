@@ -16,6 +16,8 @@ searchLayout::searchLayout(QWidget* parent) :
     QVBoxLayout* mainLayout = new QVBoxLayout(this);
     searchBarLayout = new QHBoxLayout();
     viewTableLayout = new QVBoxLayout();
+    editL = new insertLayout();
+
 
     // SEARCH BAR
     cercaParametro->addItem("Nome");
@@ -50,12 +52,18 @@ searchLayout::searchLayout(QWidget* parent) :
     viewTableLayout->addWidget(rimuoviBottone);
     viewTableLayout->addWidget(modificaBottone);
 
+    // LAYOUT MODIFICA
+    editL->getAggiungiBottone()->setText("Salva Modifiche");
+    editL->disableTipoValore();
+    editL->hide();
+
     // MAIN LAYOUT
     mainLayout->addLayout(searchBarLayout);
     mainLayout->addLayout(viewTableLayout);
 
     // CONNECT
     connect(cercaParametro, SIGNAL(activated(int)), this, SLOT(setLineEdit(int)));
+    connect(modificaBottone, SIGNAL(clicked()), this, SLOT(showModifica()));
 }
 
 QPushButton* searchLayout::getCercaBottone() const {
@@ -198,4 +206,8 @@ void searchLayout::setLineEdit(int parametro) {
         cercaValore->setValidator(new QIntValidator(2019, 2100, this));
     else if(parametro == 3)
         cercaValore->setValidator(new QIntValidator(14, 100, this));
+}
+
+void searchLayout::showModifica() const {
+    editL->show();
 }

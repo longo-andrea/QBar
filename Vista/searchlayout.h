@@ -11,13 +11,14 @@
 #include <QLineEdit>
 
 #include "../Modello/model.h"
-
+#include "insertlayout.h"
 
 class searchLayout : public QWidget {
     Q_OBJECT
 private:
     QHBoxLayout* searchBarLayout;
     QVBoxLayout* viewTableLayout;
+    insertLayout* editL;
 
     QTableWidget* tabellaProdotti;
 
@@ -43,6 +44,7 @@ public:
 
 public slots:
     void setLineEdit(int);
+    void showModifica() const;
 };
 
 #endif // SEARCHLAYOUT_H
