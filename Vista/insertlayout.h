@@ -106,17 +106,17 @@ public:
     std::string getPane() const;
     std::string getImpastoPiadina() const;
 
+    void setTipo(QString);
     void setNome(QString);
     void setScadenza(QString);
     void setEtaMinima(QString);
     void setBarCode(QString);
-    void setTipo(QString);
     void setCarboidrati(QString);
     void setProteine(QString);
     void setGrassi(QString);
-    void setIsAlcoholic(QString);
+    void setIsAlcoholic(bool);
     void setPrezzoNetto(QString);
-    void setIsVegan(QString);
+    void setIsVegan(bool);
     void setPrezzoPreparazione(QString);
     void setVariante(QString);
     void setContenitore(QString);
@@ -138,7 +138,7 @@ public:
 public slots:
     void clearDataForm() const;
     void clearForm() const;
-    void impostaForm(int);
+    void impostaForm(QString);
 
 };
 

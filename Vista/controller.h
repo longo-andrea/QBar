@@ -37,6 +37,8 @@ public slots:
     void aggiungiProdotto();
     void rimuoviProdotto();
     void cercaProdotto();
+    void formModificaProdotto();
+    void salvaModificaProdotto();
     void aggiornaTabellaProdotto();
     void salvaDati() const;
     void caricaDati();

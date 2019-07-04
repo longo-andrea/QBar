@@ -156,7 +156,6 @@ insertLayout::insertLayout(QWidget *parent) :
 
     // Form initialization
     formGroupBox->setLayout(formLayout);
-    impostaForm(0);
 
     // Button Layout
     buttonLayout->addWidget(clearDataBottone);
@@ -166,8 +165,10 @@ insertLayout::insertLayout(QWidget *parent) :
     mainLayout->addLayout(imageLayout);
 
     // CONNECT
-    connect(tipoValore, SIGNAL(activated(int)), this, SLOT(impostaForm(int)));
+    connect(tipoValore, SIGNAL(currentTextChanged(QString)), this, SLOT(impostaForm(QString)));
     connect(clearDataBottone, SIGNAL(clicked()), this, SLOT(clearDataForm()));
+
+    emit(tipoValore->currentTextChanged(tipoValore->currentText()));
 }
 
 std::string insertLayout::getNome() const {
@@ -271,34 +272,105 @@ std::string insertLayout::getImpastoPiadina() const {
     return impastoPiadinaValore->currentText().toStdString();
 }
 
+void insertLayout::setTipo(QString text) {
+    tipoValore->setCurrentText(text);
+}
+
 void insertLayout::setNome(QString text) {
     nomeValore->setText(text);
 }
 
-void insertLayout::setScadenza(QString);
-void insertLayout::setEtaMinima(QString);
-void insertLayout::setBarCode(QString);
-void insertLayout::setTipo(QString);
-void insertLayout::setCarboidrati(QString);
-void insertLayout::setProteine(QString);
-void insertLayout::setGrassi(QString);
-void insertLayout::setIsAlcoholic(QString);
-void insertLayout::setPrezzoNetto(QString);
-void insertLayout::setIsVegan(QString);
-void insertLayout::setPrezzoPreparazione(QString);
-void insertLayout::setVariante(QString);
-void insertLayout::setContenitore(QString);
-void insertLayout::setLitri(QString);
-void insertLayout::setRegione(QString);
-void insertLayout::setAnno(QString);
-void insertLayout::setGradazione(QString);
-void insertLayout::setQuantita(QString);
-void insertLayout::setFamiglia(QString);
-void insertLayout::setImpasto(QString);
-void insertLayout::setForma(QString);
-void insertLayout::setRipieno(QString);
-void insertLayout::setPane(QString);
-void insertLayout::setImpastoPiadina(QString);
+void insertLayout::setScadenza(QString text) {
+    scadenzaValore->setText(text);
+}
+
+void insertLayout::setEtaMinima(QString text) {
+    etaMinimaValore->setText(text);
+}
+
+void insertLayout::setBarCode(QString text) {
+    barCodeValore->setText(text);
+}
+
+void insertLayout::setCarboidrati(QString text) {
+    carboidratiValore->setText(text);
+}
+
+void insertLayout::setProteine(QString text) {
+    proteineValore->setText(text);
+}
+
+void insertLayout::setGrassi(QString text) {
+    grassiValore->setText(text);
+}
+
+void insertLayout::setIsAlcoholic(bool text) {
+    isAlcoholicValore->setChecked(text);
+}
+
+void insertLayout::setPrezzoNetto(QString text) {
+    prezzoNettoValore->setText(text);
+}
+
+void insertLayout::setIsVegan(bool text) {
+    isVeganValore->setChecked(text);
+}
+
+void insertLayout::setPrezzoPreparazione(QString text) {
+    prezzoPreparazioneValore->setText(text);
+}
+
+void insertLayout::setVariante(QString text) {
+    varianteValore->setCurrentText(text);
+}
+
+void insertLayout::setContenitore(QString text) {
+    contenitoreValore->setCurrentText(text);
+}
+
+void insertLayout::setLitri(QString text) {
+    litriValore->setText(text);
+}
+
+void insertLayout::setRegione(QString text) {
+    regioneValore->setCurrentText(text);
+}
+
+void insertLayout::setAnno(QString text) {
+    annoValore->setText(text);
+}
+
+void insertLayout::setGradazione(QString text) {
+    gradazioneValore->setText(text);
+}
+
+void insertLayout::setQuantita(QString text) {
+    quantitaValore->setCurrentText(text);
+}
+
+void insertLayout::setFamiglia(QString text) {
+    famigliaValore->setCurrentText(text);
+}
+
+void insertLayout::setImpasto(QString text) {
+    impastoValore->setCurrentText(text);
+}
+
+void insertLayout::setForma(QString text) {
+    formaValore->setCurrentText(text);
+}
+
+void insertLayout::setRipieno(QString text) {
+    ripienoValore->setCurrentText(text);
+}
+
+void insertLayout::setPane(QString text) {
+    paneValore->setCurrentText(text);
+}
+
+void insertLayout::setImpastoPiadina(QString text) {
+    impastoValore->setCurrentText(text);
+}
 
 void insertLayout::disableTipoValore() {
     tipoValore->setEnabled(false);
@@ -398,174 +470,166 @@ void insertLayout::clearForm() const {
 
 }
 
-void insertLayout::impostaForm(int tipo) {
-    switch (tipo) {
-        case 0: {
-            clearForm();
+void insertLayout::impostaForm(QString tipo) {
+    if(tipo == "Analcolico") {
+        clearForm();
 
-            formLayout->addRow(prezzoNettoLabel, prezzoNettoValore);
-            formLayout->addRow(contenitoreLabel, contenitoreValore);
-            formLayout->addRow(varianteLabel, varianteValore);
-            formLayout->addRow(litriLabel, litriValore);
-            formLayout->addRow(buttonLayout);
+        formLayout->addRow(prezzoNettoLabel, prezzoNettoValore);
+        formLayout->addRow(contenitoreLabel, contenitoreValore);
+        formLayout->addRow(varianteLabel, varianteValore);
+        formLayout->addRow(litriLabel, litriValore);
+        formLayout->addRow(buttonLayout);
 
-            prezzoNettoLabel->setVisible(true);
-            prezzoNettoValore->setVisible(true);
-            varianteLabel->setVisible(true);
-            varianteValore->setVisible(true);
-            contenitoreLabel->setVisible(true);
-            contenitoreValore->setVisible(true);
-            litriLabel->setVisible(true);
-            litriValore->setVisible(true);
+        prezzoNettoLabel->setVisible(true);
+        prezzoNettoValore->setVisible(true);
+        varianteLabel->setVisible(true);
+        varianteValore->setVisible(true);
+        contenitoreLabel->setVisible(true);
+        contenitoreValore->setVisible(true);
+        litriLabel->setVisible(true);
+        litriValore->setVisible(true);
 
-            QPixmap image = QPixmap(":/Graphic/analcolico.png");
-            imageLabel->setFixedSize(280, 280);
-            image = image.scaled(imageLabel->size(),Qt::KeepAspectRatio);
-            imageLabel->setPixmap(image);
-            imageLayout->addWidget(imageLabel);
-        }
-        break;
-        case 1: {
-            clearForm();
+        QPixmap image = QPixmap(":/Graphic/analcolico.png");
+        imageLabel->setFixedSize(280, 280);
+        image = image.scaled(imageLabel->size(),Qt::KeepAspectRatio);
+        imageLabel->setPixmap(image);
+        imageLayout->addWidget(imageLabel);
+    }
+    else if(tipo == "Cocktail") {
+        clearForm();
 
-            formLayout->addRow(isAlcoholicLabel, isAlcoholicValore);
-            formLayout->addRow(prezzoNettoLabel, prezzoNettoValore);
-            formLayout->addRow(quantitaLabel, quantitaValore);
-            formLayout->addRow(famigliaLabel, famigliaValore);
-            formLayout->addRow(gradazioneLabel, gradazioneValore);
-            formLayout->addRow(buttonLayout);
+        formLayout->addRow(isAlcoholicLabel, isAlcoholicValore);
+        formLayout->addRow(prezzoNettoLabel, prezzoNettoValore);
+        formLayout->addRow(quantitaLabel, quantitaValore);
+        formLayout->addRow(famigliaLabel, famigliaValore);
+        formLayout->addRow(gradazioneLabel, gradazioneValore);
+        formLayout->addRow(buttonLayout);
 
-            isAlcoholicLabel->setVisible(true);
-            isAlcoholicValore->setVisible(true);
-            prezzoNettoLabel->setVisible(true);
-            prezzoNettoValore->setVisible(true);
-            quantitaLabel->setVisible(true);
-            quantitaValore->setVisible(true);
-            famigliaLabel->setVisible(true);
-            famigliaValore->setVisible(true);
-            gradazioneLabel->setVisible(true);
-            gradazioneValore->setVisible(true);
 
-            isAlcoholicValore->setChecked(true);
+        isAlcoholicLabel->setVisible(true);
+        isAlcoholicValore->setVisible(true);
+        prezzoNettoLabel->setVisible(true);
+        prezzoNettoValore->setVisible(true);
+        quantitaLabel->setVisible(true);
+        quantitaValore->setVisible(true);
+        famigliaLabel->setVisible(true);
+        famigliaValore->setVisible(true);
+        gradazioneLabel->setVisible(true);
+        gradazioneValore->setVisible(true);
 
-            QPixmap image = QPixmap(":/Graphic/cocktail.png");
-            imageLabel->setFixedSize(280, 280);
-            image = image.scaled(imageLabel->size(),Qt::KeepAspectRatio);
-            imageLabel->setPixmap(image);
-            imageLayout->addWidget(imageLabel);
-        }
-        break;
-        case 2: {
-            clearForm();
+        isAlcoholicValore->setChecked(true);
 
-            formLayout->addRow(isAlcoholicLabel, isAlcoholicValore);
-            formLayout->addRow(prezzoNettoLabel, prezzoNettoValore);
-            formLayout->addRow(regioneLabel, regioneValore);
-            formLayout->addRow(annoLabel, annoValore);
-            formLayout->addRow(litriLabel, litriValore);
-            formLayout->addRow(gradazioneLabel, gradazioneValore);
-            formLayout->addRow(buttonLayout);
+        QPixmap image = QPixmap(":/Graphic/cocktail.png");
+        imageLabel->setFixedSize(280, 280);
+        image = image.scaled(imageLabel->size(),Qt::KeepAspectRatio);
+        imageLabel->setPixmap(image);
+        imageLayout->addWidget(imageLabel);
+    }
+    else if(tipo == "Vino") {
+        clearForm();
 
-            isAlcoholicLabel->setVisible(true);
-            isAlcoholicValore->setVisible(true);
-            prezzoNettoLabel->setVisible(true);
-            prezzoNettoValore->setVisible(true);
-            regioneLabel->setVisible(true);
-            regioneValore->setVisible(true);
-            annoLabel->setVisible(true);
-            annoValore->setVisible(true);
-            litriLabel->setVisible(true);
-            litriValore->setVisible(true);
-            gradazioneLabel->setVisible(true);
-            gradazioneValore->setVisible(true);
+        formLayout->addRow(isAlcoholicLabel, isAlcoholicValore);
+        formLayout->addRow(prezzoNettoLabel, prezzoNettoValore);
+        formLayout->addRow(regioneLabel, regioneValore);
+        formLayout->addRow(annoLabel, annoValore);
+        formLayout->addRow(litriLabel, litriValore);
+        formLayout->addRow(gradazioneLabel, gradazioneValore);
+        formLayout->addRow(buttonLayout);
 
-            isAlcoholicValore->setChecked(true);
+        isAlcoholicLabel->setVisible(true);
+        isAlcoholicValore->setVisible(true);
+        prezzoNettoLabel->setVisible(true);
+        prezzoNettoValore->setVisible(true);
+        regioneLabel->setVisible(true);
+        regioneValore->setVisible(true);
+        annoLabel->setVisible(true);
+        annoValore->setVisible(true);
+        litriLabel->setVisible(true);
+        litriValore->setVisible(true);
+        gradazioneLabel->setVisible(true);
+        gradazioneValore->setVisible(true);
 
-            QPixmap image = QPixmap(":/Graphic/vino.png");
-            imageLabel->setFixedSize(280, 280);
-            image = image.scaled(imageLabel->size(),Qt::KeepAspectRatio);
-            imageLabel->setPixmap(image);
-            imageLayout->addWidget(imageLabel);
+        isAlcoholicValore->setChecked(true);
 
-        }
-        break;
-        case 3: {
-            clearForm();
+        QPixmap image = QPixmap(":/Graphic/vino.png");
+        imageLabel->setFixedSize(280, 280);
+        image = image.scaled(imageLabel->size(),Qt::KeepAspectRatio);
+        imageLabel->setPixmap(image);
+        imageLayout->addWidget(imageLabel);
+    }
+    else if(tipo == "Brioche") {
+        clearForm();
 
-            formLayout->addRow(isVeganLabel, isVeganValore);
-            formLayout->addRow(prezzoPreparazioneLabel, prezzoPreparazioneValore);
-            formLayout->addRow(impastoLabel, impastoValore);
-            formLayout->addRow(formaLabel, formaValore);
-            formLayout->addRow(ripienoLabel, ripienoValore);
-            formLayout->addRow(buttonLayout);
+        formLayout->addRow(isVeganLabel, isVeganValore);
+        formLayout->addRow(prezzoPreparazioneLabel, prezzoPreparazioneValore);
+        formLayout->addRow(impastoLabel, impastoValore);
+        formLayout->addRow(formaLabel, formaValore);
+        formLayout->addRow(ripienoLabel, ripienoValore);
+        formLayout->addRow(buttonLayout);
 
-            isVeganLabel->setVisible(true);
-            isVeganValore->setVisible(true);
-            prezzoPreparazioneLabel->setVisible(true);
-            prezzoPreparazioneValore->setVisible(true);
-            impastoLabel->setVisible(true);
-            impastoValore->setVisible(true);
-            formaLabel->setVisible(true);
-            formaValore->setVisible(true);
-            ripienoLabel->setVisible(true);
-            ripienoValore->setVisible(true);
+        isVeganLabel->setVisible(true);
+        isVeganValore->setVisible(true);
+        prezzoPreparazioneLabel->setVisible(true);
+        prezzoPreparazioneValore->setVisible(true);
+        impastoLabel->setVisible(true);
+        impastoValore->setVisible(true);
+        formaLabel->setVisible(true);
+        formaValore->setVisible(true);
+        ripienoLabel->setVisible(true);
+        ripienoValore->setVisible(true);
 
-            isVeganValore->setChecked(false);
+        isVeganValore->setChecked(false);
 
-            QPixmap image = QPixmap(":/Graphic/brioche.png");
-            imageLabel->setFixedSize(280, 280);
-            image = image.scaled(imageLabel->size(),Qt::KeepAspectRatio);
-            imageLabel->setPixmap(image);
-            imageLayout->addWidget(imageLabel);
-        }
-        break;
-        case 4: {
-            clearForm();
+        QPixmap image = QPixmap(":/Graphic/brioche.png");
+        imageLabel->setFixedSize(280, 280);
+        image = image.scaled(imageLabel->size(),Qt::KeepAspectRatio);
+        imageLabel->setPixmap(image);
+        imageLayout->addWidget(imageLabel);
+    }
+    else if(tipo == "Panino") {
+        clearForm();
 
-            formLayout->addRow(isVeganLabel, isVeganValore);
-            formLayout->addRow(prezzoPreparazioneLabel, prezzoPreparazioneValore);
-            formLayout->addRow(paneLabel, paneValore);
-            formLayout->addRow(buttonLayout);
+        formLayout->addRow(isVeganLabel, isVeganValore);
+        formLayout->addRow(prezzoPreparazioneLabel, prezzoPreparazioneValore);
+        formLayout->addRow(paneLabel, paneValore);
+        formLayout->addRow(buttonLayout);
 
-            isVeganLabel->setVisible(true);
-            isVeganValore->setVisible(true);
-            prezzoPreparazioneLabel->setVisible(true);
-            prezzoPreparazioneValore->setVisible(true);
-            paneLabel->setVisible(true);
-            paneValore->setVisible(true);
+        isVeganLabel->setVisible(true);
+        isVeganValore->setVisible(true);
+        prezzoPreparazioneLabel->setVisible(true);
+        prezzoPreparazioneValore->setVisible(true);
+        paneLabel->setVisible(true);
+        paneValore->setVisible(true);
 
-            isVeganValore->setChecked(false);
+        isVeganValore->setChecked(false);
 
-            QPixmap image = QPixmap(":/Graphic/panino.png");
-            imageLabel->setFixedSize(280, 280);
-            image = image.scaled(imageLabel->size(),Qt::KeepAspectRatio);
-            imageLabel->setPixmap(image);
-            imageLayout->addWidget(imageLabel);
-        }
-        break;
-        case 5: {
-            clearForm();
+        QPixmap image = QPixmap(":/Graphic/panino.png");
+        imageLabel->setFixedSize(280, 280);
+        image = image.scaled(imageLabel->size(),Qt::KeepAspectRatio);
+        imageLabel->setPixmap(image);
+        imageLayout->addWidget(imageLabel);
+    }
+    else if(tipo == "Piadina") {
+        clearForm();
 
-            formLayout->addRow(isVeganLabel, isVeganValore);
-            formLayout->addRow(prezzoPreparazioneLabel, prezzoPreparazioneValore);
-            formLayout->addRow(impastoLabel, impastoPiadinaValore);
-            formLayout->addRow(buttonLayout);
+        formLayout->addRow(isVeganLabel, isVeganValore);
+        formLayout->addRow(prezzoPreparazioneLabel, prezzoPreparazioneValore);
+        formLayout->addRow(impastoLabel, impastoPiadinaValore);
+        formLayout->addRow(buttonLayout);
 
-            isVeganLabel->setVisible(true);
-            isVeganValore->setVisible(true);
-            prezzoPreparazioneLabel->setVisible(true);
-            prezzoPreparazioneValore->setVisible(true);
-            impastoLabel->setVisible(true);
-            impastoPiadinaValore->setVisible(true);
+        isVeganLabel->setVisible(true);
+        isVeganValore->setVisible(true);
+        prezzoPreparazioneLabel->setVisible(true);
+        prezzoPreparazioneValore->setVisible(true);
+        impastoLabel->setVisible(true);
+        impastoPiadinaValore->setVisible(true);
 
-            isVeganValore->setChecked(false);
+        isVeganValore->setChecked(false);
 
-            QPixmap image = QPixmap(":/Graphic/piadina.png");
-            imageLabel->setFixedSize(280, 280);
-            image = image.scaled(imageLabel->size(),Qt::KeepAspectRatio);
-            imageLabel->setPixmap(image);
-            imageLayout->addWidget(imageLabel);
-        }
-        break;
+        QPixmap image = QPixmap(":/Graphic/piadina.png");
+        imageLabel->setFixedSize(280, 280);
+        image = image.scaled(imageLabel->size(),Qt::KeepAspectRatio);
+        imageLabel->setPixmap(image);
+        imageLayout->addWidget(imageLabel);
     }
 }

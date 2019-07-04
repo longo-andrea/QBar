@@ -3,6 +3,7 @@
 
 #include <QWidget>
 #include <QLayout>
+#include "insertlayout.h"
 
 #include <QPushButton>
 #include <QTableWidget>
@@ -11,7 +12,12 @@
 #include <QLineEdit>
 
 #include "../Modello/model.h"
-#include "insertlayout.h"
+#include "../Modello/Gerarchia/analcolico.h"
+#include "../Modello/Gerarchia/cocktail.h"
+#include "../Modello/Gerarchia/vino.h"
+#include "../Modello/Gerarchia/brioche.h"
+#include "../Modello/Gerarchia/panino.h"
+#include "../Modello/Gerarchia/piadina.h"
 
 class searchLayout : public QWidget {
     Q_OBJECT
@@ -21,7 +27,6 @@ private:
     insertLayout* editL;
 
     QTableWidget* tabellaProdotti;
-
     QComboBox* cercaParametro;
     QLineEdit* cercaValore;
 
@@ -29,18 +34,21 @@ private:
     QPushButton* rimuoviBottone;
     QPushButton* modificaBottone;
 
-    QList<int> indiciRicerca; // contiene gli indici degli oggetti trovati tramite la ricerca
+    QList<int> indiciRicerca;
 public:
     explicit searchLayout(QWidget* =nullptr);
 
     QPushButton* getCercaBottone() const;
     QPushButton* getRimuoviBottone() const;
-    QString getCercaValore() const;
+    QPushButton* getModificaBottone() const;
+    QPushButton* getSalvaModificaBottone() const;
 
+    QString getCercaValore() const;
     int getIndiceProdottoSelezionato() const;
 
     void aggiornaTabella(Model*);
-    void pulisciTabella();
+    void formModificaProdotto(Model*);
+    void salvaModificaProdotto(Model*);
 
 public slots:
     void setLineEdit(int);

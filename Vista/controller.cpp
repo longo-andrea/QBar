@@ -85,6 +85,10 @@ Controller::Controller(QWidget *parent) :
     connect(insertL->getAggiungiBottone(), SIGNAL(clicked()), this, SLOT(aggiungiProdotto()));
     connect(searchL->getCercaBottone(), SIGNAL(clicked()), this, SLOT(cercaProdotto()));
     connect(searchL->getRimuoviBottone(), SIGNAL(clicked()), this, SLOT(rimuoviProdotto()));
+    connect(searchL->getModificaBottone(), SIGNAL(clicked()), this, SLOT(formModificaProdotto()));
+    connect(searchL->getSalvaModificaBottone(), SIGNAL(clicked()), this, SLOT(salvaModificaProdotto()));
+    connect(listinoL->getModificaBottone(), SIGNAL(clicked()), this, SLOT(formModificaProdotto()));
+    connect(listinoL->getSalvaModificaBottone(), SIGNAL(clicked()), this, SLOT(salvaModificaProdotto()));
     connect(listinoL->getRimuoviBottone(), SIGNAL(clicked()), this, SLOT(rimuoviProdotto()));
     connect(this, SIGNAL(datiAggiornati()), this, SLOT(aggiornaTabellaProdotto()));
     connect(salvaFile, SIGNAL(triggered()), this, SLOT(salvaDati()));
@@ -166,7 +170,6 @@ void Controller::aggiungiProdotto() {
 }
 
 void Controller::rimuoviProdotto() {
-
     if(sender() == listinoL->getRimuoviBottone())
         modello->remove(listinoL->getIndiceProdottoSelezionato());
     else if(sender() == searchL->getRimuoviBottone())
@@ -178,9 +181,24 @@ void Controller::cercaProdotto() {
     searchL->aggiornaTabella(modello);
 }
 
+void Controller::formModificaProdotto() {
+    if(sender() == listinoL->getModificaBottone())
+        listinoL->formModificaProdotto(modello);
+    else if(sender() == searchL->getModificaBottone())
+        searchL->formModificaProdotto(modello);
+}
+
+void Controller::salvaModificaProdotto() {
+    if(sender() == listinoL->getSalvaModificaBottone())
+        listinoL->salvaModificaProdotto(modello);
+    else if(sender() == searchL->getSalvaModificaBottone())
+        searchL->salvaModificaProdotto(modello);
+    emit datiAggiornati();
+}
+
 void Controller::aggiornaTabellaProdotto() {
     listinoL->aggiornaTabella(modello);
-    searchL->pulisciTabella();
+    searchL->aggiornaTabella(modello);
 }
 
 void Controller::salvaDati() const {
