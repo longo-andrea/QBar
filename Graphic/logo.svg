@@ -1,6 +1,10 @@
 <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="586" height="586" viewBox="0 0 586 586">
   <defs>
-    <style>
+    <style type="text/css">
+      * {
+		backgroud-color : none;
+      } 	
+    
       .cls-1 {
         isolation: isolate;
       }

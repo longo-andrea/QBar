@@ -1,13 +1,15 @@
 <RCC>
     <qresource prefix="/">
-        <file>Graphic/icon.png</file>
-		<file>Graphic/logo.png</file>
         <file>Graphic/analcolico.png</file>
         <file>Graphic/cocktail.png</file>
         <file>Graphic/vino.png</file>
         <file>Graphic/brioche.png</file>
         <file>Graphic/panino.png</file>
-        <file>Graphic/piadina.png</file>        
-        <file>Graphic/clear.png</file>        
+        <file>Graphic/piadina.png</file>
+        <file>Graphic/clear.png</file>
+        <file>Graphic/icon.png</file>
+        <file>Graphic/logo.png</file>
+        <file>Graphic/qbar-title.png</file>
+        <file>style.qss</file>
     </qresource>
 </RCC>

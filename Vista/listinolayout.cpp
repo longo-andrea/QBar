@@ -38,7 +38,9 @@ listinoLayout::listinoLayout(QWidget* parent) :
     tabellaProdotti->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
     tabellaProdotti->setEditTriggers(QAbstractItemView::NoEditTriggers);
     tabellaProdotti->setHorizontalHeaderLabels(testoColonne);
+    tabellaProdotti->verticalHeader()->setVisible(false);
     tabellaProdotti->setSelectionBehavior(QAbstractItemView::SelectRows);
+    tabellaProdotti->setSelectionMode(QAbstractItemView::SingleSelection);
 
     viewTableLayout->setAlignment(Qt::AlignTop);
     viewTableLayout->addWidget(tabellaProdotti);
@@ -55,6 +57,7 @@ listinoLayout::listinoLayout(QWidget* parent) :
 
     // CONNECT
     connect(modificaBottone, SIGNAL(clicked()), this, SLOT(showModifica()));
+    connect(getSalvaModificaBottone(), SIGNAL(clicked()), editL, SLOT(hide()));
 }
 
 QPushButton* listinoLayout::getRimuoviBottone() const {
@@ -258,5 +261,6 @@ void listinoLayout::salvaModificaProdotto(Model* modello) {
 }
 
 void listinoLayout::showModifica() const {
-    editL->show();
+    if(getIndiceProdottoSelezionato() != -1)
+        editL->show();
 }

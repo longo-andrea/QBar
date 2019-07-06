@@ -11,10 +11,15 @@
 class indexLayout: public QWidget {
     Q_OBJECT
 private:
+    QLabel* titoloLabel;
     QLabel* imageLabel;
+
+    QPixmap titolo;
     QPixmap image;
+
     QPushButton* inserisciBottone;
     QPushButton* ricercaBottone;
+    QPushButton* listinoBottone;
 
 public:
     explicit indexLayout(QWidget * =nullptr);

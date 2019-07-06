@@ -46,7 +46,9 @@ searchLayout::searchLayout(QWidget* parent) :
     tabellaProdotti->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
     tabellaProdotti->setEditTriggers(QAbstractItemView::NoEditTriggers);
     tabellaProdotti->setHorizontalHeaderLabels(testoColonne);
+    tabellaProdotti->verticalHeader()->setVisible(false);
     tabellaProdotti->setSelectionBehavior(QAbstractItemView::SelectRows);
+    tabellaProdotti->setSelectionMode(QAbstractItemView::SingleSelection);
 
     viewTableLayout->setAlignment(Qt::AlignTop);
     viewTableLayout->addWidget(tabellaProdotti);
@@ -65,6 +67,7 @@ searchLayout::searchLayout(QWidget* parent) :
     // CONNECT
     connect(cercaParametro, SIGNAL(activated(int)), this, SLOT(setLineEdit(int)));
     connect(modificaBottone, SIGNAL(clicked()), this, SLOT(showModifica()));
+    connect(getSalvaModificaBottone(), SIGNAL(clicked()), editL, SLOT(hide()));
 }
 
 QPushButton* searchLayout::getCercaBottone() const {
@@ -88,7 +91,10 @@ QString searchLayout::getCercaValore() const {
 }
 
 int searchLayout::getIndiceProdottoSelezionato() const {
-    return indiciRicerca[tabellaProdotti->currentRow()];
+    if(tabellaProdotti->currentRow() != -1)
+        return indiciRicerca[tabellaProdotti->currentRow()];
+    else
+        return -1;
 }
 
 void searchLayout::aggiornaTabella(Model* modello) {
@@ -374,5 +380,6 @@ void searchLayout::setLineEdit(int parametro) {
 }
 
 void searchLayout::showModifica() const {
-    editL->show();
+    if(getIndiceProdottoSelezionato() != -1)
+        editL->show();
 }

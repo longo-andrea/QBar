@@ -1,0 +1,64 @@
+* {
+    background : #BAF192;
+    font-family : Helvetica;
+    font-size : 18px;
+}
+
+QPushButton {
+    background : #FFFFFF;
+}
+
+/* MENU BAR */
+Controller > QMenuBar {
+    padding : 5px 0;
+}
+
+Controller > QMenuBar > QMenu {
+    background-color : rgb(255, 255, 255);
+}
+
+Controller > QMenuBar > QMenu::item:selected {
+    background-color : rgba(185, 255, 176, 0.7);
+    color : rgba(0, 0, 0);
+}
+
+/* INDEX LAYOUT */
+indexLayout > QPushButton {
+    width: 160px;
+    padding: 10px;
+
+    background: #1E5631;
+    border: none;
+    border-radius: 6px;
+
+    color: #ffffff;
+    text-transform: uppercase;
+}
+
+indexLayout > QPushButton:hover {
+    background : #4C9A2A;
+
+}
+
+/* INSERT LAYOUT */
+QComboBox {
+    background-color : #68BB59;
+    color : #000000;
+}
+
+QComboBox QAbstractItemView {
+    background-color: #72cf61;
+}
+
+QLineEdit {
+    background-color : #FFFFFF;
+}
+
+/* SEARCH AND LISTINO LAYOUT */
+QTableWidget {
+    background-color : rgb(255, 255, 255);
+}
+
+QHeaderView::section {
+    background-color : rgb(255, 255, 255);
+}

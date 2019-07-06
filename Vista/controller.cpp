@@ -7,6 +7,8 @@
 #include <QMenuBar>
 #include <QMenu>
 #include <QAction>
+#include <QCloseEvent>
+#include <QFileDialog>
 
 #include <QPushButton>
 
@@ -31,6 +33,7 @@
 
 Controller::Controller(QWidget *parent) :
     QWidget(),
+    fileData(QString("Data.json")),
     modello(new Model()),
     mainLayout(new QVBoxLayout(this)),
     menuBar(new QMenuBar()),
@@ -51,18 +54,18 @@ Controller::Controller(QWidget *parent) :
     QAction* inserisciMenu = new QAction("Inserisci", menuBar);
     QAction* ricercaMenu = new QAction("Ricerca", menuBar);
     QAction* listinoMenu = new QAction("Listino", menuBar);
-    QAction* esciMenu = new QAction("Esci", menuBar);
     QAction* salvaFile = new QAction("Salva", fileMenu);
+    QAction* salvaComeFile = new QAction("Salva come", fileMenu);
     QAction* caricaFile = new QAction("Carica", fileMenu);
 
     fileMenu->addAction(salvaFile);
+    fileMenu->addAction(salvaComeFile);
     fileMenu->addAction(caricaFile);
     menuBar->addMenu(fileMenu);
     menuBar->addAction(indexMenu);
     menuBar->addAction(inserisciMenu);
     menuBar->addAction(ricercaMenu);
     menuBar->addAction(listinoMenu);
-    menuBar->addAction(esciMenu);
 
     mainLayout->setMenuBar(menuBar);
     mainLayout->addWidget(indexL);
@@ -79,7 +82,6 @@ Controller::Controller(QWidget *parent) :
     connect(inserisciMenu, SIGNAL(triggered()), this, SLOT(showInserisciLayout()));
     connect(ricercaMenu, SIGNAL(triggered()), this, SLOT(showSearchLayout()));
     connect(listinoMenu, SIGNAL(triggered()), this, SLOT(showListinoLayout()));
-    connect(esciMenu, SIGNAL(triggered()), QApplication::instance(), SLOT(quit()));
 
     // MODEL CONNECT
     connect(insertL->getAggiungiBottone(), SIGNAL(clicked()), this, SLOT(aggiungiProdotto()));
@@ -92,6 +94,7 @@ Controller::Controller(QWidget *parent) :
     connect(listinoL->getRimuoviBottone(), SIGNAL(clicked()), this, SLOT(rimuoviProdotto()));
     connect(this, SIGNAL(datiAggiornati()), this, SLOT(aggiornaTabellaProdotto()));
     connect(salvaFile, SIGNAL(triggered()), this, SLOT(salvaDati()));
+    connect(salvaComeFile, SIGNAL(triggered()), this, SLOT(salvaComeDati()));
     connect(caricaFile, SIGNAL(triggered()), this, SLOT(caricaDati()));
 }
 
@@ -170,9 +173,9 @@ void Controller::aggiungiProdotto() {
 }
 
 void Controller::rimuoviProdotto() {
-    if(sender() == listinoL->getRimuoviBottone())
+    if(sender() == listinoL->getRimuoviBottone() && listinoL->getIndiceProdottoSelezionato() != -1)
         modello->remove(listinoL->getIndiceProdottoSelezionato());
-    else if(sender() == searchL->getRimuoviBottone())
+    else if(sender() == searchL->getRimuoviBottone() && searchL->getIndiceProdottoSelezionato() != -1)
         modello->remove(searchL->getIndiceProdottoSelezionato());
     emit datiAggiornati();
 }
@@ -182,9 +185,9 @@ void Controller::cercaProdotto() {
 }
 
 void Controller::formModificaProdotto() {
-    if(sender() == listinoL->getModificaBottone())
+    if(sender() == listinoL->getModificaBottone() && listinoL->getIndiceProdottoSelezionato() != -1)
         listinoL->formModificaProdotto(modello);
-    else if(sender() == searchL->getModificaBottone())
+    else if(sender() == searchL->getModificaBottone() && searchL->getIndiceProdottoSelezionato() != -1)
         searchL->formModificaProdotto(modello);
 }
 
@@ -201,11 +204,33 @@ void Controller::aggiornaTabellaProdotto() {
     searchL->aggiornaTabella(modello);
 }
 
-void Controller::salvaDati() const {
-    modello->save("Data.json");
+void Controller::salvaDati() {
+    modello->save(fileData.toStdString());
+}
+
+void Controller::salvaComeDati() {
+    fileData = QFileDialog::getSaveFileName(this, "Salva come", "", "JSON (*.json);;All Files (*)");
+
+    modello->save(fileData.toStdString());
 }
 
 void Controller::caricaDati() {
+    fileData = QFileDialog::getOpenFileName(this, "Carica", "", "JSON (*.json);;All Files (*)");
+
     modello->load("Data.json");
     emit datiAggiornati();
+}
+
+void Controller::closeEvent (QCloseEvent *event) {
+    QMessageBox::StandardButton esciBottone = QMessageBox::question( this, "QBar", "Vuoi salvare gli eventuali dati non salvati prima di uscire?",
+                                                                QMessageBox::Cancel | QMessageBox::No | QMessageBox::Yes, QMessageBox::Yes);
+    if (esciBottone == QMessageBox::Yes) {
+        modello->save(fileData.toStdString());
+        event->accept();
+    } else if(esciBottone == QMessageBox::No) {
+        event->accept();
+    }
+    else{
+        event->ignore();
+    }
 }

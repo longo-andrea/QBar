@@ -4,6 +4,7 @@
 #include <QMainWindow>
 #include <QWidget>
 #include <QLayout>
+#include <QCloseEvent>
 
 #include "../Modello/model.h"
 
@@ -16,6 +17,8 @@
 class Controller : public QWidget {
     Q_OBJECT
 private:
+    QString fileData;
+
     Model* modello;
 
     QVBoxLayout* mainLayout;
@@ -25,6 +28,7 @@ private:
     insertLayout* insertL;
     listinoLayout* listinoL;
 
+    virtual void closeEvent (QCloseEvent*) override;
 public:
     explicit Controller(QWidget * =0);
     ~Controller() override;
@@ -40,7 +44,8 @@ public slots:
     void formModificaProdotto();
     void salvaModificaProdotto();
     void aggiornaTabellaProdotto();
-    void salvaDati() const;
+    void salvaDati();
+    void salvaComeDati();
     void caricaDati();
 
 signals:

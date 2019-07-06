@@ -11,7 +11,7 @@ int main(int argc, char *argv[])
     Controller w;
     w.show();
 
-    QFile File("style.css");
+    QFile File(":/style.qss");
     File.open(QFile::ReadOnly);
     QString StyleSheet = QLatin1String(File.readAll());
 
