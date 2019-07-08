@@ -38,7 +38,7 @@ public:
 	std::string getBarCode() const override;
 	std::string getTipo() const override;
 		
-	double getPrezzoNetto() const;
+    double getPrezzoNetto() const override;
 	Variante getVariante() const;
 	std::string varianteToString() const;
 	Contenitore getContenitore() const;

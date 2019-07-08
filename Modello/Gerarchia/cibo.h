@@ -33,10 +33,8 @@ public:
 	void setIsVegan(const bool&);
 
 	virtual double getPrezzoPreparazione() const = 0;
-	virtual std::string getBarCode() const = 0;
-	virtual double getPrezzo() const = 0;
 
-    double calcolaCalorie() const override;
+    virtual double calcolaCalorie() const;
 
 	virtual bool operator==(const Cibo&) const;
 	virtual bool operator!=(const Cibo&) const;

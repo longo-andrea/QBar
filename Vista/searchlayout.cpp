@@ -33,13 +33,12 @@ searchLayout::searchLayout(QWidget* parent) :
     searchBarLayout->addWidget(ricercaBottone);
 
     // TABELLA PRODOTTI
-    tabellaProdotti = new QTableWidget(0, 7, this);
+    tabellaProdotti = new QTableWidget(0, 6, this);
 
     QStringList testoColonne("Tipo");
     testoColonne.append("Nome");
     testoColonne.append("Prezzo");
     testoColonne.append("Scadenza");
-    testoColonne.append("Calorie");
     testoColonne.append("Eta Minima");
     testoColonne.append("Bar Code");
 
@@ -111,7 +110,6 @@ void searchLayout::aggiornaTabella(Model* modello) {
             QTableWidgetItem* nome = new QTableWidgetItem(QString(QString::fromStdString((*modello)[i]->getNome())));
             QTableWidgetItem* prezzo = new QTableWidgetItem(QString(QString::number((*modello)[i]->getPrezzo())));
             QTableWidgetItem* scadenza = new QTableWidgetItem(QString(QString::number((*modello)[i]->getScadenza())));
-            QTableWidgetItem* calorie = new QTableWidgetItem(QString(QString::number((*modello)[i]->calcolaCalorie())));
             QTableWidgetItem* etaMinima = new QTableWidgetItem(QString(QString::number((*modello)[i]->getEtaMinima())));
             QTableWidgetItem* barCode = new QTableWidgetItem(QString(QString::fromStdString((*modello)[i]->getBarCode())));
 
@@ -120,9 +118,8 @@ void searchLayout::aggiornaTabella(Model* modello) {
             tabellaProdotti->setItem(j, 1, nome);
             tabellaProdotti->setItem(j, 2, prezzo);
             tabellaProdotti->setItem(j, 3, scadenza);
-            tabellaProdotti->setItem(j, 4, calorie);
-            tabellaProdotti->setItem(j, 5, etaMinima);
-            tabellaProdotti->setItem(j, 6, barCode);
+            tabellaProdotti->setItem(j, 4, etaMinima);
+            tabellaProdotti->setItem(j, 5, barCode);
 
             indiciRicerca.append(i);
         }
@@ -137,7 +134,6 @@ void searchLayout::aggiornaTabella(Model* modello) {
             QTableWidgetItem* nome = new QTableWidgetItem(QString(QString::fromStdString((*modello)[i]->getNome())));
             QTableWidgetItem* prezzo = new QTableWidgetItem(QString(QString::number((*modello)[i]->getPrezzo())));
             QTableWidgetItem* scadenza = new QTableWidgetItem(QString(QString::number((*modello)[i]->getScadenza())));
-            QTableWidgetItem* calorie = new QTableWidgetItem(QString(QString::number((*modello)[i]->calcolaCalorie())));
             QTableWidgetItem* etaMinima = new QTableWidgetItem(QString(QString::number((*modello)[i]->getEtaMinima())));
             QTableWidgetItem* barCode = new QTableWidgetItem(QString(QString::fromStdString((*modello)[i]->getBarCode())));
 
@@ -146,9 +142,8 @@ void searchLayout::aggiornaTabella(Model* modello) {
             tabellaProdotti->setItem(j, 1, nome);
             tabellaProdotti->setItem(j, 2, prezzo);
             tabellaProdotti->setItem(j, 3, scadenza);
-            tabellaProdotti->setItem(j, 4, calorie);
-            tabellaProdotti->setItem(j, 5, etaMinima);
-            tabellaProdotti->setItem(j, 6, barCode);
+            tabellaProdotti->setItem(j, 4, etaMinima);
+            tabellaProdotti->setItem(j, 5, barCode);
 
             indiciRicerca.append(i);
         }
@@ -163,7 +158,6 @@ void searchLayout::aggiornaTabella(Model* modello) {
             QTableWidgetItem* nome = new QTableWidgetItem(QString(QString::fromStdString((*modello)[i]->getNome())));
             QTableWidgetItem* prezzo = new QTableWidgetItem(QString(QString::number((*modello)[i]->getPrezzo())));
             QTableWidgetItem* scadenza = new QTableWidgetItem(QString(QString::number((*modello)[i]->getScadenza())));
-            QTableWidgetItem* calorie = new QTableWidgetItem(QString(QString::number((*modello)[i]->calcolaCalorie())));
             QTableWidgetItem* etaMinima = new QTableWidgetItem(QString(QString::number((*modello)[i]->getEtaMinima())));
             QTableWidgetItem* barCode = new QTableWidgetItem(QString(QString::fromStdString((*modello)[i]->getBarCode())));
 
@@ -172,9 +166,8 @@ void searchLayout::aggiornaTabella(Model* modello) {
             tabellaProdotti->setItem(j, 1, nome);
             tabellaProdotti->setItem(j, 2, prezzo);
             tabellaProdotti->setItem(j, 3, scadenza);
-            tabellaProdotti->setItem(j, 4, calorie);
-            tabellaProdotti->setItem(j, 5, etaMinima);
-            tabellaProdotti->setItem(j, 6, barCode);
+            tabellaProdotti->setItem(j, 4, etaMinima);
+            tabellaProdotti->setItem(j, 5, barCode);
 
             indiciRicerca.append(i);
         }
@@ -189,7 +182,6 @@ void searchLayout::aggiornaTabella(Model* modello) {
             QTableWidgetItem* nome = new QTableWidgetItem(QString(QString::fromStdString((*modello)[i]->getNome())));
             QTableWidgetItem* prezzo = new QTableWidgetItem(QString(QString::number((*modello)[i]->getPrezzo())));
             QTableWidgetItem* scadenza = new QTableWidgetItem(QString(QString::number((*modello)[i]->getScadenza())));
-            QTableWidgetItem* calorie = new QTableWidgetItem(QString(QString::number((*modello)[i]->calcolaCalorie())));
             QTableWidgetItem* etaMinima = new QTableWidgetItem(QString(QString::number((*modello)[i]->getEtaMinima())));
             QTableWidgetItem* barCode = new QTableWidgetItem(QString(QString::fromStdString((*modello)[i]->getBarCode())));
 
@@ -198,9 +190,8 @@ void searchLayout::aggiornaTabella(Model* modello) {
             tabellaProdotti->setItem(j, 1, nome);
             tabellaProdotti->setItem(j, 2, prezzo);
             tabellaProdotti->setItem(j, 3, scadenza);
-            tabellaProdotti->setItem(j, 4, calorie);
-            tabellaProdotti->setItem(j, 5, etaMinima);
-            tabellaProdotti->setItem(j, 6, barCode);
+            tabellaProdotti->setItem(j, 4, etaMinima);
+            tabellaProdotti->setItem(j, 5, barCode);
 
             indiciRicerca.append(i);
         }

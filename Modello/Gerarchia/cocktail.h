@@ -39,7 +39,7 @@ public:
 	double calcolaCalorie() const override;
 	std::string getTipo() const override;
 	
-	double getPrezzoNetto() const;
+    double getPrezzoNetto() const override;
 	Quantita getQuantita() const;
 	std::string quantitaToString() const;
 	Classificazione getFamiglia() const;

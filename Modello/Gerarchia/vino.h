@@ -40,7 +40,7 @@ public:
 	double calcolaCalorie() const override;
 	std::string getTipo() const override;
 	
-	double getPrezzoNetto() const;
+    double getPrezzoNetto() const override;
 	Regione getRegione() const;
 	std::string regioneToString() const;
 	int getAnnoProduzione() const;

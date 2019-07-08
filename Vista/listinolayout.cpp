@@ -25,13 +25,12 @@ listinoLayout::listinoLayout(QWidget* parent) :
     editL = new insertLayout();
 
     // TABELLA PRODOTTI
-    tabellaProdotti = new QTableWidget(0, 7, this);
+    tabellaProdotti = new QTableWidget(0, 6, this);
 
     QStringList testoColonne("Tipo");
     testoColonne.append("Nome");
     testoColonne.append("Prezzo");
     testoColonne.append("Scadenza");
-    testoColonne.append("Calorie");
     testoColonne.append("Eta Minima");
     testoColonne.append("Bar Code");
 
@@ -84,7 +83,6 @@ void listinoLayout::aggiornaTabella(Model* modello) {
         QTableWidgetItem* nome = new QTableWidgetItem(QString(QString::fromStdString((*modello)[i]->getNome())));
         QTableWidgetItem* prezzo = new QTableWidgetItem(QString(QString::number((*modello)[i]->getPrezzo())));
         QTableWidgetItem* scadenza = new QTableWidgetItem(QString(QString::number((*modello)[i]->getScadenza())));
-        QTableWidgetItem* calorie = new QTableWidgetItem(QString(QString::number((*modello)[i]->calcolaCalorie())));
         QTableWidgetItem* etaMinima = new QTableWidgetItem(QString(QString::number((*modello)[i]->getEtaMinima())));
         QTableWidgetItem* barCode = new QTableWidgetItem(QString(QString::fromStdString((*modello)[i]->getBarCode())));
 
@@ -93,9 +91,8 @@ void listinoLayout::aggiornaTabella(Model* modello) {
         tabellaProdotti->setItem(i, 1, nome);
         tabellaProdotti->setItem(i, 2, prezzo);
         tabellaProdotti->setItem(i, 3, scadenza);
-        tabellaProdotti->setItem(i, 4, calorie);
-        tabellaProdotti->setItem(i, 5, etaMinima);
-        tabellaProdotti->setItem(i, 6, barCode);
+        tabellaProdotti->setItem(i, 4, etaMinima);
+        tabellaProdotti->setItem(i, 5, barCode);
     }
 }
 

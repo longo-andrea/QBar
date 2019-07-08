@@ -26,13 +26,14 @@ public:
 	double getProteine() const;
 	double getGrassi() const;
 	bool isAlcoholic() const;
+    virtual double getPrezzoNetto() const = 0;
 
 	void setCarboidrati(const double&);
 	void setProteine(const double&);
 	void setGrassi(const double&);
 	void setAlcoholic(const bool&);
 
-    double calcolaCalorie() const override;
+    virtual double calcolaCalorie() const;
 
 	virtual bool operator==(const Bevanda&) const;
 	virtual bool operator!=(const Bevanda&) const;

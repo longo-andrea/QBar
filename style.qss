@@ -6,6 +6,7 @@
 
 QPushButton {
     background : #FFFFFF;
+
 }
 
 /* MENU BAR */
