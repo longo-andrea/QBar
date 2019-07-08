@@ -59,11 +59,11 @@ public:
 		const T* item;
 		const_iterator(const T* = nullptr);
 	public:
-	        typedef std::forward_iterator_tag iterator_category;
-        	typedef iterator self_type;
-        	typedef T value_type;
-        	typedef T& reference;
-        	typedef T* pointer;
+        typedef std::forward_iterator_tag iterator_category;
+        typedef iterator self_type;
+        typedef T value_type;
+        typedef T& reference;
+        typedef T* pointer;
 		typedef int difference_type;
 		
 		const T& operator*() const;
@@ -114,7 +114,6 @@ public:
 	void pop_back();
     void remove(const T&);
     iterator erase(iterator);
-    iterator erase(iterator, iterator);
 	void clear();
 
 	iterator search(const T&);
@@ -440,20 +439,13 @@ void Qontainer<T>::remove(const T& t) {
 }
 
 template<class T>
-typename Qontainer<T>::iterator Qontainer<T>::erase(iterator posizione){
-    if(posizione != iterator(0)){
-        return erase(posizione, posizione+1);
-    }
-}
-template<class T>
-typename Qontainer<T>::iterator Qontainer<T>::erase(iterator it1, iterator it2){
+typename Qontainer<T>::iterator Qontainer<T>::erase(iterator it){
     if(!size) return iterator(0);
-    if(it1<begin()) return erase(begin(),it2);
-    if(it2>end()) return erase(it1,end());
-    std::copy(it2,end(),it1); //copio gli elementi nelle posizioni [it2, end) su it1 in poi
-    int offset = static_cast<int>(it2.item-it1.item);
-    size-=offset;
-    return it1;
+
+    std::copy(it, end(), it);
+
+    size--;
+    return it;
 }
 
 template <class T>
@@ -468,8 +460,6 @@ template <class T>
 typename Qontainer<T>::iterator Qontainer<T>::search(const T& t) {
     iterator it = begin();
     for (;it!=end() && *it!=t;++it);
-    if(it==end())
-        return iterator(0);
     return it;
 }
 

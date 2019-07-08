@@ -4,16 +4,12 @@
 #include "Gerarchia/prodotto.h"
 #include "Gerarchia/smartptr.h"
 #include "../Qontainer/Qontainer.h"
-
-// ?????
 #include <ostream>
 #include <fstream>
-#include "json/json.h"
 
 class JsonIO {
 private:
 	std::string path;
-	
 public:
 	JsonIO(const std::string& ="json/Data.json");
 	

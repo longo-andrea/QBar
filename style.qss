@@ -6,7 +6,6 @@
 
 QPushButton {
     background : #FFFFFF;
-
 }
 
 /* MENU BAR */
@@ -44,6 +43,11 @@ indexLayout > QPushButton:hover {
 /* INSERT LAYOUT */
 QComboBox {
     background-color : #68BB59;
+    color : #000000;
+}
+
+QComboBox:!enabled {
+    background-color : #104f1c;
     color : #000000;
 }
 

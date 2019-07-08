@@ -12,7 +12,6 @@
 
 #include "../Modello/model.h"
 
-
 class listinoLayout : public QWidget {
     Q_OBJECT
 private:

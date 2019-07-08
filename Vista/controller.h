@@ -1,18 +1,19 @@
 #ifndef CONTROLLER_H
 #define CONTROLLERH
 
-#include <QMainWindow>
 #include <QWidget>
-#include <QLayout>
+#include <QMainWindow>
 #include <QCloseEvent>
 
-#include "../Modello/model.h"
-
-#include <QMenuBar>
+#include <QLayout>
 #include "searchlayout.h"
 #include "indexlayout.h"
 #include "insertlayout.h"
 #include "listinolayout.h"
+
+#include <QMenuBar>
+
+#include "../Modello/model.h"
 
 class Controller : public QWidget {
     Q_OBJECT

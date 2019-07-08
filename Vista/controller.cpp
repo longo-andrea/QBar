@@ -2,21 +2,19 @@
 
 #include <QDesktopWidget>
 #include <QApplication>
+#include <QCloseEvent>
 
 #include <QLayout>
+
 #include <QMenuBar>
 #include <QMenu>
 #include <QAction>
-#include <QCloseEvent>
 #include <QFileDialog>
 
 #include <QPushButton>
-
 #include <QPixmap>
 #include <QLabel>
-
 #include <QString>
-#include <string>
 #include <QTableWidget>
 #include <QTableWidgetItem>
 #include <QHeaderView>
@@ -222,8 +220,8 @@ void Controller::caricaDati() {
 }
 
 void Controller::closeEvent (QCloseEvent *event) {
-    QMessageBox::StandardButton esciBottone = QMessageBox::question( this, "QBar", "Vuoi salvare gli eventuali dati non salvati prima di uscire?",
-                                                                QMessageBox::Cancel | QMessageBox::No | QMessageBox::Yes, QMessageBox::Yes);
+    QMessageBox::StandardButton esciBottone = QMessageBox::question( this, "QBar", "Vuoi salvare gli eventuali dati non salvati prima di uscire?", QMessageBox::Cancel | QMessageBox::No | QMessageBox::Yes, QMessageBox::Yes);
+
     if (esciBottone == QMessageBox::Yes) {
         modello->save(fileData.toStdString());
         event->accept();

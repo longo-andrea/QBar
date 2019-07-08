@@ -7,7 +7,6 @@
 #include <QLabel>
 #include <QPushButton>
 
-
 class indexLayout: public QWidget {
     Q_OBJECT
 private:

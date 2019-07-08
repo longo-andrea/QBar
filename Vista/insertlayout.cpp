@@ -66,7 +66,7 @@ insertLayout::insertLayout(QWidget *parent) :
     impastoPiadinaValore(new QComboBox(this)),
     imageLabel(new QLabel(this)),
     aggiungiBottone(new QPushButton("Aggiungi", this)),
-    clearDataBottone(new QPushButton(QIcon(":/Graphic/clear.png"), "", this)) {
+    clearDataBottone(new QPushButton("Pulisci Form", this)) {
 
     QHBoxLayout* mainLayout = new QHBoxLayout(this);
     formGroupBox = new QGroupBox("Riempire il form per inserire un nuovo prodotto.");
@@ -74,7 +74,7 @@ insertLayout::insertLayout(QWidget *parent) :
     buttonLayout = new QHBoxLayout();
     imageLayout = new QHBoxLayout();
 
-    // setting items
+    // SET WIDGET
     scadenzaValore->setValidator(new QIntValidator(2019, 2100, this));
     etaMinimaValore->setValidator(new QIntValidator(14, 100, this));
 
@@ -144,7 +144,7 @@ insertLayout::insertLayout(QWidget *parent) :
     impastoPiadinaValore->addItem("Integrale");
     impastoPiadinaValore->addItem("Kamut");
 
-    // Adding basic item to the form
+    // FORM LAYOUT
     formLayout->addRow(tipoLabel, tipoValore);
     formLayout->addRow(nomeLabel, nomeValore);
     formLayout->addRow(scadenzaLabel, scadenzaValore);
@@ -154,13 +154,13 @@ insertLayout::insertLayout(QWidget *parent) :
     formLayout->addRow(grassiLabel, grassiValore);
     formLayout->addRow(barCodeLabel, barCodeValore);
 
-    // Form initialization
     formGroupBox->setLayout(formLayout);
 
-    // Button Layout
+    // BUTTON LAYOUT
     buttonLayout->addWidget(clearDataBottone);
     buttonLayout->addWidget(aggiungiBottone);
 
+    // MAIN LAYOUT
     mainLayout->addWidget(formGroupBox);
     mainLayout->addLayout(imageLayout);
 
@@ -182,7 +182,6 @@ int insertLayout::getScadenza() const {
 int insertLayout::getEtaMinima() const {
     return etaMinimaValore->text().toInt();
 }
-
 
 std::string insertLayout:: getBarCode() const {
     return barCodeValore->text().toStdString();
