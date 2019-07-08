@@ -90,10 +90,7 @@ QString searchLayout::getCercaValore() const {
 }
 
 int searchLayout::getIndiceProdottoSelezionato() const {
-    if(tabellaProdotti->currentRow() != -1)
-        return indiciRicerca[tabellaProdotti->currentRow()];
-    else
-        return -1;
+    return indiciRicerca[tabellaProdotti->currentRow()];
 }
 
 void searchLayout::aggiornaTabella(Model* modello) {
@@ -268,7 +265,7 @@ void searchLayout::salvaModificaProdotto(Model* modello) {
     try {
         std::string tipo = editL->getTipo();
 
-        if(editL->getNome() == "" || editL->getCarboidrati() == 0 || editL->getProteine() == 0 || editL->getGrassi() == 0 || editL->getBarCode() == "" || editL->getScadenza() == 0 || editL->getEtaMinima() == 0)
+        if(editL->getNome() == "" || editL->getCarboidrati() < 0 || editL->getProteine() < 0 || editL->getGrassi() < 0 || editL->getBarCode() == "" || editL->getScadenza() == 0 || editL->getEtaMinima() == 0)
             throw insertFormException("Verifica di aver compilato tutti i campi, oppure che non ci siano valori nulli.");
 
         if(tipo == "Analcolico"){

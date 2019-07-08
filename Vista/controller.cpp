@@ -139,11 +139,11 @@ void Controller::aggiungiProdotto() {
     try {
         std::string tipo = insertL->getTipo();
 
-        if(insertL->getNome() == "" || insertL->getCarboidrati() == 0 || insertL->getProteine() == 0 || insertL->getGrassi() == 0 || insertL->getBarCode() == "" || insertL->getScadenza() == 0 || insertL->getEtaMinima() == 0)
+        if(insertL->getNome() == "" || insertL->getCarboidrati() < 0 || insertL->getProteine() < 0 || insertL->getGrassi() < 0 || insertL->getBarCode() == "" || insertL->getScadenza() == 0 || insertL->getEtaMinima() == 0)
             throw insertFormException("Verifica di aver compilato tutti i campi, oppure che non ci siano valori nulli.");
 
         if(tipo == "Analcolico"){
-            if(insertL->getPrezzoNetto() == 0 || insertL->getLitri() ==0) throw insertFormException("Verifica di aver compilato tutti i campi, oppure che non ci siano valori nulli.");
+            if(insertL->getPrezzoNetto() == 0 || insertL->getLitri() == 0) throw insertFormException("Verifica di aver compilato tutti i campi, oppure che non ci siano valori nulli.");
             modello->add(new Analcolico(insertL->getNome(), insertL->getCarboidrati(), insertL->getProteine(), insertL->getGrassi(), insertL->getPrezzoNetto(), insertL->getBarCode(), Analcolico::stringToVariante(insertL->getVariante()), Analcolico::stringToContenitore(insertL->getContenitore()), insertL->getLitri(), insertL->getIsAlcoholic(), insertL->getScadenza(), insertL->getEtaMinima()));
         } else if (tipo == "Cocktail") {
             if(insertL->getPrezzoNetto() == 0 || insertL->getGradazione() ==0) throw insertFormException("Verifica di aver compilato tutti i campi, oppure che non ci siano valori nulli.");
@@ -175,6 +175,7 @@ void Controller::rimuoviProdotto() {
         modello->remove(listinoL->getIndiceProdottoSelezionato());
     else if(sender() == searchL->getRimuoviBottone() && searchL->getIndiceProdottoSelezionato() != -1)
         modello->remove(searchL->getIndiceProdottoSelezionato());
+
     emit datiAggiornati();
 }
 
@@ -215,7 +216,8 @@ void Controller::salvaComeDati() {
 void Controller::caricaDati() {
     fileData = QFileDialog::getOpenFileName(this, "Carica", "", "JSON (*.json);;All Files (*)");
 
-    modello->load("Data.json");
+    modello->load(fileData.toStdString());
+
     emit datiAggiornati();
 }
 

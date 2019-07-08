@@ -440,11 +440,11 @@ void Qontainer<T>::remove(const T& t) {
 
 template<class T>
 typename Qontainer<T>::iterator Qontainer<T>::erase(iterator it){
-    if(!size) return iterator(0);
+    if(!size || it == iterator(0)) return iterator(0);
 
-    std::copy(it, end(), it);
-
+    std::copy(it+1, end(),it);
     size--;
+
     return it;
 }
 

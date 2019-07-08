@@ -85,9 +85,9 @@ insertLayout::insertLayout(QWidget *parent) :
     tipoValore->addItem("Panino");
     tipoValore->addItem("Piadina");
 
-    carboidratiValore->setValidator(new QIntValidator(0, 300, this));
-    proteineValore->setValidator(new QIntValidator(0, 300, this));
-    grassiValore->setValidator(new QIntValidator(0, 300, this));
+    carboidratiValore->setValidator(new QDoubleValidator(0, 300, 2, this));
+    proteineValore->setValidator(new QDoubleValidator(0, 300, 2, this));
+    grassiValore->setValidator(new QDoubleValidator(0, 300, 2, this));
 
     prezzoNettoValore->setValidator(new QDoubleValidator(0, 300, 2, this));
     prezzoPreparazioneValore->setValidator(new QDoubleValidator(0, 300, 2, this));

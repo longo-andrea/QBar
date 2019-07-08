@@ -166,7 +166,7 @@ void listinoLayout::salvaModificaProdotto(Model* modello) {
     try {
         std::string tipo = editL->getTipo();
 
-        if(editL->getNome() == "" || editL->getCarboidrati() == 0 || editL->getProteine() == 0 || editL->getGrassi() == 0 || editL->getBarCode() == "" || editL->getScadenza() == 0 || editL->getEtaMinima() == 0)
+        if(editL->getNome() == "" || editL->getCarboidrati() < 0 || editL->getProteine() < 0 || editL->getGrassi() < 0 || editL->getBarCode() == "" || editL->getScadenza() == 0 || editL->getEtaMinima() == 0)
             throw insertFormException("Verifica di aver compilato tutti i campi, oppure che non ci siano valori nulli.");
 
         if(tipo == "Analcolico"){
